@@ -25,6 +25,7 @@ public class Prontuario{
       alterar(obs);
    }
 
+
    public void alterar(String texto){
       this.obs = (!texto.isEmpty()) ? (texto) : ("Entrada de texto inválida.");
    }
@@ -37,6 +38,7 @@ public class Prontuario{
       return obs;
    }
 
-   //não é possível implementar a função no momento, pois esta realiza manipulações no banco de dados do hospital
+   //não é possível implementar os métodos no momento, pois realizam manipulações no banco de dados do hospital
+   public static void Cadastrar(Prontuario prontuario){}
    public static void Excluir(Prontuario prontuario){}
 }
