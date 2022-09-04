@@ -1,4 +1,4 @@
-package src.hospital;
+package hospital;
 import java.time.LocalDate;
 
 public class Prontuario{
@@ -7,7 +7,7 @@ public class Prontuario{
 
 
    public Prontuario(String obs){
-      data = LocalDate.now();   
+      data = LocalDate.now();
       alterar(obs);
    }
 
@@ -37,4 +37,8 @@ public class Prontuario{
    public String getObs(){
       return obs;
    }
+
+   //não é possível implementar os métodos no momento, pois realizam manipulações no banco de dados do hospital
+   public static void Cadastrar(Prontuario prontuario){}
+   public static void Excluir(Prontuario prontuario){}
 }
