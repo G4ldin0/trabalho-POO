@@ -1,4 +1,4 @@
-package src.hospital;
+package hospital;
 import java.time.LocalDate;
 
 public class Prontuario{
@@ -7,7 +7,7 @@ public class Prontuario{
 
 
    public Prontuario(String obs){
-      data = LocalDate.now();   
+      data = LocalDate.now();
       alterar(obs);
    }
 
@@ -25,7 +25,6 @@ public class Prontuario{
       alterar(obs);
    }
 
-
    public void alterar(String texto){
       this.obs = (!texto.isEmpty()) ? (texto) : ("Entrada de texto inválida.");
    }
@@ -37,4 +36,7 @@ public class Prontuario{
    public String getObs(){
       return obs;
    }
+
+   //não é possível implementar a função no momento, pois esta realiza manipulações no banco de dados do hospital
+   public static void Excluir(Prontuario prontuario){}
 }
