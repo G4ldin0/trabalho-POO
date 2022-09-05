@@ -1,10 +1,10 @@
 /* Diagrama de classes
 ------------------------
-+nome: String
-+cpf: int
-+codigoDoConselho: int
-+endereco: String
-+valorDaConsulta: double
+-nome: String
+-cpf: int
+-codigoDoConselho: int
+-endereco: String
+-valorDaConsulta: double
 ------------------------
 +cadastrar(medico:Medico): void
 +editar(medico:Medico): void
@@ -13,7 +13,9 @@
 +buscarPorCPF(medico: Medico): Medico
 +gerarRelatorio(horario:localDate): Consulta[] */
 
-class Medico{
+import java.time.LocalDate;
+
+public class Medico{
 
     private String nome;
     private int cpf;
@@ -52,15 +54,15 @@ class Medico{
         this.codigoDoConselho = buscar;
     }
 
-    void cadastrar(Medico med){
-        this.nome = med.nome;
+    public void cadastrar(Medico med){ // Melhorar cadastrar() com a implementação do banco de dados
+        this.nome = med.nome; 
         this.cpf = med.cpf;
         this.codigoDoConselho = med.codigoDoConselho;
         this.endereco = med.endereco;
         this.valorDaConsulta = med.valorDaConsulta;
     }
 
-    void editar(Medico med){
+    public void editar(Medico med){
         alterarNome(med.nome);
         alterarCpf(med.cpf);
         alterarCodigoDoConselho(med.codigoDoConselho);
@@ -68,21 +70,25 @@ class Medico{
         alterarValorDaConsulta(med.valorDaConsulta);
     }
 
-    void excluir(Medico med){
+    public void excluir(Medico med){
         med = null;
     }
 
-    Medico buscarPorCodigo(Medico med){
+    public Medico buscarPorCodigo(Medico med){ // "Medico med" vai ter o med.buscar == codConselho ou cpf buscado
         if (this.codigoDoConselho == med.codigoDoConselho){
-            return Medico; // (TO DO) Fazer retornar a própria classe
-        } else return 0;
+            return Medico.this; // Retorna a própria classe
+        } else return med; // Alterar esse else?
     }
 
-    Medico buscarPorCpf(Medico med){
+    public Medico buscarPorCpf(Medico med){ // "Medico med" vai ter o med.buscar == codConselho ou cpf buscado
         if (this.cpf == med.cpf){
-            return Medico; // (TO DO) Fazer retornar a própria classe
-        } else return 0;
+            return Medico.this; // Retorna a própria classe
+        } else return med; // Alterar esse else?
     }
+
+    /* void gerarRelatorio(){
+        implementar a classe gerarRelatorio() futuramente
+    } */
 
     // Getters e Setters abaixo. Setters tem o nome de "alterar". Ex: setNome() -> alterarNome()
 
