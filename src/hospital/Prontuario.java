@@ -29,7 +29,7 @@ public class Prontuario{
    public void alterar(String texto){
       this.obs = (!texto.isEmpty()) ? (texto) : ("Entrada de texto inválida.");
    }
-
+   
    public LocalDate getData(){
       return data;
    }
