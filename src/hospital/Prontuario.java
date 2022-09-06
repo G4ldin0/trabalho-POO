@@ -8,11 +8,21 @@ public class Prontuario{
 
    public Prontuario(String obs){
       data = LocalDate.now();
-      alterar(obs);
+      setObs(obs);
    }
 
    public Prontuario(LocalDate data, String obs){
-      LocalDate limiteMinimo = LocalDate.now().minusYears(150);
+      setData(data);
+      setObs(obs);
+   }
+
+
+   public void setObs(String texto){
+      this.obs = (!texto.isEmpty()) ? (texto) : ("Entrada de texto inválida.");
+   }
+
+   public void setData(LocalDate data){
+       LocalDate limiteMinimo = LocalDate.now().minusYears(150);
       LocalDate limiteMaximo = LocalDate.now();
       if(data.isAfter(limiteMinimo)){
          if(data.isBefore(limiteMaximo)){
@@ -21,13 +31,6 @@ public class Prontuario{
          else this.data = limiteMaximo;
       }
       else this.data = limiteMinimo;
-      
-      alterar(obs);
-   }
-
-
-   public void alterar(String texto){
-      this.obs = (!texto.isEmpty()) ? (texto) : ("Entrada de texto inválida.");
    }
 
    public LocalDate getData(){
