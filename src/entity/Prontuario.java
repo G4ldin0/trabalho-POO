@@ -1,4 +1,4 @@
-package hospital;
+package entity;
 import java.time.LocalDate;
 
 public class Prontuario{

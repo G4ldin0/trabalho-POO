@@ -10,41 +10,47 @@
   +buscarPorPaciente(paciente:Paciente): Consulta
   +buscarPorHorario(horario:LocalTime): Consulta
   */
-  package hospital;
-  java.time.localDateTime;
+
+package entity;
+import java.time.LocalDateTime;
+// import java.time.LocalTime; import feito para classe ainda não implementada
+
 public class Consulta{
     private Paciente paciente;
     private Medico medico;
     private LocalDateTime diaEHorario;
     private Prontuario prontuario;
 
-    public Consulta(Paciente paciente,Medico medico, DateTime diaEhorario,Prontuario prontuario){
-        this.paciente = setPaciente(paciente);
-        this.medico = setMedico(medico);
-        this.diaEHorario = setDiaEHorario(diaEHorario);
-        this.prontuario = setProntuario(prontuario);
+    public Consulta(Paciente paciente,Medico medico, LocalDateTime diaEhorario, Prontuario prontuario){
+        setPaciente(paciente);
+        setMedico(medico);
+        setDiaEHorario(diaEhorario);
+        setProntuario(prontuario);
     }
+
     public void setPaciente(Paciente temp){
-        this.paciente.setNome(temp.getNome);
-        this.paciente.setEndereco(temp.getEndereco);
-        this.paciente.setCpf(temp.getCpf);
-        this.paciente.setProntuario(temp.getProntuarios);
+        this.paciente.setNome(temp.getNome());
+        this.paciente.setEndereco(temp.getEndereco());
+        this.paciente.setCpf(temp.getCpf());
+        this.paciente.setProntuarios(temp.getProntuarios());
 
     }
     public Paciente getPaciente(){
         return this.paciente;
 
     }
+    
     public void setMedico(Medico temp){
-        this.medico.alterarNome(temp.getNome);
-        this.medico.alterarCodigoDoConselho(temp.getCodigoDoConselho);
-        this.medico.alterarCpf(temp.getCpf);
-        this.medico.alterarEndereco(temp.getEndereco);
-        this.medico.alterarValorDaConsulta(temp.getValorDaConsulta);
+        this.medico.alterarNome(temp.getNome());
+        this.medico.alterarCodigoDoConselho(temp.getCodigoDoConselho());
+        this.medico.alterarCpf(temp.getCpf());
+        this.medico.alterarEndereco(temp.getEndereco());
+        this.medico.alterarValorDaConsulta(temp.getValorDaConsulta());
     }
     public Medico getMedico(){
         return this.medico;
     }
+    
     public void setDiaEHorario(LocalDateTime temp){
         LocalDateTime agora = LocalDateTime.now();
         LocalDateTime limiteMinimo = agora.minusYears(150);
@@ -54,9 +60,19 @@ public class Consulta{
         }
         else this.diaEHorario = agora.plusMonths(2); // se não colocar uma data válida, a consulta será alterada para dois meses após.
     }
-     public LocalDateTime getDiaEHorario(){
+    public LocalDateTime getDiaEHorario(){
         return this.diaEHorario;
     }
+    
+    public void setProntuario(Prontuario prontuario){
+        if(prontuario != null){
+            this.prontuario = prontuario;
+        }
+    }
+    public Prontuario getProntuario(){ 
+        return this.prontuario;
+    }
+
     public void editar(Consulta temp){ // basicamente um setConsulta
         setPaciente(temp.paciente);
         setMedico(temp.medico);
@@ -69,14 +85,15 @@ public class Consulta{
     public void excluir(Consulta consultaExcluir){
         // tem que ser implementada com a integração com o BD
     }
-    public Consulta buscarporMedico(Medico medicoBusca){
-        //
-    }
-    public Consulta buscarPorPaciente(Paciente pacienteBusca){
-        //
-    }
-    public Consulta buscarPorHorario(LocalTime horario){
-        // 
-    }
+    
+    // public Consulta buscarporMedico(Medico medicoBusca){
+    //     //
+    // }
+    // public Consulta buscarPorPaciente(Paciente pacienteBusca){
+    //     //
+    // }
+    // public Consulta buscarPorHorario(LocalTime horario){
+    //     // 
+    // }
 
 }
