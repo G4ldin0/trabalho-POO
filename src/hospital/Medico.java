@@ -1,3 +1,4 @@
+
 /* Diagrama de classes
 ------------------------
 -nome: String
@@ -13,6 +14,7 @@
 +buscarPorCPF(medico: Medico): Medico
 +gerarRelatorio(horario:localDate): Consulta[] */
 
+package hospital;
 import java.time.LocalDate;
 
 public class Medico{
