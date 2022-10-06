@@ -14,8 +14,7 @@
 +buscarPorCPF(medico: Medico): Medico
 +gerarRelatorio(horario:localDate): Consulta[] */
 
-package hospital;
-import java.time.LocalDate;
+package entity;
 
 public class Medico{
 
@@ -28,40 +27,40 @@ public class Medico{
     public Medico(){}
 
     public Medico(String nome, int cpf, int codConselho, String endereco, double valorConsulta){
-        this.nome = nome;
-        this.cpf = cpf;
-        this.codigoDoConselho = codConselho;
-        this.endereco = endereco;
-        this.valorDaConsulta = valorConsulta;
+        alterarNome(nome);
+        alterarCpf(cpf);
+        alterarCodigoDoConselho(codConselho);
+        alterarEndereco(endereco);
+        alterarValorDaConsulta(valorConsulta);
     }
 
     public Medico(String nome, int cpf, int codConselho, double valorConsulta){
-        this.nome = nome;
-        this.cpf = cpf;
-        this.codigoDoConselho = codConselho;
+        alterarNome(nome);
+        alterarCpf(cpf);
+        alterarCodigoDoConselho(codConselho);
         this.endereco = "Condomínio dos Médicos";
-        this.valorDaConsulta = valorConsulta;
+        alterarValorDaConsulta(valorConsulta);
     }
 
     public Medico(String nome, int cpf, int codConselho){
-        this.nome = nome;
-        this.cpf = cpf;
-        this.codigoDoConselho = codConselho;
+        alterarNome(nome);
+        alterarCpf(cpf);
+        alterarCodigoDoConselho(codConselho);
         this.endereco = "Condomínio dos Médicos";
-        this.valorDaConsulta = 5499.99;  // Valor padrão do hospital
+        this.valorDaConsulta = 5499.99;
     }
 
     public Medico(int buscar){
-        this.cpf = buscar;
-        this.codigoDoConselho = buscar;
+        alterarCpf(buscar);
+        alterarCodigoDoConselho(buscar);
     }
 
     public void cadastrar(Medico med){ // Melhorar cadastrar() com a implementação do banco de dados
-        this.nome = med.nome; 
-        this.cpf = med.cpf;
-        this.codigoDoConselho = med.codigoDoConselho;
-        this.endereco = med.endereco;
-        this.valorDaConsulta = med.valorDaConsulta;
+        alterarNome(med.nome);
+        alterarCpf(med.cpf);
+        alterarCodigoDoConselho(med.codigoDoConselho);
+        alterarEndereco(med.endereco);
+        alterarValorDaConsulta(med.valorDaConsulta);
     }
 
     public void editar(Medico med){
