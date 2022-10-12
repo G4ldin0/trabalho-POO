@@ -1,4 +1,3 @@
-
 /* Diagrama de classes
 ------------------------
 -nome: String
@@ -15,6 +14,7 @@
 +gerarRelatorio(horario:localDate): Consulta[] */
 
 package entity;
+import java.time.LocalDate;
 
 public class Medico{
 
@@ -27,77 +27,41 @@ public class Medico{
     public Medico(){}
 
     public Medico(String nome, int cpf, int codConselho, String endereco, double valorConsulta){
-        alterarNome(nome);
-        alterarCpf(cpf);
-        alterarCodigoDoConselho(codConselho);
-        alterarEndereco(endereco);
-        alterarValorDaConsulta(valorConsulta);
+        setNome(nome);
+        setCpf(cpf);
+        setCodigoDoConselho(codConselho);
+        setEndereco(endereco);
+        setValorDaConsulta(valorConsulta);
     }
 
     public Medico(String nome, int cpf, int codConselho, double valorConsulta){
-        alterarNome(nome);
-        alterarCpf(cpf);
-        alterarCodigoDoConselho(codConselho);
+        setNome(nome);
+        setCpf(cpf);
+        setCodigoDoConselho(codConselho);
         this.endereco = "Condomínio dos Médicos";
-        alterarValorDaConsulta(valorConsulta);
+        setValorDaConsulta(valorConsulta);
     }
 
     public Medico(String nome, int cpf, int codConselho){
-        alterarNome(nome);
-        alterarCpf(cpf);
-        alterarCodigoDoConselho(codConselho);
+        setNome(nome);
+        setCpf(cpf);
+        setCodigoDoConselho(codConselho);
         this.endereco = "Condomínio dos Médicos";
         this.valorDaConsulta = 5499.99;
     }
 
     public Medico(int buscar){
-        alterarCpf(buscar);
-        alterarCodigoDoConselho(buscar);
+        setCpf(buscar);
+        setCodigoDoConselho(buscar);
     }
-
-    public void cadastrar(Medico med){ // Melhorar cadastrar() com a implementação do banco de dados
-        alterarNome(med.nome);
-        alterarCpf(med.cpf);
-        alterarCodigoDoConselho(med.codigoDoConselho);
-        alterarEndereco(med.endereco);
-        alterarValorDaConsulta(med.valorDaConsulta);
-    }
-
-    public void editar(Medico med){
-        alterarNome(med.nome);
-        alterarCpf(med.cpf);
-        alterarCodigoDoConselho(med.codigoDoConselho);
-        alterarEndereco(med.endereco);
-        alterarValorDaConsulta(med.valorDaConsulta);
-    }
-
-    public void excluir(Medico med){
-        med = null;
-    }
-
-    public Medico buscarPorCodigo(Medico med){ // "Medico med" vai ter o med.buscar == codConselho ou cpf buscado
-        if (this.codigoDoConselho == med.codigoDoConselho){
-            return Medico.this; // Retorna a própria classe
-        } else return med; // Alterar esse else?
-    }
-
-    public Medico buscarPorCpf(Medico med){ // "Medico med" vai ter o med.buscar == codConselho ou cpf buscado
-        if (this.cpf == med.cpf){
-            return Medico.this; // Retorna a própria classe
-        } else return med; // Alterar esse else?
-    }
-
-    /* void gerarRelatorio(){
-        implementar a classe gerarRelatorio() futuramente
-    } */
-
-    // Getters e Setters abaixo. Setters tem o nome de "alterar". Ex: setNome() -> alterarNome()
+    
+    // Getters e Setters abaixo. 
 
     public String getNome() { 
         return nome;
     }
 
-    public void alterarNome(String nome) {  // setNome()
+    public void setNome(String nome) {  // setNome()
         if (nome == " "){
             System.out.println("Esse nome é inválido.");
         } else this.nome = nome;
@@ -107,7 +71,7 @@ public class Medico{
         return cpf;
     }
 
-    public void alterarCpf(int cpf) {   // setCpf()
+    public void setCpf(int cpf) {   // setCpf()
         if (cpf == 0){
             System.out.println("Cpf inválido.");
         } else this.cpf = cpf;
@@ -117,7 +81,7 @@ public class Medico{
         return codigoDoConselho;
     }
 
-    public void alterarCodigoDoConselho(int codigoDoConselho) { // setCodigoDoConselho()
+    public void setCodigoDoConselho(int codigoDoConselho) { // setCodigoDoConselho()
         if (cpf == 0){
             System.out.println("Código do conselho inválido.");
         } else this.codigoDoConselho = codigoDoConselho;
@@ -127,7 +91,7 @@ public class Medico{
         return endereco;
     }
 
-    public void alterarEndereco(String endereco) {  // setEndereco()
+    public void setEndereco(String endereco) {  // setEndereco()
         if (endereco == " "){
             System.out.println("Endereço inválido.");
         } else this.endereco = endereco;
@@ -137,11 +101,10 @@ public class Medico{
         return valorDaConsulta;
     }
 
-    public void alterarValorDaConsulta(double valorDaConsulta) {    // setValorDaConsulta()
+    public void setValorDaConsulta(double valorDaConsulta) {    // setValorDaConsulta()
         if (valorDaConsulta == 0){
             System.out.println("Valor da consulta inválido.");
         } else this.valorDaConsulta = valorDaConsulta;
     }
-
 
 }
