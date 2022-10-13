@@ -11,7 +11,7 @@ import br.edu.ufersa.hospital.model.entity.Medico;
 
 public class MedicoDAO extends BaseDAO {
 	Medico vo;
-	  public void cadastrar(Medico vo) {
+	  public boolean cadastrar(Medico vo) {
 		  conn = getConnection();
 		  String sql = "insert into Medico (nome,cpf,codigoDoConselho,endereco,valorDaConsulta) values (?,?,?,?,?);";
 		  PreparedStatement ps;
@@ -23,9 +23,11 @@ public class MedicoDAO extends BaseDAO {
 			  ps.setString(4, vo.getEndereco());
 			  ps.setDouble(5, vo.getValorDaConsulta());
 			  ps.execute();
+			  return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	  }
 	  public boolean editar(Medico vo) {
@@ -48,7 +50,7 @@ public class MedicoDAO extends BaseDAO {
 			
 	  }
 	  
-	  public void excluirPorCPF(Medico vo) {
+	  public boolean excluirPorCPF(Medico vo) {
 		  conn = getConnection();
 		  String sql = "delete from Medico where cpf = ?;";
 		  PreparedStatement ps;
@@ -56,9 +58,11 @@ public class MedicoDAO extends BaseDAO {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, vo.getCpf());
 			  ps.execute();
+			  return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	  }
 	  public Medico buscarPorCodigo(Medico vo) {

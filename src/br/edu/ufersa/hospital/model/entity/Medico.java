@@ -3,14 +3,14 @@ package br.edu.ufersa.hospital.model.entity;
 public class Medico{
 
     private String nome;
-    private int cpf;
+    private long cpf;
     private int codigoDoConselho;
     private String endereco;
     private double valorDaConsulta;
 
     public Medico(){}
 
-    public Medico(String nome, int cpf, int codConselho, String endereco, double valorConsulta){
+    public Medico(String nome, long cpf, int codConselho, String endereco, double valorConsulta){
         setNome(nome);
         setCpf(cpf);
         setCodigoDoConselho(codConselho);
@@ -18,7 +18,7 @@ public class Medico{
         setValorDaConsulta(valorConsulta);
     }
 
-    public Medico(String nome, int cpf, int codConselho, double valorConsulta){
+    public Medico(String nome, long cpf, int codConselho, double valorConsulta){
         setNome(nome);
         setCpf(cpf);
         setCodigoDoConselho(codConselho);
@@ -26,19 +26,13 @@ public class Medico{
         setValorDaConsulta(valorConsulta);
     }
 
-    public Medico(String nome, int cpf, int codConselho){
+    public Medico(String nome, long cpf, int codConselho){
         setNome(nome);
         setCpf(cpf);
         setCodigoDoConselho(codConselho);
         this.endereco = "Condomínio dos Médicos";
         this.valorDaConsulta = 5499.99;
     }
-
-    public Medico(int buscar){
-        setCpf(buscar);
-        setCodigoDoConselho(buscar);
-    }
-
     /* void gerarRelatorio(){
         implementar a classe gerarRelatorio() futuramente
     } */
@@ -55,11 +49,11 @@ public class Medico{
         } else this.nome = nome;
     }
 
-    public int getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {   // setCpf()
+    public void setCpf(long cpf) {   // setCpf()
         if (cpf == 0){
             System.out.println("Cpf inválido.");
         } else this.cpf = cpf;
