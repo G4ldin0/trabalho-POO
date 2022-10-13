@@ -28,11 +28,11 @@ public class Consulta{
     }
     
     public void setMedico(Medico temp){
-        this.medico.alterarNome(temp.getNome());
-        this.medico.alterarCodigoDoConselho(temp.getCodigoDoConselho());
-        this.medico.alterarCpf(temp.getCpf());
-        this.medico.alterarEndereco(temp.getEndereco());
-        this.medico.alterarValorDaConsulta(temp.getValorDaConsulta());
+        this.medico.setNome(temp.getNome());
+        this.medico.setCodigoDoConselho(temp.getCodigoDoConselho());
+        this.medico.setCpf(temp.getCpf());
+        this.medico.setEndereco(temp.getEndereco());
+        this.medico.setValorDaConsulta(temp.getValorDaConsulta());
     }
     public Medico getMedico(){
         return this.medico;
