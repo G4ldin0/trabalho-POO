@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ufersa.hospital.model.entity.Medico;
-import br.edu.ufersa.hospital.model.service.MedicoBO;
 
 public class MedicoDAO extends BaseDAO {
 	Medico vo;
