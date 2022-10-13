@@ -1,4 +1,4 @@
-package service;
+package br.edu.ufersa.hospital.model.service;
 
 public class ConsultaBO {
   public void editar(Consulta temp){ // basicamente um setConsulta

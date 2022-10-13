@@ -1,4 +1,4 @@
-package service;
+package br.edu.ufersa.hospital.model.service;
 
 public class MedicoBO {
   public void cadastrar(Medico med){ // Melhorar cadastrar() com a implementação do banco de dados

@@ -1,4 +1,4 @@
-package entity;
+package br.edu.ufersa.hospital.model.entity;
 import java.time.LocalDate;
 import java.util.Vector;
 
