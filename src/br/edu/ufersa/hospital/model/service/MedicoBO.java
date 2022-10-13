@@ -1,20 +1,24 @@
 package br.edu.ufersa.hospital.model.service;
+import br.edu.ufersa.hospital.model.entity.Medico;
+import br.edu.ufersa.hospital.model.dao.MedicoDAO;
+import br.edu.ufersa.hospital.model.dao.BaseInterDAO;
 
 public class MedicoBO {
-  public void cadastrar(Medico med){ // Melhorar cadastrar() com a implementação do banco de dados
-    alterarNome(med.nome);
-    alterarCpf(med.cpf);
-    alterarCodigoDoConselho(med.codigoDoConselho);
-    alterarEndereco(med.endereco);
-    alterarValorDaConsulta(med.valorDaConsulta);
+
+public void cadastrar(Medico med){ // Melhorar cadastrar() com a implementação do banco de dados
+    setNome(med.nome);
+    setCpf(med.cpf);
+    setCodigoDoConselho(med.codigoDoConselho);
+    setEndereco(med.endereco);
+    setValorDaConsulta(med.valorDaConsulta);
 }
 
 public void editar(Medico med){
-    alterarNome(med.nome);
-    alterarCpf(med.cpf);
-    alterarCodigoDoConselho(med.codigoDoConselho);
-    alterarEndereco(med.endereco);
-    alterarValorDaConsulta(med.valorDaConsulta);
+    setNome(med.nome);
+    setCpf(med.cpf);
+    setCodigoDoConselho(med.codigoDoConselho);
+    setEndereco(med.endereco);
+    setValorDaConsulta(med.valorDaConsulta);
 }
 
 public void excluir(Medico med){
