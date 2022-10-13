@@ -4,7 +4,7 @@ import java.time.LocalDate;
 public class Prontuario{
    private LocalDate data;
    private String obs;
-
+   private int ID;
 
    public Prontuario(String obs){
       data = LocalDate.now();
@@ -24,7 +24,6 @@ public class Prontuario{
       
       alterar(obs);
    }
-
 
    public LocalDate getData(){
       return data;

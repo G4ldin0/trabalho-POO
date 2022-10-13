@@ -8,33 +8,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ufersa.hospital.model.entity.Paciente;
+import br.edu.ufersa.hospital.model.entity.Prontuario;
 
 public class PacienteDAO extends BaseDAO {
 	Paciente vo;
 	  public void cadastrar(Paciente vo) {
 		  conn = getConnection();
+			Prontuario prontuarioVO;
 		  String sql = "insert into Paciente (nome,endereco,cpf,prontuario) values (?,?,?,?);";
 		  PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getNome());
-			  ps.setString(2, vo.getEndereco());
-			 ps.setLong(3, vo.getCpf());
-			  ps.execute();
+			ps.setString(2, vo.getEndereco());
+			ps.setLong(3, vo.getCpf());
+			ps.setObject(4, Paciente.getProntuarios()); // pretendo usar o id de prontuario pra referenciar à tabela de prontuarios
+			ps.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	  }
-	  public boolean editar(Medico vo) {
-		  String sql = "UPDATE Medico SET cpf=?,nome=?,codigoDoConselho=?,endereco=? WHERE cpf=? ";
+	  public boolean editar(Paciente vo) {
+		  String sql = "UPDATE Paciente SET cpf=?,nome=?,endereco=?,prontuario=? WHERE cpf=? ";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1, vo.getCpf());
+				ps.setLong(1, vo.getCpf());
 				ps.setString(2, vo.getNome() );
-				ps.setInt(3, vo.getCodigoDoConselho());
-				ps.setString(4, vo.getEndereco());
-				ps.setInt(5, vo.getCpf());
+				ps.setString(3, vo.getEndereco());
+				ps.setArray(4, vo.getProntuarios());
+				ps.setLong(5, vo.getCpf());
 				ps.executeUpdate();
 				return true;		
 			
