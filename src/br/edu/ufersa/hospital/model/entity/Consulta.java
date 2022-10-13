@@ -1,17 +1,4 @@
-/*-paciente: Paciente 
-  -medico: Medico
-  -diaEHorario: localDateTime
-  -prontuario: Prontuario
-  
-  +cadastrar(consulta:Consulta):void --- Precisa de interação com o banco de dados
-  +editar(consulta:Consulta):void
-  +excluir(consulta:Consulta):void
-  +buscarporMedico(medico:Medico):Consulta
-  +buscarPorPaciente(paciente:Paciente): Consulta
-  +buscarPorHorario(horario:LocalTime): Consulta
-  */
-
-package entity;
+package br.edu.ufersa.hospital.model.entity;
 import java.time.LocalDateTime;
 // import java.time.LocalTime; import feito para classe ainda não implementada
 

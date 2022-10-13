@@ -1,4 +1,4 @@
-package service;
+package br.edu.ufersa.hospital.model.service;
 
 public class PacienteBO {
   public void Alterar(Paciente alteracao){
