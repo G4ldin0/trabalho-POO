@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ufersa.hospital.model.entity.Medico;
+import br.edu.ufersa.hospital.model.service.MedicoBO;
 
 public class MedicoDAO extends BaseDAO {
 	Medico vo;
@@ -18,7 +19,7 @@ public class MedicoDAO extends BaseDAO {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getNome());
-			  ps.setInt(2, vo.getCpf());
+			  ps.setLong(2, vo.getCpf());
 			  ps.setInt(3, vo.getCodigoDoConselho());
 			  ps.setString(4, vo.getEndereco());
 			  ps.setDouble(5, vo.getValorDaConsulta());
@@ -34,11 +35,11 @@ public class MedicoDAO extends BaseDAO {
 		  String sql = "UPDATE Medico SET cpf=?,nome=?,codigoDoConselho=?,endereco=? WHERE cpf=? ";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1, vo.getCpf());
+				ps.setLong(1, vo.getCpf());
 				ps.setString(2, vo.getNome() );
 				ps.setInt(3, vo.getCodigoDoConselho());
 				ps.setString(4, vo.getEndereco());
-				ps.setInt(5, vo.getCpf());
+				ps.setLong(5, vo.getCpf());
 				ps.executeUpdate();
 				return true;		
 			
@@ -56,7 +57,7 @@ public class MedicoDAO extends BaseDAO {
 		  PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, vo.getCpf());
+			ps.setLong(1, vo.getCpf());
 			  ps.execute();
 			  return true;
 		} catch (SQLException e) {
@@ -90,7 +91,7 @@ public class MedicoDAO extends BaseDAO {
 		  String sql = "SELECT * FROM Medico WHERE id=? ;";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1, vo.getCpf());
+				ps.setLong(1, vo.getCpf());
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Medico m = new Medico();
