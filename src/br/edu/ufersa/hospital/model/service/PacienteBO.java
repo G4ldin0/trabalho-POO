@@ -5,9 +5,9 @@ import br.edu.ufersa.hospital.model.dao.BaseInterDAO;
 
 public class PacienteBO {
   public void Alterar(Paciente alteracao){
-    setNome(alteracao.getNome());
-    setEndereco(alteracao.getEndereco());
-    setCpf(alteracao.getCpf());
+    alteracao.setNome(alteracao.getNome());
+    alteracao.setEndereco(alteracao.getEndereco());
+    alteracao.setCpf(alteracao.getCpf());
  }
  public static void Cadastrar(){}
    public static void Excluir(){}

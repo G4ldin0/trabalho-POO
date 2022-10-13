@@ -6,19 +6,19 @@ import br.edu.ufersa.hospital.model.dao.BaseInterDAO;
 public class MedicoBO {
 
 public void cadastrar(Medico med){ // Melhorar cadastrar() com a implementação do banco de dados
-    setNome(med.nome);
-    setCpf(med.cpf);
-    setCodigoDoConselho(med.codigoDoConselho);
-    setEndereco(med.endereco);
-    setValorDaConsulta(med.valorDaConsulta);
+    med.setNome(med.getNome()); // Esses sets provavelmente vão pro BD
+    med.setCpf(med.getCpf());
+    med.setCodigoDoConselho(med.getCodigoDoConselho());
+    med.setEndereco(med.getEndereco());
+    med.setValorDaConsulta(med.getValorDaConsulta());
 }
 
 public void editar(Medico med){
-    setNome(med.nome);
-    setCpf(med.cpf);
-    setCodigoDoConselho(med.codigoDoConselho);
-    setEndereco(med.endereco);
-    setValorDaConsulta(med.valorDaConsulta);
+    med.setNome(med.getNome());
+    med.setCpf(med.getCpf());
+    med.setCodigoDoConselho(med.getCodigoDoConselho());
+    med.setEndereco(med.getEndereco());
+    med.setValorDaConsulta(med.getValorDaConsulta());
 }
 
 public void excluir(Medico med){
