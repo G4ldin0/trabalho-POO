@@ -9,7 +9,7 @@ import java.util.List;
 
 import br.edu.ufersa.hospital.model.entity.Medico;
 
-public class MedicoDAO extends BaseDAO {
+public class MedicoDAO extends BaseDAO<Medico> {
 	Medico vo;
 	  public boolean cadastrar(Medico vo) {
 		  conn = getConnection();
@@ -31,14 +31,14 @@ public class MedicoDAO extends BaseDAO {
 		}
 	  }
 	  public boolean editar(Medico vo) {
-		  String sql = "UPDATE Medico SET cpf=?,nome=?,codigoDoConselho=?,endereco=? WHERE cpf=? ";
+		  String sql = "UPDATE Medico SET cpf=?,nome=?,codigoDoConselho=?,endereco=? WHERE idMedico=? ";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
 				ps.setLong(1, vo.getCpf());
 				ps.setString(2, vo.getNome() );
 				ps.setInt(3, vo.getCodigoDoConselho());
 				ps.setString(4, vo.getEndereco());
-				ps.setLong(5, vo.getCpf());
+				ps.setInt(5, vo.getId());
 				ps.executeUpdate();
 				return true;		
 			
@@ -47,7 +47,6 @@ public class MedicoDAO extends BaseDAO {
 				e.printStackTrace();
 				return false;
 			}	
-			
 	  }
 	  
 	  public boolean excluirPorCPF(Medico vo) {
@@ -65,7 +64,22 @@ public class MedicoDAO extends BaseDAO {
 			return false;
 		}
 	  }
-	  public Medico buscarPorCodigo(Medico vo) {
+	  public boolean excluirPorId(Medico vo) {
+		  conn = getConnection();
+		  String sql = "delete from Medico where idMedico = ?;";
+		  PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, vo.getIdMedico());
+			  ps.execute();
+			  return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	  }
+	  public Medico buscarPorCodigoDoConselho(Medico vo) {
 		  String sql = "SELECT * FROM Medico WHERE id=? ;";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -73,7 +87,7 @@ public class MedicoDAO extends BaseDAO {
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Medico m = new Medico();
-					m.setCpf(rs.getInt("cpf"));
+					m.setCpf(rs.getLong("cpf"));
 					m.setEndereco(rs.getString("endereco"));
 					m.setNome(rs.getString("nome"));
 					return m;
@@ -94,7 +108,7 @@ public class MedicoDAO extends BaseDAO {
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Medico m = new Medico();
-					m.setCpf(rs.getInt("cpf"));
+					m.setCpf(rs.getLong("cpf"));
 					m.setEndereco(rs.getString("endereco"));
 					m.setNome(rs.getString("nome"));
 					return m;
@@ -118,7 +132,7 @@ public class MedicoDAO extends BaseDAO {
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
 				Medico vo = new Medico();
-				vo.setCpf(rs.getInt("cpf"));
+				vo.setCpf(rs.getLong("cpf"));
 				vo.setNome(rs.getString("nome"));
 				vo.setCodigoDoConselho(rs.getInt("codigoDoConselho"));
 				vo.setEndereco(rs.getString("endereco"));
