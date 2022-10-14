@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class BaseDAO {
+public class BaseDAO<entity> implements BaseInterDAO<entity>{
 	Connection conn = null;
 	String url = "jdbc:mariaDB://localhost:3306/hospital";
-	String user = "Client";
+	String user = "root";
 	String password = "senha123";
 	synchronized public Connection getConnection() {
 		if(conn == null) {
@@ -20,5 +20,25 @@ public class BaseDAO {
 			return conn;
 		}
 		else return conn;
+	}
+	@Override
+	public boolean adicionar(entity e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean excluir(entity e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean editar(entity e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public entity buscarPorCpf(entity e) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

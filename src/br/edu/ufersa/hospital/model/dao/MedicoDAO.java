@@ -9,7 +9,7 @@ import java.util.List;
 
 import br.edu.ufersa.hospital.model.entity.Medico;
 
-public class MedicoDAO extends BaseDAO {
+public class MedicoDAO extends BaseDAO<Medico> {
 	Medico vo;
 	  public boolean cadastrar(Medico vo) {
 		  conn = getConnection();

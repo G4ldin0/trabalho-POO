@@ -8,39 +8,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ufersa.hospital.model.entity.Paciente;
-import br.edu.ufersa.hospital.model.entity.Prontuario;
 
-public class PacienteDAO extends BaseDAO {
+public class PacienteDAO extends BaseDAO<Paciente> {
 	Paciente vo;
-	  public void cadastrar(Paciente vo) {
+	  public boolean cadastrar(Paciente vo) {
 		  conn = getConnection();
-			Prontuario prontuarioVO;
-		  String sql = "insert into Paciente (nome,endereco,cpf,prontuario) values (?,?,?,?);";
+		  String sql = "insert into Paciente (nome,cpf,endereco) values (?,?,?);";
 		  PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getNome());
-			ps.setString(2, vo.getEndereco());
-			ps.setLong(3, vo.getCpf());
-			ps.setObject(4, Paciente.getProntuarios()); // pretendo usar o id de prontuario pra referenciar à tabela de prontuarios
+			ps.setLong(2, vo.getCpf());
+			ps.setString(3, vo.getEndereco());
 			ps.execute();
+			  return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	  }
 	  public boolean editar(Paciente vo) {
-		  String sql = "UPDATE Paciente SET cpf=?,nome=?,endereco=?,prontuario=? WHERE cpf=? ";
+		  String sql = "UPDATE Paciente SET cpf=?,nome=?,endereco=? WHERE cpf=? ";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
 				ps.setLong(1, vo.getCpf());
-				ps.setString(2, vo.getNome() );
+				ps.setString(2, vo.getNome());
 				ps.setString(3, vo.getEndereco());
-				ps.setArray(4, vo.getProntuarios());
-				ps.setLong(5, vo.getCpf());
+				ps.setLong(4, vo.getCpf());
 				ps.executeUpdate();
 				return true;		
-			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -49,28 +46,30 @@ public class PacienteDAO extends BaseDAO {
 			
 	  }
 	  
-	  public void excluirPorCPF(Medico vo) {
+	  public boolean excluirPorCPF(Paciente vo) {
 		  conn = getConnection();
-		  String sql = "delete from Medico where cpf = ?;";
+		  String sql = "delete from Paciente where cpf = ?;";
 		  PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, vo.getCpf());
+			ps.setLong(1, vo.getCpf());
 			  ps.execute();
+			  return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	  }
-	  public Medico buscarPorCodigo(Medico vo) {
-		  String sql = "SELECT * FROM Medico WHERE id=? ;";
+	  public Paciente buscarPorCPF(Paciente vo) {
+		  String sql = "SELECT * FROM Medico WHERE id=? ;"; // 3  idPaciente = 3
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1, vo.getCodigoDoConselho());
+				ps.setLong(1, vo.getCpf());
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
-					Medico m = new Medico();
-					m.setCpf(rs.getInt("cpf"));
+					Paciente m = new Paciente();
+					m.setCpf(rs.getLong("cpf"));
 					m.setEndereco(rs.getString("endereco"));
 					m.setNome(rs.getString("nome"));
 					return m;
@@ -83,44 +82,22 @@ public class PacienteDAO extends BaseDAO {
 				return null;
 			}
 	  }
-	  public Medico buscarPorCPF(Medico vo) {
-		  String sql = "SELECT * FROM Medico WHERE id=? ;";
-			try {
-				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1, vo.getCpf());
-				ResultSet rs = ps.executeQuery();
-				if(rs.next()) {
-					Medico m = new Medico();
-					m.setCpf(rs.getInt("cpf"));
-					m.setEndereco(rs.getString("endereco"));
-					m.setNome(rs.getString("nome"));
-					return m;
-				}
-				else return null;
-			
-			} catch (SQLException ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
-				return null;
-			}
-	  }
-	  public List<Medico> listar(){
+	  public List<Paciente> listar(){
 		  conn = getConnection();
-		  String sql = "select * from Medico";
+		  String sql = "select * from Paciente";
 		  Statement st;
 		  ResultSet rs;
-		  List<Medico> listaMedico = new ArrayList<Medico>();
+		  List<Paciente> listaPaciente = new ArrayList<Paciente>();
 		  try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
-				Medico vo = new Medico();
-				vo.setCpf(rs.getInt("cpf"));
+				Paciente vo = new Paciente();
+				vo.setCpf(rs.getLong("cpf"));
 				vo.setNome(rs.getString("nome"));
-				vo.setCodigoDoConselho(rs.getInt("codigoDoConselho"));
 				vo.setEndereco(rs.getString("endereco"));
-				vo.setValorDaConsulta(rs.getDouble("valorDaConsulta"));
-				listaMedico.add(vo);
+				vo.setValorDaConsulta(rs.getDouble("prontuario"));
+				listaPaciente.add(vo);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
