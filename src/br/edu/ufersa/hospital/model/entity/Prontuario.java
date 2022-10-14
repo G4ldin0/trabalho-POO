@@ -3,9 +3,10 @@ import java.time.LocalDate;
 import br.edu.ufersa.hospital.model.service.ProntuarioBO;
 
 public class Prontuario{
+
+   private int id;
    private LocalDate data;
    private String obs;
-
 
    public Prontuario(String obs){
       data = LocalDate.now();
@@ -17,6 +18,15 @@ public class Prontuario{
       setObs(obs);
    }
 
+   public int getId(){
+      return this.id;
+   }
+
+   public void setId(int id){
+      if(id < 0){
+          System.out.println("Id inválido");
+      } else this.id = id;
+   }
 
    public LocalDate getData(){
       return data;

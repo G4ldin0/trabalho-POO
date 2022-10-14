@@ -3,6 +3,8 @@ import java.time.LocalDateTime;
 // import java.time.LocalTime; import feito para classe ainda não implementada
 
 public class Consulta{
+    
+    private int id;
     private Paciente paciente;
     private Medico medico;
     private LocalDateTime diaEHorario;
@@ -13,6 +15,16 @@ public class Consulta{
         setMedico(medico);
         setDiaEHorario(diaEhorario);
         setProntuario(prontuario);
+    }
+
+    public int getId(){
+        return this.id;
+    }
+
+    public void setId(int id){
+        if(id < 0){
+            System.out.println("Id inválido");
+        } else this.id = id;
     }
 
     public void setPaciente(Paciente temp){
