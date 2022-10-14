@@ -5,16 +5,16 @@ import br.edu.ufersa.hospital.model.service.ProntuarioBO;
 public class Prontuario{
 
    private int id;
-   private LocalDate data;
+   private LocalDate momento;
    private String obs;
 
    public Prontuario(String obs){
-      data = LocalDate.now();
+      momento = LocalDate.now();
       setObs(obs);
    }
 
-   public Prontuario(LocalDate data, String obs){
-      setData(data);
+   public Prontuario(LocalDate momento, String obs){
+      setMomento(momento);
       setObs(obs);
    }
 
@@ -28,20 +28,20 @@ public class Prontuario{
       } else this.id = id;
    }
 
-   public LocalDate getData(){
-      return data;
+   public LocalDate getmomento(){
+      return momento;
    }
 
-   public void setData(LocalDate data){
+   public void setMomento(LocalDate momento){
       LocalDate limiteMinimo = LocalDate.now().minusYears(150);
       LocalDate limiteMaximo = LocalDate.now();
-      if(data.isAfter(limiteMinimo)){
-         if(data.isBefore(limiteMaximo)){
-            this.data = data;
+      if(momento.isAfter(limiteMinimo)){
+         if(momento.isBefore(limiteMaximo)){
+            this.momento = momento;
          } 
-         else this.data = limiteMaximo;
+         else this.momento = limiteMaximo;
       }
-      else this.data = limiteMinimo;
+      else this.momento = limiteMinimo;
    }
 
    public void setObs(String obs){
