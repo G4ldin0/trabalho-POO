@@ -28,7 +28,24 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 			return false;
 		}
 	  }
-	  public boolean editar(Paciente vo) {
+	  public boolean editarPorID(Paciente vo) {
+		  String sql = "UPDATE Paciente SET cpf=?,nome=?,endereco=? WHERE idPaciente=? ";
+			try {
+				PreparedStatement ps = getConnection().prepareStatement(sql);
+				ps.setLong(1, vo.getCpf());
+				ps.setString(2, vo.getNome());
+				ps.setString(3, vo.getEndereco());
+				ps.setInt(4, vo.getIdConsulta());
+				ps.executeUpdate();
+				return true;		
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}	
+			
+	  }
+	  public boolean editarPorCpf(Paciente vo) {
 		  String sql = "UPDATE Paciente SET cpf=?,nome=?,endereco=? WHERE cpf=? ";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -61,11 +78,47 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 			return false;
 		}
 	  }
+	  public boolean excluirPorId(Paciente vo) {
+		  conn = getConnection();
+		  String sql = "delete from Paciente where idPaciente = ?;";
+		  PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, vo.getIdPaciente());
+			  ps.execute();
+			  return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	  }
 	  public Paciente buscarPorCPF(Paciente vo) {
-		  String sql = "SELECT * FROM Medico WHERE id=? ;"; // 3  idPaciente = 3
+		  String sql = "SELECT * FROM Paciente WHERE cpf=? ;";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
 				ps.setLong(1, vo.getCpf());
+				ResultSet rs = ps.executeQuery();
+				if(rs.next()) {
+					Paciente m = new Paciente();
+					m.setCpf(rs.getLong("cpf"));
+					m.setEndereco(rs.getString("endereco"));
+					m.setNome(rs.getString("nome"));
+					return m;
+				}
+				else return null;
+			
+			} catch (SQLException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+				return null;
+			}
+	  }
+	  public Paciente buscarPorId(Paciente vo) {
+		  String sql = "SELECT * FROM Medico WHERE idPaciente=? ;"; // 3  idPaciente = 3
+			try {
+				PreparedStatement ps = getConnection().prepareStatement(sql);
+				ps.setInt(1, vo.getIdPaciente());
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Paciente m = new Paciente();
@@ -96,13 +149,13 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 				vo.setCpf(rs.getLong("cpf"));
 				vo.setNome(rs.getString("nome"));
 				vo.setEndereco(rs.getString("endereco"));
-				vo.setValorDaConsulta(rs.getDouble("prontuario"));
+				vo.setProntuarios(rs.getDouble("prontuario")); //arrumar
 				listaPaciente.add(vo);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		  return listaMedico;
+		  return listaPaciente;
 	  }
 }

@@ -1,11 +1,9 @@
 package br.edu.ufersa.hospital.model.entity;
 
-public class Medico{
+public class Medico extends Pessoa{
 
-    private String nome;
-    private long cpf;
+    private int id;
     private int codigoDoConselho;
-    private String endereco;
     private double valorDaConsulta;
 
     public Medico(){}
@@ -39,28 +37,18 @@ public class Medico{
 
     // Getters e Setters abaixo. Setters tem o nome de "alterar". Ex: setNome() -> alterarNome()
 
-    public String getNome() { 
-        return nome;
+    public int getId(){
+        return this.id;
     }
 
-    public void setNome(String nome) {  // setNome()
-        if (nome == " "){
-            System.out.println("Esse nome é inválido.");
-        } else this.nome = nome;
-    }
-
-    public long getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(long cpf) {   // setCpf()
-        if (cpf == 0){
-            System.out.println("Cpf inválido.");
-        } else this.cpf = cpf;
+    public void setId(int id){
+        if(id < 0){
+            System.out.println("Id inválido");
+        } else this.id = id;
     }
 
     public int getCodigoDoConselho() {
-        return codigoDoConselho;
+        return this.codigoDoConselho;
     }
 
     public void setCodigoDoConselho(int codigoDoConselho) { // setCodigoDoConselho()
@@ -68,19 +56,9 @@ public class Medico{
             System.out.println("Código do conselho inválido.");
         } else this.codigoDoConselho = codigoDoConselho;
     }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {  // setEndereco()
-        if (endereco == " "){
-            System.out.println("Endereço inválido.");
-        } else this.endereco = endereco;
-    }
     
     public double getValorDaConsulta() {
-        return valorDaConsulta;
+        return this.valorDaConsulta;
     }
 
     public void setValorDaConsulta(double valorDaConsulta) {    // setValorDaConsulta()

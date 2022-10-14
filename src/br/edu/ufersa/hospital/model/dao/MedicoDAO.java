@@ -31,14 +31,14 @@ public class MedicoDAO extends BaseDAO<Medico> {
 		}
 	  }
 	  public boolean editar(Medico vo) {
-		  String sql = "UPDATE Medico SET cpf=?,nome=?,codigoDoConselho=?,endereco=? WHERE cpf=? ";
+		  String sql = "UPDATE Medico SET cpf=?,nome=?,codigoDoConselho=?,endereco=? WHERE idMedico=? ";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
 				ps.setLong(1, vo.getCpf());
 				ps.setString(2, vo.getNome() );
 				ps.setInt(3, vo.getCodigoDoConselho());
 				ps.setString(4, vo.getEndereco());
-				ps.setLong(5, vo.getCpf());
+				ps.setLong(5, vo.getIdMedico());
 				ps.executeUpdate();
 				return true;		
 			
@@ -47,7 +47,6 @@ public class MedicoDAO extends BaseDAO<Medico> {
 				e.printStackTrace();
 				return false;
 			}	
-			
 	  }
 	  
 	  public boolean excluirPorCPF(Medico vo) {
@@ -65,7 +64,22 @@ public class MedicoDAO extends BaseDAO<Medico> {
 			return false;
 		}
 	  }
-	  public Medico buscarPorCodigo(Medico vo) {
+	  public boolean excluirPorId(Medico vo) {
+		  conn = getConnection();
+		  String sql = "delete from Medico where idMedico = ?;";
+		  PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, vo.getIdMedico());
+			  ps.execute();
+			  return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	  }
+	  public Medico buscarPorCodigoDoConselho(Medico vo) {
 		  String sql = "SELECT * FROM Medico WHERE id=? ;";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
