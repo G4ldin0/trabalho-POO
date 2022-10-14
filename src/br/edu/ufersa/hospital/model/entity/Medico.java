@@ -2,6 +2,7 @@ package br.edu.ufersa.hospital.model.entity;
 
 public class Medico extends Pessoa{
 
+    private int id;
     private int codigoDoConselho;
     private double valorDaConsulta;
 
@@ -36,8 +37,18 @@ public class Medico extends Pessoa{
 
     // Getters e Setters abaixo. Setters tem o nome de "alterar". Ex: setNome() -> alterarNome()
 
+    public int getId(){
+        return this.id;
+    }
+
+    public void setId(int id){
+        if(id < 0){
+            System.out.println("Id inválido");
+        } else this.id = id;
+    }
+
     public int getCodigoDoConselho() {
-        return codigoDoConselho;
+        return this.codigoDoConselho;
     }
 
     public void setCodigoDoConselho(int codigoDoConselho) { // setCodigoDoConselho()
@@ -47,7 +58,7 @@ public class Medico extends Pessoa{
     }
     
     public double getValorDaConsulta() {
-        return valorDaConsulta;
+        return this.valorDaConsulta;
     }
 
     public void setValorDaConsulta(double valorDaConsulta) {    // setValorDaConsulta()
