@@ -18,7 +18,7 @@ public class MedicoDAO extends BaseDAO<Medico> {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getNome());
-			  ps.setLong(2, vo.getCpf());
+			  ps.setString(2, vo.getCpf());
 			  ps.setInt(3, vo.getCodigoDoConselho());
 			  ps.setString(4, vo.getEndereco());
 			  ps.setDouble(5, vo.getValorDaConsulta());
@@ -34,7 +34,7 @@ public class MedicoDAO extends BaseDAO<Medico> {
 		  String sql = "UPDATE Medico SET cpf=?,nome=?,codigoDoConselho=?,endereco=? WHERE idMedico=? ";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setLong(1, vo.getCpf());
+				ps.setString(1, vo.getCpf());
 				ps.setString(2, vo.getNome() );
 				ps.setInt(3, vo.getCodigoDoConselho());
 				ps.setString(4, vo.getEndereco());
@@ -55,7 +55,7 @@ public class MedicoDAO extends BaseDAO<Medico> {
 		  PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setLong(1, vo.getCpf());
+			ps.setString(1, vo.getCpf());
 			  ps.execute();
 			  return true;
 		} catch (SQLException e) {
@@ -70,7 +70,7 @@ public class MedicoDAO extends BaseDAO<Medico> {
 		  PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, vo.getIdMedico());
+			ps.setInt(1, vo.getId());
 			  ps.execute();
 			  return true;
 		} catch (SQLException e) {
@@ -87,7 +87,7 @@ public class MedicoDAO extends BaseDAO<Medico> {
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Medico m = new Medico();
-					m.setCpf(rs.getLong("cpf"));
+					m.setCpf(rs.getString("cpf"));
 					m.setEndereco(rs.getString("endereco"));
 					m.setNome(rs.getString("nome"));
 					return m;
@@ -100,15 +100,17 @@ public class MedicoDAO extends BaseDAO<Medico> {
 				return null;
 			}
 	  }
+
+	  @Override
 	  public Medico buscarPorCPF(Medico vo) {
-		  String sql = "SELECT * FROM Medico WHERE id=? ;";
+		  String sql = "SELECT * FROM Medico WHERE cpf=? ;";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setLong(1, vo.getCpf());
+				ps.setString(1, vo.getCpf());
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Medico m = new Medico();
-					m.setCpf(rs.getLong("cpf"));
+					m.setCpf(rs.getString("cpf"));
 					m.setEndereco(rs.getString("endereco"));
 					m.setNome(rs.getString("nome"));
 					return m;
@@ -121,6 +123,36 @@ public class MedicoDAO extends BaseDAO<Medico> {
 				return null;
 			}
 	  }
+
+	public ResultSet encontrar(Medico vo){
+		String sql = "SELECT * FROM Medico WHERE cpf=? ;";
+
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setString(1, vo.getCpf());
+			
+			ResultSet rs = ps.executeQuery();
+			return rs;
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public ResultSet exibir() {
+		String sql = "SELECT * FROM Medico;";
+		try {
+			PreparedStatement pst = getConnection().prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			return rs;
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
 	  public List<Medico> listar(){
 		  conn = getConnection();
 		  String sql = "select * from Medico";
@@ -132,7 +164,7 @@ public class MedicoDAO extends BaseDAO<Medico> {
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
 				Medico vo = new Medico();
-				vo.setCpf(rs.getLong("cpf"));
+				vo.setCpf(rs.getString("cpf"));
 				vo.setNome(rs.getString("nome"));
 				vo.setCodigoDoConselho(rs.getInt("codigoDoConselho"));
 				vo.setEndereco(rs.getString("endereco"));

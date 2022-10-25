@@ -3,7 +3,7 @@ package br.edu.ufersa.hospital.model.entity;
 public class Pessoa {
 
     protected String nome;
-    protected long cpf;
+    protected String cpf;
     protected String endereco;
 
     public String getNome(){
@@ -16,12 +16,12 @@ public class Pessoa {
         } else this.nome = nome;
     }
 
-    public long getCpf(){
+    public String getCpf(){
         return this.cpf;
     }
 
-    public void setCpf(long cpf) {
-        if (cpf == 0){
+    public void setCpf(String cpf) {
+        if (cpf == " "){
             System.out.println("Cpf inválido.");
         } else this.cpf = cpf;
     }
