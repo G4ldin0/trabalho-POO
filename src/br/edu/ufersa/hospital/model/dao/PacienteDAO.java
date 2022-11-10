@@ -18,7 +18,7 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getNome());
-			ps.setLong(2, vo.getCpf());
+			ps.setString(2, vo.getCpf());
 			ps.setString(3, vo.getEndereco());
 			ps.execute();
 			  return true;
@@ -32,10 +32,10 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 		  String sql = "UPDATE Paciente SET cpf=?,nome=?,endereco=? WHERE idPaciente=? ";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setLong(1, vo.getCpf());
+				ps.setString(1, vo.getCpf());
 				ps.setString(2, vo.getNome());
 				ps.setString(3, vo.getEndereco());
-				ps.setInt(4, vo.getIdConsulta());
+				ps.setInt(4, vo.getId());
 				ps.executeUpdate();
 				return true;		
 			} catch (SQLException e) {
@@ -49,10 +49,10 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 		  String sql = "UPDATE Paciente SET cpf=?,nome=?,endereco=? WHERE cpf=? ";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setLong(1, vo.getCpf());
+				ps.setString(1, vo.getCpf());
 				ps.setString(2, vo.getNome());
 				ps.setString(3, vo.getEndereco());
-				ps.setLong(4, vo.getCpf());
+				ps.setString(4, vo.getCpf());
 				ps.executeUpdate();
 				return true;		
 			} catch (SQLException e) {
@@ -69,7 +69,7 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 		  PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setLong(1, vo.getCpf());
+			ps.setString(1, vo.getCpf());
 			  ps.execute();
 			  return true;
 		} catch (SQLException e) {
@@ -84,7 +84,7 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 		  PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, vo.getIdPaciente());
+			ps.setInt(1, vo.getId());
 			  ps.execute();
 			  return true;
 		} catch (SQLException e) {
@@ -97,11 +97,11 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 		  String sql = "SELECT * FROM Paciente WHERE cpf=? ;";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setLong(1, vo.getCpf());
+				ps.setString(1, vo.getCpf());
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Paciente m = new Paciente();
-					m.setCpf(rs.getLong("cpf"));
+					m.setCpf(rs.getString("cpf"));
 					m.setEndereco(rs.getString("endereco"));
 					m.setNome(rs.getString("nome"));
 					return m;
@@ -122,7 +122,7 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Paciente m = new Paciente();
-					m.setCpf(rs.getLong("cpf"));
+					m.setCpf(rs.getString("cpf"));
 					m.setEndereco(rs.getString("endereco"));
 					m.setNome(rs.getString("nome"));
 					return m;
@@ -146,10 +146,10 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
 				Paciente vo = new Paciente();
-				vo.setCpf(rs.getLong("cpf"));
+				vo.setCpf(rs.getString("cpf"));
 				vo.setNome(rs.getString("nome"));
 				vo.setEndereco(rs.getString("endereco"));
-				vo.setProntuarios(rs.getDouble("prontuario")); //arrumar
+				vo.setProntuarios(rs.getArray("prontuario"))
 				listaPaciente.add(vo);
 			}
 		} catch (SQLException e) {

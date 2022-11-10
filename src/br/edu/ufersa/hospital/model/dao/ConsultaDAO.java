@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
 
 import br.edu.ufersa.hospital.model.entity.Consulta;
 
@@ -13,14 +15,15 @@ public class ConsultaDAO extends BaseDAO<Consulta> {
 	Consulta vo;
 	  public boolean cadastrar(Consulta vo) {
 		  conn = getConnection();
-		  String sql = "insert into Consulta (idPaciente,idMedico,momento,idProntuario) values (?,?,?,?);";
+		  String sql = "insert into Consulta (idPaciente,idMedico,Momento,idProntuario) values (?,?,?,?);";
 		  PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1,vo.getIdPaciente());
-			ps.setInt(2,vo.getIdMedico());
-			ps.setDate(3, vo.getMomento()); // Nao existe setDateTime
-			ps.setInt(4,vo.getIdProntuario());
+			ps.setInt(1,vo.getPaciente().getId());
+			ps.setInt(2,vo.getMedico().getId());
+			Date data = Date.valueOf(vo.getData());
+			ps.setDate(3, data);
+			ps.setInt(4,vo.getProntuario().getId());
 			  ps.execute();
 			  return true;
 		} catch (SQLException e) {
@@ -30,14 +33,15 @@ public class ConsultaDAO extends BaseDAO<Consulta> {
 		}
 	  }
 	  public boolean editar(Consulta vo) {
-		  String sql = "UPDATE Consulta SET idPaciente = ?, idMedico = ?, momento = ?, idProntuario = ?  WHERE idConsulta=? ";
+		  String sql = "UPDATE Consulta SET idPaciente = ?, idMedico = ?, Momento = ?, idProntuario = ?  WHERE idConsulta=? ";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1,vo.getIdPaciente());
-				ps.setInt(2,vo.getIdMedico());
-				ps.setDate(3, vo.getMomento());
-				ps.setInt(4,vo.getIdProntuario());
-				ps.setInt(5, vo.getIdConsulta());
+				ps.setInt(1,vo.getPaciente().getId());
+				ps.setInt(2,vo.getMedico().getId());
+				Date data = Date.valueOf(vo.getData());
+				ps.setDate(3, data);
+				ps.setInt(4,vo.getProntuario().getId());
+				ps.setInt(5, vo.getId());
 				ps.executeUpdate();
 				return true;		
 			
@@ -55,7 +59,7 @@ public class ConsultaDAO extends BaseDAO<Consulta> {
 		  PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, vo.getIdConsulta());
+			ps.setInt(1, vo.getId());
 			  ps.execute();
 			  return true;
 		} catch (SQLException e) {
@@ -65,17 +69,19 @@ public class ConsultaDAO extends BaseDAO<Consulta> {
 		}
 	  }
 	  public Consulta buscarPorMomento(Consulta vo) {
-		  String sql = "SELECT * FROM Consulta WHERE momento=? ;";
+		  String sql = "SELECT * FROM Consulta WHERE Momento=? ;";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setDateTime(1, vo.getDiaEHorario()); // setDateTime não existe, depois será resolvido
+				Date data = Date.valueOf(vo.getData());
+				ps.setDate(1,data);
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Consulta m = new Consulta();
-					m.setIdPaciente(rs.getInt("idPaciente"));
-					m.setIdMedico(rs.getInt("idMedico"));
-					m.setMomento(rs.getDate("Momento"));
-					m.setIdProntuario(rs.getInt("idProntuario"));
+					m.getPaciente().setId(rs.getInt("idPaciente"));
+					m.getMedico().setId(rs.getInt("idMedico"));
+					LocalDate data1 = LocalDate.parse(rs.getDate("Momento").toString());
+					m.setData(data1);
+					m.getProntuario().setId(rs.getInt("idProntuario"));
 					return m;
 				}
 				else return null;
@@ -90,14 +96,15 @@ public class ConsultaDAO extends BaseDAO<Consulta> {
 		  String sql = "SELECT * FROM Consulta WHERE idPaciente=? ;";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setIdPaciente(1, vo.getIdPaciente());
+				ps.setInt(1, vo.getPaciente().getId());
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Consulta m = new Consulta();
-					m.setIdPaciente(rs.getInt("idPaciente"));
-					m.setIdMedico(rs.getInt("idMedico"));
-					m.setMomento(rs.getDateTime("Momento"));
-					m.setIdProntuario(rs.getInt("idProntuario"));
+					m.getPaciente().setId(rs.getInt("idPaciente"));
+					m.getMedico().setId(rs.getInt("idMedico"));
+					LocalDate data1 = LocalDate.parse(rs.getDate("Momento").toString());
+					m.setData(data1);
+					m.getProntuario().setId(rs.getInt("idProntuario"));
 					return m;
 				}
 				else return null;
@@ -112,14 +119,15 @@ public class ConsultaDAO extends BaseDAO<Consulta> {
 		  String sql = "SELECT * FROM Consulta WHERE idMedico=? ;";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1, vo.getIdMedico());
+				ps.setInt(1, vo.getMedico().getId());
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Consulta m = new Consulta();
-					m.setIdPaciente(rs.getInt("idPaciente"));
-					m.setIdMedico(rs.getInt("idMedico"));
-					m.setMomento(rs.getDateTime("Momento"));
-					m.setIdProntuario(rs.getInt("idProntuario"));
+					m.getPaciente().setId(rs.getInt("idPaciente"));
+					m.getMedico().setId(rs.getInt("idMedico"));
+					LocalDate data1 = LocalDate.parse(rs.getDate("Momento").toString());
+					m.setData(data1);
+					m.getProntuario().setId(rs.getInt("idProntuario"));
 					return m;
 				}
 				else return null;
@@ -142,10 +150,11 @@ public class ConsultaDAO extends BaseDAO<Consulta> {
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
 				Consulta vo = new Consulta();
-				vo.setIdPaciente(rs.getInt("idPaciente"));
-				vo.setIdMedico(rs.getInt("idMedico"));
-				vo.setIdConsulta(rs.getInt("idConsulta"));
-				vo.setMomento(rs.getDate("momento"));
+				vo.getPaciente().setId(rs.getInt("idPaciente"));
+				vo.getMedico().setId(rs.getInt("idMedico"));
+				LocalDate data1 = LocalDate.parse(rs.getDate("Momento").toString());
+				vo.setData(data1);
+				vo.getProntuario().setId(rs.getInt("idProntuario"));
 				listaConsulta.add(vo);
 			}
 		} catch (SQLException e) {

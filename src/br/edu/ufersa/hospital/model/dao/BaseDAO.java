@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class BaseDAO<entity> implements BaseInterDAO<entity>{
 	Connection conn = null;
-	String url = "jdbc:mariaDB://localhost:3306/hospital";
+	String url = "jdbc:mysql://localhost/hospital";
 	String user = "root";
 	String password = "senha123";
 	synchronized public Connection getConnection() {

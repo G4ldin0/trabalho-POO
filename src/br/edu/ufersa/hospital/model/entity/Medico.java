@@ -2,13 +2,12 @@ package br.edu.ufersa.hospital.model.entity;
 
 public class Medico extends Pessoa{
 
-    private int id;
     private int codigoDoConselho;
     private double valorDaConsulta;
 
     public Medico(){}
 
-    public Medico(String nome, long cpf, int codConselho, String endereco, double valorConsulta){
+    public Medico(String nome, String cpf, int codConselho, String endereco, double valorConsulta){
         setNome(nome);
         setCpf(cpf);
         setCodigoDoConselho(codConselho);
@@ -16,7 +15,7 @@ public class Medico extends Pessoa{
         setValorDaConsulta(valorConsulta);
     }
 
-    public Medico(String nome, long cpf, int codConselho, double valorConsulta){
+    public Medico(String nome, String cpf, int codConselho, double valorConsulta){
         setNome(nome);
         setCpf(cpf);
         setCodigoDoConselho(codConselho);
@@ -24,35 +23,19 @@ public class Medico extends Pessoa{
         setValorDaConsulta(valorConsulta);
     }
 
-    public Medico(String nome, long cpf, int codConselho){
+    public Medico(String nome, String cpf, int codConselho){
         setNome(nome);
         setCpf(cpf);
         setCodigoDoConselho(codConselho);
         this.endereco = "Condomínio dos Médicos";
         this.valorDaConsulta = 5499.99;
     }
-    /* void gerarRelatorio(){
-        implementar a classe gerarRelatorio() futuramente
-    } */
-
-    // Getters e Setters abaixo. Setters tem o nome de "alterar". Ex: setNome() -> alterarNome()
-
-    public int getId(){
-        return this.id;
-    }
-
-    public void setId(int id){
-        if(id < 0){
-            System.out.println("Id inválido");
-        } else this.id = id;
-    }
-
     public int getCodigoDoConselho() {
         return this.codigoDoConselho;
     }
 
     public void setCodigoDoConselho(int codigoDoConselho) { // setCodigoDoConselho()
-        if (cpf == 0){
+        if (cpf == null){
             System.out.println("Código do conselho inválido.");
         } else this.codigoDoConselho = codigoDoConselho;
     }
