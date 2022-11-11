@@ -9,9 +9,26 @@ import br.edu.ufersa.hospital.model.dao.BaseInterDAO;
 
 public class MedicoBO {
 
-    /*  IBaseInterDAO<Medico> dao = new MedicoDAO();
+    BaseInterDAO<Medico> dao = new MedicoDAO();
+
 	public boolean adicionar(Medico med) {
-		ResultSet rs = dao.funcaoPChamar
+		ResultSet rs = dao.encontrar(med);
+		try {
+			if(rs==null || !(rs.next())) {
+				if(dao.cadastrar(med) == true)
+					return true;
+					else return false;
+			}
+			else return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}	
+	} 
+
+    public boolean atualizar(Medico med) {
+        ResultSet rs = dao.encontrar(med);
 		try {
 			if(rs==null || !(rs.next())) {
 				if(dao.editar(med) == true)
@@ -23,8 +40,50 @@ public class MedicoBO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
-		}	
-	} */
+		}
+    }
+
+    public boolean apagar(Medico med) {
+        ResultSet rs = dao.encontrar(med);
+		try {
+			if(rs==null || !(rs.next())) {
+				if(dao.excluirPorCPF(med) == true)
+					return true;
+					else return false;
+			}
+			else return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+    }
+
+    public List<Medico> listar() {
+
+        List<Medico> corpoMedico = new ArrayList<Medico>();
+        ResultSet rs = dao.exibir();
+
+        try {
+
+            while(rs.next()) {
+                Medico med = new Medico();
+                med.setId(rs.getInt("idMedico"));
+                med.setNome(rs.getString("nome"));
+                med.setCpf(rs.getString("cpf"));
+                med.setCodigoDoConselho(rs.getInt("codConselho"));
+                med.setEndereco(rs.getString("endereco"));
+                med.setValorDaConsulta(rs.getDouble("valorConsulta"));
+
+                corpoMedico.add(med);
+            }
+            return corpoMedico;
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+    }
 
 public void cadastrar(Medico med){ // Melhorar cadastrar() com a implementação do banco de dados
     med.setNome(med.getNome()); // Esses sets provavelmente vão pro BD
