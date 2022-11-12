@@ -100,8 +100,10 @@ public class MedicoDAO extends BaseDAO<Medico> {
 				return null;
 			}
 	  }
+
+	  @Override
 	  public Medico buscarPorCPF(Medico vo) {
-		  String sql = "SELECT * FROM Medico WHERE id=? ;";
+		  String sql = "SELECT * FROM Medico WHERE cpf=? ;";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
 				ps.setString(1, vo.getCpf());
@@ -121,6 +123,36 @@ public class MedicoDAO extends BaseDAO<Medico> {
 				return null;
 			}
 	  }
+
+	public ResultSet encontrar(Medico vo){
+		String sql = "SELECT * FROM Medico WHERE cpf=? ;";
+
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setString(1, vo.getCpf());
+			
+			ResultSet rs = ps.executeQuery();
+			return rs;
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public ResultSet exibir() {
+		String sql = "SELECT * FROM Medico;";
+		try {
+			PreparedStatement pst = getConnection().prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			return rs;
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
 	  public List<Medico> listar(){
 		  conn = getConnection();
 		  String sql = "select * from Medico";

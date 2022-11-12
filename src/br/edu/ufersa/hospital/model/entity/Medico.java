@@ -1,5 +1,7 @@
 package br.edu.ufersa.hospital.model.entity;
 
+import br.edu.ufersa.hospital.api.dto.MedicoDTO;
+
 public class Medico extends Pessoa{
 
     private int codigoDoConselho;
@@ -35,7 +37,7 @@ public class Medico extends Pessoa{
     }
 
     public void setCodigoDoConselho(int codigoDoConselho) { // setCodigoDoConselho()
-        if (cpf == null){
+        if (codigoDoConselho == 0){
             System.out.println("Código do conselho inválido.");
         } else this.codigoDoConselho = codigoDoConselho;
     }
@@ -49,4 +51,16 @@ public class Medico extends Pessoa{
             System.out.println("Valor da consulta inválido.");
         } else this.valorDaConsulta = valorDaConsulta;
     }
+    
+    public static Medico converter(MedicoDTO dto) {
+        Medico med = new Medico();
+        med.setCpf(dto.getCpf());
+        med.setEndereco(dto.getEndereco());
+        med.setNome(dto.getNome());
+        med.setId(dto.getId());
+        med.setCodigoDoConselho(dto.getCodigoDoConselho());
+        med.setValorDaConsulta(dto.getValorDaConsulta());
+        return med;
+    }
+    
 }

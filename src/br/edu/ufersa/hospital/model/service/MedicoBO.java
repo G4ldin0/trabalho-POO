@@ -5,13 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import br.edu.ufersa.hospital.model.entity.Medico;
 import br.edu.ufersa.hospital.model.dao.MedicoDAO;
+import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import br.edu.ufersa.hospital.model.dao.BaseInterDAO;
 
 public class MedicoBO {
 
     BaseInterDAO<Medico> dao = new MedicoDAO();
 
-	public boolean adicionar(Medico med) {
+	public boolean adicionar(MedicoDTO medDTO) {
+	    
+	    Medico med = Medico.converter(medDTO);
+      
 		ResultSet rs = dao.encontrar(med);
 		try {
 			if(rs==null || !(rs.next())) {
