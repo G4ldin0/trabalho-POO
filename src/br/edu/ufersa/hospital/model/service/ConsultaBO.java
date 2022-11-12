@@ -4,11 +4,11 @@ import br.edu.ufersa.hospital.model.dao.*;
 import br.edu.ufersa.hospital.model.dao.BaseInterDAO;
 
 public class ConsultaBO {
-  public void editar(Consulta temp){ // basicamente um setConsulta
+  public void editar(Consulta temp){
     temp.setPaciente(temp.getPaciente());
     temp.setMedico(temp.getMedico());
     temp.setProntuario(temp.getProntuario());
-    temp.setDiaEHorario(temp.getDiaEHorario());
+    temp.setData(temp.getData());
 }
 public void cadastrar(Consulta consultaCadastro){
     // tem que ser implementada com a integração com o BD

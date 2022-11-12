@@ -1,24 +1,26 @@
 package br.edu.ufersa.hospital.model.entity;
 import java.time.LocalDate;
-import br.edu.ufersa.hospital.model.service.ProntuarioBO;
 
 public class Prontuario{
 
    private int id;
-   private LocalDate momento;
+   private LocalDate data;
    private String obs;
-
+   private Paciente paciente;
    public Prontuario(String obs){
-      momento = LocalDate.now();
+      data = LocalDate.now();
       setObs(obs);
    }
 
-   public Prontuario(LocalDate momento, String obs){
-      setMomento(momento);
+   public Prontuario(LocalDate data, String obs){
+      setData(data);
       setObs(obs);
    }
 
-   public int getId(){
+   public Prontuario() {
+	// TODO Auto-generated constructor stub
+}
+public int getId(){
       return this.id;
    }
 
@@ -28,20 +30,20 @@ public class Prontuario{
       } else this.id = id;
    }
 
-   public LocalDate getmomento(){
-      return momento;
+   public LocalDate getData(){
+      return data;
    }
 
-   public void setMomento(LocalDate momento){
+   public void setData(LocalDate data){
       LocalDate limiteMinimo = LocalDate.now().minusYears(150);
       LocalDate limiteMaximo = LocalDate.now();
-      if(momento.isAfter(limiteMinimo)){
-         if(momento.isBefore(limiteMaximo)){
-            this.momento = momento;
+      if(data.isAfter(limiteMinimo)){
+         if(data.isBefore(limiteMaximo)){
+            this.data = data;
          } 
-         else this.momento = limiteMaximo;
+         else this.data = limiteMaximo;
       }
-      else this.momento = limiteMinimo;
+      else this.data = limiteMinimo;
    }
 
    public void setObs(String obs){
@@ -53,4 +55,12 @@ public class Prontuario{
    public String getObs(){
       return obs;
    }
+
+public Paciente getPaciente() {
+	return paciente;
+}
+
+public void setPaciente(Paciente paciente) {
+	this.paciente = paciente;
+}
 }

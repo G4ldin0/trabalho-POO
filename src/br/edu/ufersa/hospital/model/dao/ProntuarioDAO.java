@@ -4,12 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 
 import br.edu.ufersa.hospital.model.entity.Paciente;
 import br.edu.ufersa.hospital.model.entity.Prontuario;
 
+@SuppressWarnings("unused")
 public class ProntuarioDAO extends BaseDAO<Prontuario> {
   Prontuario vo;
   public boolean cadastrar(Prontuario vo) {
@@ -18,7 +21,8 @@ public class ProntuarioDAO extends BaseDAO<Prontuario> {
 	  PreparedStatement ps;
 	try {
 		ps = conn.prepareStatement(sql);
-		ps.setDateTime(1, vo.getmomento());
+		Date.valueOf(vo.getData());
+		ps.setDate(1, Date.valueOf(vo.getData()));
 		ps.setString(2, vo.getObs());
 		ps.setInt(3, vo.getId());
 		ps.execute();
@@ -33,10 +37,10 @@ public class ProntuarioDAO extends BaseDAO<Prontuario> {
 	  String sql = "UPDATE Prontuario SET momento = ?, obs = ?, idPaciente = ? WHERE idProntuario=? ";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setDateTime(1, vo.getMomento());
+			ps.setDate(1, Date.valueOf(vo.getData()));
 			ps.setString(2, vo.getObs());
-			ps.setInt(3, vo.getIdPaciente());
-			ps.setInt(4, vo.getIdProntuario());
+			ps.setInt(3, vo.getPaciente().getId());
+			ps.setInt(4, vo.getId());
 			ps.executeUpdate();
 			return true;		
 		
@@ -53,7 +57,7 @@ public class ProntuarioDAO extends BaseDAO<Prontuario> {
 	  PreparedStatement ps;
 	try {
 		ps = conn.prepareStatement(sql);
-		ps.setInt(1, vo.getIdProntuario());
+		ps.setInt(1, vo.getId());
 		  ps.execute();
 		  return true;
 	} catch (SQLException e) {
@@ -66,13 +70,13 @@ public class ProntuarioDAO extends BaseDAO<Prontuario> {
 	  String sql = "SELECT * FROM Prontuario WHERE idPaciente=? ;";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setInt(1, vo.getIdPaciente());
+			ps.setInt(1, vo.getPaciente().getId());
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				Prontuario m = new Prontuario();
-				m.setMomento(rs.getDateTime("momento"));
+				m.setData(LocalDate.parse(rs.getDate("momento").toString()));
 				m.setObs(rs.getString("obs"));
-				m.setIdPaciente(rs.getInt("idPaciente"));
+				m.getPaciente().setId(rs.getInt("idPaciente"));
 				return m;
 			}
 			else return null;

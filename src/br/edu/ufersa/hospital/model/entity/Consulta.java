@@ -1,5 +1,5 @@
 package br.edu.ufersa.hospital.model.entity;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 // import java.time.LocalTime; import feito para classe ainda não implementada
 
 public class Consulta{
@@ -7,17 +7,21 @@ public class Consulta{
     private int id;
     private Paciente paciente;
     private Medico medico;
-    private LocalDateTime diaEHorario;
+    private LocalDate data;
     private Prontuario prontuario;
 
-    public Consulta(Paciente paciente,Medico medico, LocalDateTime diaEhorario, Prontuario prontuario){
+    public Consulta(Paciente paciente,Medico medico, LocalDate data, Prontuario prontuario){
         setPaciente(paciente);
         setMedico(medico);
-        setDiaEHorario(diaEhorario);
+        setData(data);
         setProntuario(prontuario);
     }
 
-    public int getId(){
+    public Consulta() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId(){
         return this.id;
     }
 
@@ -50,17 +54,17 @@ public class Consulta{
         return this.medico;
     }
     
-    public void setDiaEHorario(LocalDateTime temp){
-        LocalDateTime agora = LocalDateTime.now();
-        LocalDateTime limiteMinimo = agora.minusYears(150);
-        LocalDateTime limiteMaximo = agora.plusYears(2);
+    public void setData(LocalDate temp){
+        LocalDate agora = LocalDate.now();
+        LocalDate limiteMinimo = agora.minusYears(150);
+        LocalDate limiteMaximo = agora.plusYears(2);
         if(temp.isAfter(limiteMinimo) && temp.isBefore(limiteMaximo)){
-            this.diaEHorario = temp;
+            this.data = temp;
         }
-        else this.diaEHorario = agora.plusMonths(2); // se não colocar uma data válida, a consulta será alterada para dois meses após.
+        else this.data = agora.plusMonths(2);
     }
-    public LocalDateTime getDiaEHorario(){
-        return this.diaEHorario;
+    public LocalDate getData(){
+        return this.data;
     }
     
     public void setProntuario(Prontuario prontuario){
@@ -71,16 +75,4 @@ public class Consulta{
     public Prontuario getProntuario(){ 
         return this.prontuario;
     }
-
-    
-    // public Consulta buscarporMedico(Medico medicoBusca){
-    //     //
-    // }
-    // public Consulta buscarPorPaciente(Paciente pacienteBusca){
-    //     //
-    // }
-    // public Consulta buscarPorHorario(LocalTime horario){
-    //     // 
-    // }
-
 }

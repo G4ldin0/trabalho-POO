@@ -4,7 +4,6 @@ import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 
 public class Medico extends Pessoa{
 
-    private int id;
     private int codigoDoConselho;
     private double valorDaConsulta;
 
@@ -33,22 +32,6 @@ public class Medico extends Pessoa{
         this.endereco = "Condomínio dos Médicos";
         this.valorDaConsulta = 5499.99;
     }
-    /* void gerarRelatorio(){
-        implementar a classe gerarRelatorio() futuramente
-    } */
-
-    // Getters e Setters abaixo. Setters tem o nome de "alterar". Ex: setNome() -> alterarNome()
-
-    public int getId(){
-        return this.id;
-    }
-
-    public void setId(int id){
-        if(id < 0){
-            System.out.println("Id inválido");
-        } else this.id = id;
-    }
-
     public int getCodigoDoConselho() {
         return this.codigoDoConselho;
     }

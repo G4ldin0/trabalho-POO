@@ -15,7 +15,7 @@ public class MedicoBO {
 	public boolean adicionar(MedicoDTO medDTO) {
 	    
 	    Medico med = Medico.converter(medDTO);
-	    
+      
 		ResultSet rs = dao.encontrar(med);
 		try {
 			if(rs==null || !(rs.next())) {
