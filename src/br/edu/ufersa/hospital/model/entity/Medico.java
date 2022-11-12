@@ -1,5 +1,7 @@
 package br.edu.ufersa.hospital.model.entity;
 
+import br.edu.ufersa.hospital.api.dto.MedicoDTO;
+
 public class Medico extends Pessoa{
 
     private int id;
@@ -66,4 +68,16 @@ public class Medico extends Pessoa{
             System.out.println("Valor da consulta inválido.");
         } else this.valorDaConsulta = valorDaConsulta;
     }
+    
+    public static Medico converter(MedicoDTO dto) {
+        Medico med = new Medico();
+        med.setCpf(dto.getCpf());
+        med.setEndereco(dto.getEndereco());
+        med.setNome(dto.getNome());
+        med.setId(dto.getId());
+        med.setCodigoDoConselho(dto.getCodigoDoConselho());
+        med.setValorDaConsulta(dto.getValorDaConsulta());
+        return med;
+    }
+    
 }
