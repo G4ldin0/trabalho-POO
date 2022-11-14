@@ -1,7 +1,7 @@
 package br.edu.ufersa.hospital.model.entity;
 
 public class Pessoa {
-	private int id;
+	protected int id;
     protected String nome;
     protected String cpf;
     protected String endereco;

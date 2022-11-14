@@ -1,0 +1,56 @@
+package br.edu.ufersa.hospital.api.dto;
+
+import java.time.LocalDate;
+
+class ProntuarioDTO{
+	private int id;
+	private LocalDate data;
+	private String obs;
+	private Paciente paciente;
+	
+	
+	public int getId(){
+	      return this.id;
+	   }
+
+	public void setId(int id){
+	      if(id < 0){
+	          System.out.println("Id inválido");
+	      } else this.id = id;
+	   }
+
+	public LocalDate getData(){
+	      return data;
+	   }
+
+	public void setData(LocalDate data){
+	      LocalDate limiteMinimo = LocalDate.now().minusYears(150);
+	      LocalDate limiteMaximo = LocalDate.now();
+	      if(data.isAfter(limiteMinimo)){
+	         if(data.isBefore(limiteMaximo)){
+	            this.data = data;
+	         } 
+	         else this.data = limiteMaximo;
+	      }
+	      else this.data = limiteMinimo;
+	   }
+
+	public void setObs(String obs){
+	      if (obs == " "){
+	         System.out.println("Esse nome é inválido.");
+	      } else this.obs = obs;
+	   }
+
+	public String getObs(){
+	      return obs;
+	   }
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+	
+}
