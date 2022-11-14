@@ -9,7 +9,8 @@ public class Medico extends Pessoa{
 
     public Medico(){}
 
-    public Medico(String nome, String cpf, int codConselho, String endereco, double valorConsulta){
+    public Medico(int id, String nome, String cpf, String endereco, int codConselho, double valorConsulta){
+        setId(id);
         setNome(nome);
         setCpf(cpf);
         setCodigoDoConselho(codConselho);
