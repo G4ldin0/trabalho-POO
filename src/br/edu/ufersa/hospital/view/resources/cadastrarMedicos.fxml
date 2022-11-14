@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="363.0" fitWidth="365.0" layoutX="-7.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../interface/simb%20saude.png" />
+            <Image url="@logosaude.png" />
          </image>
       </ImageView>
       <TextField fx:id="nome" layoutX="36.0" layoutY="72.0" prefHeight="25.0" prefWidth="285.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-radius: 2;" />
