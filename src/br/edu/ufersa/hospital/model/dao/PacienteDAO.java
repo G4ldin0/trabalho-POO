@@ -118,7 +118,7 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 		  String sql = "SELECT * FROM Medico WHERE idPaciente=? ;"; // 3  idPaciente = 3
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1, vo.getIdPaciente());
+				ps.setInt(1, vo.getId());
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
 					Paciente m = new Paciente();
@@ -149,7 +149,7 @@ public class PacienteDAO extends BaseDAO<Paciente> {
 				vo.setCpf(rs.getString("cpf"));
 				vo.setNome(rs.getString("nome"));
 				vo.setEndereco(rs.getString("endereco"));
-				vo.setProntuarios(rs.getArray("prontuario"))
+				vo.setProntuario(rs.getObject("prontuario"))
 				listaPaciente.add(vo);
 			}
 		} catch (SQLException e) {

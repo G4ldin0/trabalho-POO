@@ -2,6 +2,10 @@ package br.edu.ufersa.hospital.api.dto;
 
 import java.time.LocalDate;
 
+import br.edu.ufersa.hospital.model.entity.Medico;
+import br.edu.ufersa.hospital.model.entity.Paciente;
+import br.edu.ufersa.hospital.model.entity.Prontuario;
+
 class ConsultaDTO{
 	private int id;
     private Paciente paciente;

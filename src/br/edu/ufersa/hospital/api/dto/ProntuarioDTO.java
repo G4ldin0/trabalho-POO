@@ -2,6 +2,8 @@ package br.edu.ufersa.hospital.api.dto;
 
 import java.time.LocalDate;
 
+import br.edu.ufersa.hospital.model.entity.Paciente;
+
 class ProntuarioDTO{
 	private int id;
 	private LocalDate data;

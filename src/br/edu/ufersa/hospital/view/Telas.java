@@ -27,11 +27,12 @@ public class Telas extends Application {
     public void start(Stage arg0) throws Exception {
         setStage(arg0);
         arg0.setTitle("Cadastro");
+        telaCadastroAdm();
     }
     
     public static void telaCadastroAdm() {
         try {
-            Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastroMedico.fxml"));
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastrarMedicos.FXML"));
             Scene scene = new Scene (root);
             stage.setScene(scene);
             stage.setTitle("Tela de Cadastro de Médicos");
