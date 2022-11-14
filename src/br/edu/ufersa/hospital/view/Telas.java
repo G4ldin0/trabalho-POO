@@ -8,6 +8,10 @@ import javafx.stage.Stage;
 
 public class Telas extends Application {
 
+    public static void main (String[] args) {
+        launch();
+    }
+    
     private static Stage stage;
     
  // Gets e Sets
@@ -27,10 +31,10 @@ public class Telas extends Application {
     
     public static void telaCadastroAdm() {
         try {
-            Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastro.fxml"));
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastroMedico.fxml"));
             Scene scene = new Scene (root);
             stage.setScene(scene);
-            stage.setTitle("Tela de Cadastro de Adminstradores do Hospital");
+            stage.setTitle("Tela de Cadastro de Médicos");
             stage.show();
         }
         catch(Exception e) {    // captura exception qnd qm chamar ele throws Excep.
