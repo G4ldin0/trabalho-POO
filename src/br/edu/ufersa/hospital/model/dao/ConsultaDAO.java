@@ -157,4 +157,5 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 			return null;
 		}
 	}
+
 }
