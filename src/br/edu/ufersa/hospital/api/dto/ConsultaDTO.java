@@ -6,7 +6,7 @@ import br.edu.ufersa.hospital.model.entity.Medico;
 import br.edu.ufersa.hospital.model.entity.Paciente;
 import br.edu.ufersa.hospital.model.entity.Prontuario;
 
-class ConsultaDTO{
+public class ConsultaDTO{
 	private int id;
     private Paciente paciente;
     private Medico medico;

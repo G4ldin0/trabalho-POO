@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
@@ -15,7 +16,7 @@ public class ConsultaDAO extends BaseDAO<Consulta> {
 	Consulta vo;
 	  public boolean cadastrar(Consulta vo) {
 		  conn = getConnection();
-		  String sql = "insert into Consulta (idPaciente,idMedico,Momento,idProntuario) values (?,?,?,?);";
+		  String sql = "insert into Consulta (idPaciente,idMedico,dia,horario,idProntuario) values (?,?,?,?,?);";
 		  PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
@@ -23,7 +24,9 @@ public class ConsultaDAO extends BaseDAO<Consulta> {
 			ps.setInt(2,vo.getMedico().getId());
 			Date data = Date.valueOf(vo.getData());
 			ps.setDate(3, data);
-			ps.setInt(4,vo.getProntuario().getId());
+			Time horario = Time.valueOf(vo.getHorario());
+			ps.setTime(4,horario);
+			ps.setInt(5,vo.getProntuario().getId());
 			  ps.execute();
 			  return true;
 		} catch (SQLException e) {
@@ -33,15 +36,17 @@ public class ConsultaDAO extends BaseDAO<Consulta> {
 		}
 	  }
 	  public boolean editar(Consulta vo) {
-		  String sql = "UPDATE Consulta SET idPaciente = ?, idMedico = ?, Momento = ?, idProntuario = ?  WHERE idConsulta=? ";
+		  String sql = "UPDATE Consulta SET idPaciente = ?, idMedico = ?, dia = ?, horario = ?, idProntuario = ?  WHERE idConsulta=? ";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
 				ps.setInt(1,vo.getPaciente().getId());
 				ps.setInt(2,vo.getMedico().getId());
 				Date data = Date.valueOf(vo.getData());
 				ps.setDate(3, data);
-				ps.setInt(4,vo.getProntuario().getId());
-				ps.setInt(5, vo.getId());
+				Time horario = Time.valueOf(vo.getHorario());
+				ps.setTime(4,horario);
+				ps.setInt(5,vo.getProntuario().getId());
+				ps.setInt(6, vo.getId());
 				ps.executeUpdate();
 				return true;		
 			

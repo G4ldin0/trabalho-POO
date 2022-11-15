@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import br.edu.ufersa.hospital.model.entity.Paciente;
 
-class ProntuarioDTO{
+public class ProntuarioDTO{
 	private int id;
 	private LocalDate data;
 	private String obs;
