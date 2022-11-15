@@ -2,7 +2,6 @@ package br.edu.ufersa.hospital.model.entity;
 import java.time.LocalDate;
 import java.util.Vector;
 
-import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import br.edu.ufersa.hospital.api.dto.PacienteDTO;
 
 public class Paciente extends Pessoa{
@@ -11,7 +10,8 @@ public class Paciente extends Pessoa{
 
    public Paciente(){}
 
-   public Paciente(String nome, String endereco, String cpf, Vector<Prontuario> prontuarios){
+   public Paciente(int id, String nome, String endereco, String cpf, Vector<Prontuario> prontuarios){
+      setId(id);
       setNome(nome);
       setEndereco(endereco);
       setCpf(cpf);

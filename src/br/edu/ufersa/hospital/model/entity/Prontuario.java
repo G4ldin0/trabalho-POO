@@ -7,6 +7,7 @@ public class Prontuario{
    private LocalDate data;
    private String obs;
    private Paciente paciente;
+   
    public Prontuario(String obs){
       data = LocalDate.now();
       setObs(obs);

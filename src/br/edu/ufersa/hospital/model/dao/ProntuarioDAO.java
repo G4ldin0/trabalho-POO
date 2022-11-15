@@ -13,28 +13,31 @@ import br.edu.ufersa.hospital.model.entity.Paciente;
 import br.edu.ufersa.hospital.model.entity.Prontuario;
 
 @SuppressWarnings("unused")
-public class ProntuarioDAO extends BaseDAO<Prontuario> {
-  Prontuario vo;
-  public boolean cadastrar(Prontuario vo) {
-	  conn = getConnection();
-	  String sql = "insert into Prontuario (momento,obs,idPaciente) values (?,?,?);";
-	  PreparedStatement ps;
-	try {
-		ps = conn.prepareStatement(sql);
-		Date.valueOf(vo.getData());
-		ps.setDate(1, Date.valueOf(vo.getData()));
-		ps.setString(2, vo.getObs());
-		ps.setInt(3, vo.getId());
-		ps.execute();
-		return true;
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		return false;
-	}
-  }
-  public boolean editar(Prontuario vo) {
+public class ProntuarioDAO extends BaseDAO implements BaseInterDAO<Prontuario> {
+
+	@Override
+  	public boolean cadastrar(Prontuario vo) {
+	  String sql = "INSERT INTO Prontuario (momento,obs,idPaciente) VALUES (?,?,?);";
+
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setDate(1, Date.valueOf(vo.getData()));
+			ps.setString(2, vo.getObs());
+			ps.setInt(3, vo.getPaciente().getId());
+			
+			return ps.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			return false;
+		}
+  	}
+
+	@Override
+	public boolean editar(Prontuario vo) {
 	  String sql = "UPDATE Prontuario SET momento = ?, obs = ?, idPaciente = ? WHERE idProntuario=? ";
+
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setDate(1, Date.valueOf(vo.getData()));
@@ -42,48 +45,61 @@ public class ProntuarioDAO extends BaseDAO<Prontuario> {
 			ps.setInt(3, vo.getPaciente().getId());
 			ps.setInt(4, vo.getId());
 			ps.executeUpdate();
-			return true;		
+
+			return true;
 		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 			return false;
 		}	
-  }
+ 	}
   
-  public boolean excluirPorCPF(Prontuario vo) {
-	  conn = getConnection();
-	  String sql = "delete from Medico where idProntuario = ?;";
-	  PreparedStatement ps;
-	try {
-		ps = conn.prepareStatement(sql);
-		ps.setInt(1, vo.getId());
-		  ps.execute();
-		  return true;
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		return false;
+	@Override
+ 	public boolean excluirPorId(Prontuario vo) {
+		String sql = "DELETE FROM Prontuario WHERE idProntuario = ?;";
+
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setInt(1, vo.getId());
+			
+			return ps.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			return false;
+		}
+  	}
+
+	@Override
+	public ResultSet listar(){
+		String sql = "SELECT * FROM prontuario;";
+
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+
+			return ps.executeQuery();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			return null;
+		}
 	}
-  }
-  public Prontuario buscarPorPaciente(Prontuario vo) {
+
+  public ResultSet buscarPorPaciente(Prontuario vo) {
 	  String sql = "SELECT * FROM Prontuario WHERE idPaciente=? ;";
+
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setInt(1, vo.getPaciente().getId());
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()) {
-				Prontuario m = new Prontuario();
-				m.setData(LocalDate.parse(rs.getDate("momento").toString()));
-				m.setObs(rs.getString("obs"));
-				m.getPaciente().setId(rs.getInt("idPaciente"));
-				return m;
-			}
-			else return null;
-		
+
+			return ps.executeQuery();
+
 		} catch (SQLException ex) {
-			// TODO Auto-generated catch block
 			ex.printStackTrace();
+
 			return null;
 		}
   }
