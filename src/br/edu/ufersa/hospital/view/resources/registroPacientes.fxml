@@ -19,17 +19,17 @@
    <children>
       <Pane prefHeight="60.0" prefWidth="600.0" style="-fx-background-color: #BDE3FF;">
          <children>
-            <TextField layoutX="98.0" layoutY="17.0" prefHeight="27.0" prefWidth="462.0" />
+            <TextField layoutX="125.0" layoutY="17.0" prefHeight="27.0" prefWidth="435.0" />
             <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="566.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@lupa%201.png" />
                </image>
             </ImageView>
-            <Pane id="menu" fx:id="menu" layoutX="14.0" layoutY="7.0" prefHeight="44.0" prefWidth="82.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;">
+            <Pane id="menu" fx:id="menu" layoutX="14.0" layoutY="7.0" prefHeight="44.0" prefWidth="108.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;">
                <children>
-                  <Label layoutX="22.0" layoutY="12.0" text="Menu">
+                  <Label layoutX="27.0" layoutY="7.0" text="Menu">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                </children></Pane>
@@ -45,9 +45,10 @@
               <columns>
                 <TableColumn fx:id="columnNome" prefWidth="139.0" text="Nome" />
                 <TableColumn fx:id="columnCpf" prefWidth="65.0" text="CPF" />
-                  <TableColumn fx:id="columnEndereco" prefWidth="150.0" text="Endereço" />
-                  <TableColumn fx:id="columnIdade" prefWidth="53.0" text="Idade" />
-                  <TableColumn prefWidth="45.0" />
+                  <TableColumn fx:id="columnEndereco" prefWidth="142.0" text="Endereço" />
+                  <TableColumn fx:id="columnIdade" prefWidth="50.0" text="Idade" />
+                  <TableColumn fx:id="columnHistorico" prefWidth="56.0" text="Histórico" />
+                  <TableColumn fx:id="editDelete" prefWidth="55.0" />
               </columns>
             </TableView>
             <Label layoutX="220.0" layoutY="14.0" text="Pacientes">
@@ -55,7 +56,39 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="slider" layoutX="-27.0" layoutY="-18.0" prefHeight="119.0" prefWidth="82.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" />
+            <AnchorPane fx:id="slider" layoutX="-27.0" layoutY="-18.0" prefHeight="107.0" prefWidth="89.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;">
+               <children>
+                  <Button alignment="CENTER_RIGHT" layoutY="70.0" mnemonicParsing="false" onAction="#listarConsultas" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" text="Consultas">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER_RIGHT" layoutY="35.0" mnemonicParsing="false" onAction="#listarPacientes" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" text="Pacientes" textAlignment="RIGHT">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#listarMedicos" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" text="Médicos  ">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="8.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icon-pacientes.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="44.0" fitWidth="27.0" layoutX="8.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icon-consultas.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="8.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icon-medicos.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
          </children>
       </Pane>
       <Button layoutX="560.0" layoutY="374.0" mnemonicParsing="false" style="-fx-background-color: #CE5252;" text="Sair" textFill="#fff4f4" />
