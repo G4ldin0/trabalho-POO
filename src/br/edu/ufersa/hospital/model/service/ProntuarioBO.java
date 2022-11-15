@@ -6,6 +6,8 @@ import br.edu.ufersa.hospital.api.dto.ProntuarioDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,8 +84,8 @@ public class ProntuarioBO {
                 pront.setId(rs.getInt("idProntuario"));
                 pront.getPaciente().setId(rs.getInt("idPaciente")); // tá certo?
                 pront.setObs(rs.getString("obs"));
-                pront.setData(rs.getDate("momento"));   // ajeitar isso aqui
-
+                pront.setData(LocalDate.parse(rs.getDate("momento").toString()));
+                pront.setHorario(LocalTime.parse(rs.getTime("horario").toString()));
                 listaProntuarios.add(pront);
             }
             return listaProntuarios;
