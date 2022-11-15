@@ -1,7 +1,7 @@
 package br.edu.ufersa.hospital.api.dto;
 
 
-public class PacienteDTO extends PessoaDTO {
+public public class PacienteDTO extends PessoaDTO {
     
     private String idade;
     

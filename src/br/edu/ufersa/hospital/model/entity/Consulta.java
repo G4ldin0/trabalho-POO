@@ -2,6 +2,8 @@ package br.edu.ufersa.hospital.model.entity;
 import java.time.LocalDate;
 // import java.time.LocalTime; import feito para classe ainda não implementada
 
+import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
+
 public class Consulta{
     
     private int id;
@@ -75,4 +77,15 @@ public class Consulta{
     public Prontuario getProntuario(){ 
         return this.prontuario;
     }
+    
+    public static Consulta converter(ConsultaDTO dto) {
+        Consulta cons = new Consulta();
+        cons.getPaciente().setId(dto.getPaciente().getId());
+        cons.getMedico().setId(dto.getMedico().getId());
+        cons.getProntuario().setId(dto.getProntuario().getId());
+        cons.setId(dto.getId());
+        cons.setData(dto.getData());
+        return cons;
+    }
+    
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 
+import br.edu.ufersa.hospital.model.entity.Medico;
 import br.edu.ufersa.hospital.model.entity.Paciente;
 import br.edu.ufersa.hospital.model.entity.Prontuario;
 
@@ -103,4 +104,34 @@ public class ProntuarioDAO extends BaseDAO implements BaseInterDAO<Prontuario> {
 			return null;
 		}
   }
+  
+  public ResultSet encontrar(Prontuario vo){
+      String sql = "SELECT * FROM Prontuario WHERE idPaciente=? ;";
+
+      try {
+          PreparedStatement ps = getConnection().prepareStatement(sql);
+          ps.setInt(1, vo.getPaciente().getId());
+
+          ResultSet rs = ps.executeQuery();
+          return rs;
+      } catch(SQLException ex) {
+          ex.printStackTrace();
+          return null;
+      }
+  }
+
+  @Override
+  public ResultSet exibir() {
+      String sql = "SELECT * FROM Prontuario;";
+      try {
+          PreparedStatement pst = getConnection().prepareStatement(sql);
+          ResultSet rs = pst.executeQuery();
+          return rs;
+      } catch (SQLException ex) {
+          // TODO Auto-generated catch block
+          ex.printStackTrace();
+          return null;
+      }
+  }
+  
 }

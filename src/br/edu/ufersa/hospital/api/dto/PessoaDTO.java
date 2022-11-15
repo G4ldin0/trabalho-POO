@@ -1,6 +1,6 @@
 package br.edu.ufersa.hospital.api.dto;
 
-class PessoaDTO{
+public class PessoaDTO{
 	 protected String nome;
 	 protected String cpf;
 	 protected String endereco;

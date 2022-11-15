@@ -7,4 +7,6 @@ public interface BaseInterDAO<entity> {
 	public boolean editar(entity e);
 	public boolean excluirPorId(entity e);
 	public ResultSet listar();
+    public ResultSet exibir();
+    public ResultSet encontrar(entity e);
 }

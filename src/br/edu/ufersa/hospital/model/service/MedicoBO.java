@@ -31,7 +31,10 @@ public class MedicoBO {
 		}	
 	} 
 
-    public boolean atualizar(Medico med) {
+    public boolean atualizar(MedicoDTO medDTO) {
+        
+        Medico med = Medico.converter(medDTO);
+        
         ResultSet rs = dao.encontrar(med);
 		try {
 			if(rs==null || !(rs.next())) {
@@ -47,11 +50,14 @@ public class MedicoBO {
 		}
     }
 
-    public boolean apagar(Medico med) {
+    public boolean apagar(MedicoDTO medDTO) {   // o apagar vai vir do DTO?
+        
+        Medico med = Medico.converter(medDTO);
+        
         ResultSet rs = dao.encontrar(med);
 		try {
 			if(rs==null || !(rs.next())) {
-				if(dao.excluirPorCPF(med) == true)
+				if(dao.excluirPorId(med) == true)
 					return true;
 					else return false;
 			}
@@ -88,39 +94,5 @@ public class MedicoBO {
 			return null;
 		}
     }
-
-public void cadastrar(Medico med){ // Melhorar cadastrar() com a implementação do banco de dados
-    med.setNome(med.getNome()); // Esses sets provavelmente vão pro BD
-    med.setCpf(med.getCpf());
-    med.setCodigoDoConselho(med.getCodigoDoConselho());
-    med.setEndereco(med.getEndereco());
-    med.setValorDaConsulta(med.getValorDaConsulta());
-}
-
-public void editar(Medico med){
-    med.setNome(med.getNome());
-    med.setCpf(med.getCpf());
-    med.setCodigoDoConselho(med.getCodigoDoConselho());
-    med.setEndereco(med.getEndereco());
-    med.setValorDaConsulta(med.getValorDaConsulta());
-}
-
-public void excluir(Medico med){
-    med = null;
-}
-
-public Medico buscarPorCodigo(Medico med){ // "Medico med" vai ter o med.buscar == codConselho ou cpf buscado
-    //if (this.codigoDoConselho == med.codigoDoConselho){
-    //    return Medico.this; // Retorna a própria classe
-    //} else return med; // Alterar esse else?
-    return med;
-}
-
-public Medico buscarPorCpf(Medico med){ // "Medico med" vai ter o med.buscar == codConselho ou cpf buscado
-    //if (this.cpf == med.cpf){
-    //  return Medico.this; // Retorna a própria classe
-    //} else return med; // Alterar esse else
-    return med;
-}
 
 }

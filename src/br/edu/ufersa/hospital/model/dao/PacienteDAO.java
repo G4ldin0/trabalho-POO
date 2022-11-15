@@ -15,14 +15,13 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 
 	@Override
 	public boolean cadastrar(Paciente vo) {
-		String sql = "insert into Paciente (nome,endereco,cpf,id) values (?,?,?,?);";
+		String sql = "insert into Paciente (nome,endereco,cpf) values (?,?,?);";
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, vo.getNome());
 			ps.setString(2, vo.getEndereco());
 			ps.setString(3, vo.getCpf());
-			ps.setInt(4, vo.getId());
 			return ps.execute();
 
 		}catch (SQLException e) {
@@ -145,8 +144,9 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 
 		}
 	}
+	
 	public Paciente buscarPorId(Paciente vo) {
-		String sql = "SELECT * FROM Medico WHERE idPaciente=? ;"; // 3  idPaciente = 3
+		String sql = "SELECT * FROM Paciente WHERE idPaciente=? ;"; // 3  idPaciente = 3
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setInt(1, vo.getId());
@@ -163,5 +163,34 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 			
 		}
 	}
+	
+	public ResultSet encontrar(Paciente vo){
+        String sql = "SELECT * FROM Paciente WHERE cpf=? ;";
+
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setString(1, vo.getCpf());
+
+            ResultSet rs = ps.executeQuery();
+            return rs;
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public ResultSet exibir() {
+        String sql = "SELECT * FROM Paciente;";
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            return rs;
+        } catch (SQLException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+            return null;
+        }
+    }
 
 }
