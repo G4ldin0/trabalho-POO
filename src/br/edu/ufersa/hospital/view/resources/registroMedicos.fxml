@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style-registros.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.hospital.api.controller.RegistroConsultasController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style-registros.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.hospital.api.controller.RegistroMedicosController">
    <children>
       <Pane prefHeight="60.0" prefWidth="600.0" style="-fx-background-color: #BDE3FF;">
          <children>
@@ -41,18 +41,18 @@
                   <Image url="@logosaude.png" />
                </image>
             </ImageView>
-            <TableView fx:id="tabelaConsultas" editable="true" layoutX="6.0" layoutY="51.0" prefHeight="262.0" prefWidth="508.0">
+            <TableView fx:id="tabelaMedicos" editable="true" layoutX="6.0" layoutY="51.0" prefHeight="262.0" prefWidth="508.0">
               <columns>
-                <TableColumn fx:id="columnPaciente" prefWidth="116.0" text="Paciente" />
-                <TableColumn fx:id="columnData" prefWidth="46.0" text="Data" />
-                  <TableColumn fx:id="columnHorario" prefWidth="51.0" text="Horário" />
-                  <TableColumn fx:id="columnMedico" prefWidth="101.0" text="Médico" />
-                  <TableColumn fx:id="columnStatus" prefWidth="50.0" text="Status" />
-                  <TableColumn fx:id="columnEmitirProntuario" prefWidth="103.0" text="Emitir Prontuário" />
-                  <TableColumn prefWidth="39.0" />
+                <TableColumn fx:id="columnNome" prefWidth="110.0" text="Nome" />
+                <TableColumn fx:id="columnCpf" prefWidth="56.0" text="CPF" />
+                  <TableColumn fx:id="columnEndereco" prefWidth="94.0" text="Endereço" />
+                  <TableColumn fx:id="columnCodConselho" prefWidth="88.0" text="Cód. Conselho" />
+                  <TableColumn fx:id="columnValorConsulta" prefWidth="79.0" text="Consulta(R$)" />
+                  <TableColumn fx:id="columnEmitirProntuario" prefWidth="32.0" />
+                  <TableColumn prefWidth="47.0" />
               </columns>
             </TableView>
-            <Label layoutX="219.0" layoutY="14.0" text="Consultas">
+            <Label layoutX="225.0" layoutY="14.0" text="Médicos">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Telas extends Application {
 
     public static void main (String[] args) {
-        launch();
+        launch();   
     }
     
     private static Stage stage;
@@ -39,6 +39,45 @@ public class Telas extends Application {
             stage.show();
         }
         catch(Exception e) {    // captura exception qnd qm chamar ele throws Excep.
+            e.printStackTrace();
+        }
+    }
+    
+    public static void listarMedicos() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/registroMedicos.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Médicos");
+            stage.show();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void listarPacientes() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/registroPacientes.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Pacientes");
+            stage.show();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void listarConsultas() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/registroConsultas.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Consultas");
+            stage.show();
+        }
+        catch(Exception e) {
             e.printStackTrace();
         }
     }

@@ -71,15 +71,15 @@ public class PacienteBO {
         }
     }
     
-    public List<Paciente> listar() {
+    public List<PacienteDTO> listar() {
 
-        List<Paciente> pacientes = new ArrayList<Paciente>();
+        List<PacienteDTO> pacientes = new ArrayList<PacienteDTO>();
         ResultSet rs = dao.exibir();
 
         try {
 
             while(rs.next()) {
-                Paciente pac = new Paciente();
+                PacienteDTO pac = new PacienteDTO();
                 pac.setId(rs.getInt("idMedico"));
                 pac.setNome(rs.getString("nome"));
                 pac.setCpf(rs.getString("cpf"));

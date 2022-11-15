@@ -72,15 +72,15 @@ public class ConsultaBO {
         }
     }
     
-    public List<Consulta> listar() {
+    public List<ConsultaDTO> listar() {
 
-        List<Consulta> listaConsultas = new ArrayList<Consulta>();
+        List<ConsultaDTO> listaConsultas = new ArrayList<ConsultaDTO>();
         ResultSet rs = dao.exibir();
 
         try {
 
             while(rs.next()) {
-                Consulta cons = new Consulta();
+                ConsultaDTO cons = new ConsultaDTO();
                 cons.getPaciente().setId(rs.getInt("idPaciente"));
                 cons.getMedico().setId(rs.getInt("idMedico"));
                 cons.getProntuario().setId(rs.getInt("idProntuario"));

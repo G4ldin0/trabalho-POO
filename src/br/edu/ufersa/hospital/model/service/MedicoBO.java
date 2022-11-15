@@ -69,15 +69,15 @@ public class MedicoBO {
 		}
     }
 
-    public List<Medico> listar() {
+    public List<MedicoDTO> listar() {
 
-        List<Medico> corpoMedico = new ArrayList<Medico>();
+        List<MedicoDTO> corpoMedico = new ArrayList<MedicoDTO>();
         ResultSet rs = dao.exibir();
 
         try {
 
             while(rs.next()) {
-                Medico med = new Medico();
+                MedicoDTO med = new MedicoDTO();
                 med.setId(rs.getInt("idMedico"));
                 med.setNome(rs.getString("nome"));
                 med.setCpf(rs.getString("cpf"));

@@ -160,7 +160,7 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 			return null;
 		}
 	}
-
+  
 	@Override
 	public ResultSet exibir() {
 		// TODO Auto-generated method stub
