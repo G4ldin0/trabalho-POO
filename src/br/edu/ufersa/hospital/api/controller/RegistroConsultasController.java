@@ -22,6 +22,7 @@ import javafx.util.Duration;
 
 public class RegistroConsultasController implements Initializable {
     
+
     @FXML private Button menu;
     @FXML private Button menuClose;
     @FXML private AnchorPane slider;

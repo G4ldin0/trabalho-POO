@@ -2,7 +2,6 @@ package br.edu.ufersa.hospital.api.controller;
 
 import br.edu.ufersa.hospital.api.dto.PacienteDTO;
 import br.edu.ufersa.hospital.model.service.PacienteBO;
-import br.edu.ufersa.hospital.view.Telas;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
@@ -21,7 +20,6 @@ public class CadastrarPacienteController {
         dto.setEndereco(endereco.getText());
         dto.setIdade(idade.getText());
         bo.adicionar(dto);
-        Telas.listarPacientes();
     }
     
 }

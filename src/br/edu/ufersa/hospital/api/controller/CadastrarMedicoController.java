@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import br.edu.ufersa.hospital.model.service.MedicoBO;
-import br.edu.ufersa.hospital.view.Telas;
 
 public class CadastrarMedicoController {
     
@@ -23,7 +22,7 @@ public class CadastrarMedicoController {
         //dto.setCodigoDoConselho(codConselho.getText());
         //dto.setValorDaConsulta(valorConsulta.getText());
         bo.adicionar(dto);
-        Telas.listarMedicos();   //método ainda não implementado
+        // Telas.listarMedicos();   método ainda não implementado
     }
     
 }

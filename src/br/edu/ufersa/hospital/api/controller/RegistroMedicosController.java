@@ -85,9 +85,9 @@ public class RegistroMedicosController implements Initializable {
         columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         columnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         columnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
-        columnCodConselho.setCellValueFactory(new PropertyValueFactory<>("codConselho"));//ver no bd
-        columnValorConsulta.setCellValueFactory(new PropertyValueFactory<>("valorConsulta"));//bd
-        columnRelatorio.setCellValueFactory(new PropertyValueFactory<>("emitirRelatorio"));//?
+        columnCodConselho.setCellValueFactory(new PropertyValueFactory<>("codConselho"));
+        columnValorConsulta.setCellValueFactory(new PropertyValueFactory<>("valorConsulta"));
+        columnRelatorio.setCellValueFactory(new PropertyValueFactory<>("emitirRelatorio"));
         tabelaMedicos.setItems(listaDeMedicos);
     }
     
