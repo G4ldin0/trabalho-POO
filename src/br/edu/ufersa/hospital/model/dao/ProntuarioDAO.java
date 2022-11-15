@@ -89,7 +89,7 @@ public class ProntuarioDAO extends BaseDAO implements BaseInterDAO<Prontuario> {
 		}
 	}
 
-  public ResultSet buscarPorPaciente(Prontuario vo) {
+  public ResultSet encontrarPorPaciente(Prontuario vo) {
 	  String sql = "SELECT * FROM Prontuario WHERE idPaciente=? ;";
 
 		try {

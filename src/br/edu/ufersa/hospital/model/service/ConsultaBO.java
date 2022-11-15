@@ -3,6 +3,8 @@ import br.edu.ufersa.hospital.model.entity.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,8 +85,8 @@ public class ConsultaBO {
                 cons.getMedico().setId(rs.getInt("idMedico"));
                 cons.getProntuario().setId(rs.getInt("idProntuario"));
                 cons.setId(rs.getInt("idConsulta"));
-                cons.setData(rs.getDate("momento")); // ajeitar isso aqui
-
+                cons.setData(LocalDate.parse(rs.getDate("dia").toString()));
+                cons.setHorario(LocalTime.parse(rs.getTime("horario").toString()));
                 listaConsultas.add(cons);
             }
             return listaConsultas;

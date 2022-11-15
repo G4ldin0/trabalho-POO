@@ -106,7 +106,7 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 		}
 	}
 
-	  public Medico buscarPorCodigoDoConselho(Medico vo) {
+	  public Medico encontrarPorCodigoDoConselho(Medico vo) {
 		  String sql = "SELECT * FROM Medico WHERE id=? ;";
 			try {
 				PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -156,7 +156,29 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
             return null;
         }
     }
-
+	public Medico encontrarPorId(Medico e) {
+		String sql = "SELECT * FROM Medico WHERE id=? ;";
+		try {
+			PreparedStatement pst = getConnection().prepareStatement(sql);
+			pst.setInt(1, e.getId());
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				Medico a = new Medico();
+				a.setCpf(rs.getString("cpf"));
+				a.setEndereco(rs.getString("endereco"));
+				a.setNome(rs.getString("nome"));
+				a.setCodigoDoConselho(rs.getInt("codigoDoConselho"));
+				a.setValorDaConsulta(rs.getDouble("valorDaConsulta"));
+				a.setId(e.getId());
+				return a;
+			}
+			else return null;
+		
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			return null;
+		}
     @Override
     public ResultSet exibir() {
         String sql = "SELECT * FROM Medico;";
@@ -170,5 +192,11 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
             return null;
         }
     }
+
+	@Override
+	public ResultSet encontrarPorCampoEspecifico(Medico e, String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -126,7 +126,7 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 		}
 	}
 
-	public Paciente buscarPorCPF(Paciente vo) {
+	public Paciente encontrarPorCPF(Paciente vo) {
 		String sql = "SELECT * FROM Paciente WHERE cpf=? ;";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -145,7 +145,7 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 		}
 	}
 	
-	public Paciente buscarPorId(Paciente vo) {
+	public Paciente encontrarPorId(Paciente vo) {
 		String sql = "SELECT * FROM Paciente WHERE idPaciente=? ;"; // 3  idPaciente = 3
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -192,5 +192,11 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
             return null;
         }
     }
+
+	@Override
+	public ResultSet encontrarPorCampoEspecifico(Paciente e, String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
