@@ -71,9 +71,28 @@
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="20.0" layoutY="110.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="115.0" />
+                  <TextField editable="false" layoutX="20.0" layoutY="110.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="115.0" />
                </children>
             </AnchorPane>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="8.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@setavoltar.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Button layoutX="553.0" layoutY="317.0" mnemonicParsing="false" prefHeight="4.0" prefWidth="45.0" style="-fx-background-color: CE5252;" text="sair" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children></AnchorPane>
   </items>
 </SplitPane>
