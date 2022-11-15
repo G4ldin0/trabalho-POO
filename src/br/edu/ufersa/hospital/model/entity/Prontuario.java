@@ -1,5 +1,6 @@
 package br.edu.ufersa.hospital.model.entity;
 import java.time.LocalDate;
+import br.edu.ufersa.hospital.api.dto.ProntuarioDTO;
 
 public class Prontuario{
 
@@ -54,14 +55,24 @@ public int getId(){
    }
 
    public String getObs(){
-      return obs;
+       return obs;
    }
 
-public Paciente getPaciente() {
-	return paciente;
-}
+   public Paciente getPaciente() {
+       return paciente;
+   }
 
-public void setPaciente(Paciente paciente) {
-	this.paciente = paciente;
-}
+   public void setPaciente(Paciente paciente) {
+       this.paciente = paciente;    // melhorar a segurança disso aqui
+   }
+
+   public static Prontuario converter(ProntuarioDTO dto) {
+       Prontuario pront = new Prontuario();
+       pront.setPaciente(dto.getPaciente());
+       pront.setObs(dto.getObs());
+       pront.setId(dto.getId());
+       pront.setData(dto.getData());
+       return pront;
+   }
+
 }

@@ -141,5 +141,34 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 
 		}
 	}
+	
+	public ResultSet encontrar(Medico vo){
+        String sql = "SELECT * FROM Medico WHERE cpf=? ;";
+
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setString(1, vo.getCpf());
+
+            ResultSet rs = ps.executeQuery();
+            return rs;
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public ResultSet exibir() {
+        String sql = "SELECT * FROM Medico;";
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            return rs;
+        } catch (SQLException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+            return null;
+        }
+    }
 
 }
