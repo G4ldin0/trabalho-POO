@@ -13,16 +13,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class RegistroPacientesController implements Initializable {
 
-    @FXML private Pane menu;
+    @FXML private Button menu;
+    @FXML private Button menuClose;
     @FXML private AnchorPane slider;
     @FXML private TableView<PacienteDTO> tabelaPacientes;
     @FXML private TableColumn<PacienteDTO, String> columnNome;
@@ -39,22 +40,42 @@ public class RegistroPacientesController implements Initializable {
         
         listarPacientes();
         
-        menu.setOnMouseClicked(event -> {
-            TranslateTransition slide = new TranslateTransition();
-            slide.setDuration(Duration.seconds(0.4));
-            slide.setNode(slider);
-            
-            slide.setToX(0);
-            slide.play();
-            
-            slider.setTranslateX(-176);
-            slide.setOnFinished((ActionEvent e) -> {
-                menu.setVisible(true);
-                slider.setVisible(true);
-            });
-                
-        });
+    }
+    
+    public void abrirMenu() {
+        // menu.setOnMouseClicked(event -> {});
+           TranslateTransition slide = new TranslateTransition();
+           slide.setDuration(Duration.seconds(0.4));
+           slide.setNode(slider);
+           slide.setToY(0);
+           slide.play();
+           
+           slider.setTranslateY(-107);
+           slide.setOnFinished((ActionEvent e) -> {
+               slider.setVisible(true);
+               menu.setVisible(false);
+               menuClose.setVisible(true);
+           });
+    }
+    
+    public void fecharMenu() {
+     // menu.setOnMouseClicked(event -> {});
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.4));
+        slide.setNode(slider);
+        slide.setToY(-107);
+        slide.play();
         
+        slider.setTranslateY(0);
+        slide.setOnFinished((ActionEvent e) -> {
+            slider.setVisible(false);
+            menu.setVisible(true);
+            menuClose.setVisible(false);
+        });
+    }
+    
+    public void logout() {
+        Telas.logout();
     }
     
     public void listarPacientes() {

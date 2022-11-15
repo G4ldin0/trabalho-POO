@@ -94,4 +94,17 @@ public class Telas extends Application {
         }
     }
     
+    public static void logout() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/login.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Consultas");
+            stage.show();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 }
