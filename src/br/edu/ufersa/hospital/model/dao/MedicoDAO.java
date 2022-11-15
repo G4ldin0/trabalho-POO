@@ -179,7 +179,7 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 			ex.printStackTrace();
 			return null;
 		}
-	}
+		}
     @Override
     public ResultSet exibir() {
         String sql = "SELECT * FROM Medico;";

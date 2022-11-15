@@ -133,5 +133,17 @@ public class ProntuarioDAO extends BaseDAO implements BaseInterDAO<Prontuario> {
           return null;
       }
   }
+
+@Override
+public Prontuario encontrarPorId(Prontuario e) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public ResultSet encontrarPorCampoEspecifico(Prontuario e, String field) {
+	// TODO Auto-generated method stub
+	return null;
+}
   
 }
