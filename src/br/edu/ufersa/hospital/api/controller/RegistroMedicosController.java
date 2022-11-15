@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import br.edu.ufersa.hospital.model.service.MedicoBO;
+import br.edu.ufersa.hospital.view.Telas;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +30,7 @@ public class RegistroMedicosController implements Initializable {
     @FXML private TableColumn<MedicoDTO, String> columnEndereco;
     @FXML private TableColumn<MedicoDTO, String> columnCodConselho;
     @FXML private TableColumn<MedicoDTO, String> columnValorConsulta;
-    @FXML private TableColumn<MedicoDTO, String> columnEmitirProntuario;
+    @FXML private TableColumn<MedicoDTO, String> columnRelatorio;
     private MedicoBO bo = new MedicoBO();
     private ObservableList<MedicoDTO> listaDeMedicos;
 
@@ -65,9 +66,15 @@ public class RegistroMedicosController implements Initializable {
         columnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
         columnCodConselho.setCellValueFactory(new PropertyValueFactory<>("codConselho"));//ver no bd
         columnValorConsulta.setCellValueFactory(new PropertyValueFactory<>("valorConsulta"));//bd
-        columnEmitirProntuario.setCellValueFactory(new PropertyValueFactory<>("emitirProntuario"));
+        columnRelatorio.setCellValueFactory(new PropertyValueFactory<>("emitirRelatorio"));//?
         tabelaMedicos.setItems(listaDeMedicos);
     }
-
+    
+    public void listarPacientes() {
+        Telas.listarPacientes();
+    }
+    public void listarConsultas() {
+        Telas.listarConsultas();
+    }
     
 }

@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import br.edu.ufersa.hospital.api.dto.PacienteDTO;
 import br.edu.ufersa.hospital.model.service.PacienteBO;
+import br.edu.ufersa.hospital.view.Telas;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +29,7 @@ public class RegistroPacientesController implements Initializable {
     @FXML private TableColumn<PacienteDTO, String> columnCpf;
     @FXML private TableColumn<PacienteDTO, String> columnEndereco;
     @FXML private TableColumn<PacienteDTO, String> columnIdade;
+    @FXML private TableColumn<PacienteDTO, String> columnHistorico;
     private PacienteBO bo = new PacienteBO();
     private ObservableList<PacienteDTO> listaDePacientes;
 
@@ -62,7 +64,15 @@ public class RegistroPacientesController implements Initializable {
         columnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         columnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
         columnIdade.setCellValueFactory(new PropertyValueFactory<>("idade"));//ver no bd
+        columnHistorico.setCellValueFactory(new PropertyValueFactory<>("historico"));//ver no bd
         tabelaPacientes.setItems(listaDePacientes);
+    }
+    
+    public void listarMedicos() {
+        Telas.listarMedicos();
+    }
+    public void listarConsultas() {
+        Telas.listarConsultas();
     }
     
 }

@@ -27,9 +27,9 @@
             </ImageView>
             <Pane id="menu" fx:id="menu" layoutX="14.0" layoutY="7.0" prefHeight="44.0" prefWidth="82.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;">
                <children>
-                  <Label layoutX="22.0" layoutY="12.0" text="Menu">
+                  <Label layoutX="14.0" layoutY="7.0" text="Menu">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                </children></Pane>
@@ -47,9 +47,9 @@
                 <TableColumn fx:id="columnCpf" prefWidth="56.0" text="CPF" />
                   <TableColumn fx:id="columnEndereco" prefWidth="94.0" text="Endereço" />
                   <TableColumn fx:id="columnCodConselho" prefWidth="88.0" text="Cód. Conselho" />
-                  <TableColumn fx:id="columnValorConsulta" prefWidth="79.0" text="Consulta(R$)" />
-                  <TableColumn fx:id="columnEmitirProntuario" prefWidth="32.0" />
-                  <TableColumn prefWidth="47.0" />
+                  <TableColumn fx:id="columnValorConsulta" prefWidth="54.0" text="Consulta(R$)" />
+                  <TableColumn fx:id="columnRelatorio" prefWidth="57.0" text="Relatório" />
+                  <TableColumn fx:id="editDelete" prefWidth="47.0" />
               </columns>
             </TableView>
             <Label layoutX="225.0" layoutY="14.0" text="Médicos">
@@ -57,7 +57,24 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="slider" layoutX="-27.0" layoutY="-18.0" prefHeight="119.0" prefWidth="82.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" />
+            <AnchorPane fx:id="slider" layoutX="-27.0" layoutY="-18.0" prefHeight="103.0" prefWidth="84.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;">
+               <children>
+                  <Button alignment="CENTER_RIGHT" layoutY="70.0" mnemonicParsing="false" onAction="#listarConsultas" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" text="Consultas">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER_RIGHT" layoutY="35.0" mnemonicParsing="false" onAction="#listarPacientes" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" text="Pacientes" textAlignment="RIGHT">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#listarMedicos" prefHeight="35.0" prefWidth="82.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" text="Médicos">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
          </children>
       </Pane>
       <Button layoutX="560.0" layoutY="374.0" mnemonicParsing="false" style="-fx-background-color: #CE5252;" text="Sair" textFill="#fff4f4" />

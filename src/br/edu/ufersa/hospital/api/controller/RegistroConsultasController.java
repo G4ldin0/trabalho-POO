@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
 import br.edu.ufersa.hospital.model.service.ConsultaBO;
+import br.edu.ufersa.hospital.view.Telas;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,14 +61,20 @@ public class RegistroConsultasController implements Initializable {
     public void listarConsultas() {
         List<ConsultaDTO> consultas = bo.listar();
         listaDeConsultas = FXCollections.observableArrayList(consultas);
-        columnPaciente.setCellValueFactory(new PropertyValueFactory<>("paciente"));
+        columnPaciente.setCellValueFactory(new PropertyValueFactory<>("idPaciente"));
         columnData.setCellValueFactory(new PropertyValueFactory<>("data"));
         columnHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
-        columnMedico.setCellValueFactory(new PropertyValueFactory<>("medico"));
+        columnMedico.setCellValueFactory(new PropertyValueFactory<>("idMedico"));
         columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         columnEmitirProntuario.setCellValueFactory(new PropertyValueFactory<>("emitirProntuario"));
         tabelaConsultas.setItems(listaDeConsultas);
     }
     
+    public void listarPacientes() {
+        Telas.listarPacientes();
+    }
+    public void listarMedicos() { 
+        Telas.listarMedicos();
+    }
     
 }

@@ -163,15 +163,34 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
   
 	@Override
 	public ResultSet exibir() {
-		// TODO Auto-generated method stub
-		return null;
+	    String sql = "SELECT * FROM Consulta;";
+	      try {
+	          PreparedStatement pst = getConnection().prepareStatement(sql);
+	          ResultSet rs = pst.executeQuery();
+	          return rs;
+	      } catch (SQLException ex) {
+	          // TODO Auto-generated catch block
+	          ex.printStackTrace();
+	          return null;
+	      }
 	}
 
 	@Override
-	public ResultSet encontrar(Consulta e) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultSet encontrar(Consulta vo) {
+	    String sql = "SELECT * FROM Consulta WHERE idPaciente=? ;";
+
+	      try {
+	          PreparedStatement ps = getConnection().prepareStatement(sql);
+	          ps.setInt(1, vo.getPaciente().getId());
+
+	          ResultSet rs = ps.executeQuery();
+	          return rs;
+	      } catch(SQLException ex) {
+	          ex.printStackTrace();
+	          return null;
+	      }
 	}
+	
 	public Consulta BuscarPorId(Consulta e) {
 		String sql = "SELECT * FROM Consulta WHERE id=? ;";
 		try {
@@ -185,9 +204,9 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 				a.setHorario(LocalTime.parse(rs.getTime("horario").toString()));
 				a.setData(LocalDate.parse(rs.getDate("dia").toString()));
 				a.getMedico().setId(rs.getInt("idMedico"));
-				a.setMedico(dao1.BuscarPorId(a.getMedico()));
+				a.setMedico(dao1.encontrarPorId(a.getMedico()));    // encontrarPorId?
 				a.getPaciente().setId(rs.getInt("idPaciente"));
-				a.setPaciente(dao2.buscarPorId(a.getPaciente()));
+				a.setPaciente(dao2.encontrarPorId(a.getPaciente()));// encontrarPorId?
 				a.setId(e.getId());
 				return a;
 			}
@@ -233,4 +252,16 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 			return null;
 		}
 	}
+
+    @Override
+    public Consulta encontrarPorId(Consulta e) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ResultSet encontrarPorCampoEspecifico(Consulta e, String field) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
