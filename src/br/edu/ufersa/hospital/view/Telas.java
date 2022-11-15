@@ -26,8 +26,8 @@ public class Telas extends Application {
     @Override
     public void start(Stage arg0) throws Exception {
         setStage(arg0);
-        arg0.setTitle("Cadastro");
-        telaCadastroAdm();
+        arg0.setTitle("Login");
+        login();
     }
     
     public static void telaCadastroAdm() {
@@ -75,6 +75,18 @@ public class Telas extends Application {
             Scene scene = new Scene (root);
             stage.setScene(scene);
             stage.setTitle("Consultas");
+            stage.show();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void login() {
+    	try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/login.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Login");
             stage.show();
         }
         catch(Exception e) {

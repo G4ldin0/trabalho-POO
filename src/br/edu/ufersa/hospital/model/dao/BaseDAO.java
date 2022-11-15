@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-abstract class BaseDAO{
+public abstract class BaseDAO{
 	Connection conn = null;
 	String url = "jdbc:mysql://localhost/hospital";
 	String user = "root";

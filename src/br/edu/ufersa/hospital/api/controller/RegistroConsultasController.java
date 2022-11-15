@@ -23,6 +23,7 @@ import javafx.util.Duration;
 public class RegistroConsultasController implements Initializable {
     
     @FXML private Pane menu;
+    @FXML private button botaoMenu;
     @FXML private AnchorPane slider;
     @FXML private TableView<ConsultaDTO> tabelaConsultas;
     @FXML private TableColumn<ConsultaDTO, String> columnPaciente;

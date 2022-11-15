@@ -10,7 +10,7 @@ public class PacienteDTO extends PessoaDTO {
     }
 
     public void setIdade(String idade) {
-        if (idade == " "){  // melhorar isso aqui
+        if (idade == " "){ 
             System.out.println("Idade inválida.");
         } else this.idade = idade;
     }
