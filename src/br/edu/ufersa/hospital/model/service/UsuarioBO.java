@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.edu.ufersa.hospital.Exception.AutenticationException;
+import br.edu.ufersa.hospital.Exception.PasswordErrorException;
 import br.edu.ufersa.hospital.api.dto.UsuarioDTO;
 import br.edu.ufersa.hospital.model.dao.UsuarioDAO;
 import br.edu.ufersa.hospital.model.entity.Usuario;
@@ -11,29 +12,32 @@ import br.edu.ufersa.hospital.model.entity.Usuario;
 public class UsuarioBO {
 	
 	UsuarioDAO dao = new UsuarioDAO();
-public boolean adicionar(UsuarioDTO userDTO) {
+public Usuario adicionar(UsuarioDTO userDTO) throws PasswordErrorException {
 	    
 	    Usuario user = Usuario.converter(userDTO);
       
-		ResultSet rs = dao.encontrar(user);
+		ResultSet rs = dao.encontrarPorUsername(user);
 		try {
 			if(rs==null || !(rs.next())) {
+				if(user.getConfirmSenha().equals(user.getSenha())) {
 				if(dao.cadastrar(user) == true)
-					return true;
-					else return false;
+					return user;
+					else throw new PasswordErrorException();
 			}
-			else return false;
+			else throw new PasswordErrorException();
+			}
+			else throw new PasswordErrorException();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			throw new PasswordErrorException();
 		}	
 	} 
 public Usuario autenticar(Usuario vo) throws AutenticationException{
 	ResultSet rs =  dao.encontrarPorUsername(vo);
 	try {
 		if(rs.next()) {
-			if(rs.getString("senha").equals(vo.getSenha()) && rs.getString("username").equals(vo.getUsername())) {
+			if(rs.getString("senha").equals(vo.getSenha())) {
 				return vo;
 			}
 			else throw new AutenticationException();

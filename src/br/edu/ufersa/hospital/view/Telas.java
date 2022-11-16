@@ -20,14 +20,14 @@ public class Telas extends Application {
     }
 
     public static void setStage(Stage stage) {
-        Telas.stage = stage;    // att
+        Telas.stage = stage; 
     }
     
     @Override
     public void start(Stage arg0) throws Exception {
         setStage(arg0);
-        arg0.setTitle("Login");
-        login();
+        arg0.setTitle("Cadastro");
+        cadastro();
     }
     
     public static void telaCadastroAdm() {
@@ -38,7 +38,7 @@ public class Telas extends Application {
             stage.setTitle("Tela de Cadastro de Médicos");
             stage.show();
         }
-        catch(Exception e) {    // captura exception qnd qm chamar ele throws Excep.
+        catch(Exception e) { 
             e.printStackTrace();
         }
     }
@@ -99,6 +99,18 @@ public class Telas extends Application {
             Parent root = FXMLLoader.load(Telas.class.getResource("resources/login.fxml"));
             Scene scene = new Scene (root);
             stage.setScene(scene);
+            stage.setTitle("Login");
+            stage.show();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void cadastroConsulta() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastrarConsultas.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
             stage.setTitle("Consultas");
             stage.show();
         }
@@ -106,5 +118,16 @@ public class Telas extends Application {
             e.printStackTrace();
         }
     }
-    
+    public static void cadastro() {
+    	try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastroConta.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Cadastro");
+            stage.show();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

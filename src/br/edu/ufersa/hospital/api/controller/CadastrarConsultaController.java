@@ -25,7 +25,6 @@ public class CadastrarConsultaController {
 		dto.setMedico(dao1.encontrarPorCPF(dto.getMedico()));
 		dto.setData(LocalDate.parse(data.getText()));
 		dto.setHorario(LocalTime.parse(horario.getText()));
-		// falta a checkbox
 		bo.adicionar(dto);
     }
 }

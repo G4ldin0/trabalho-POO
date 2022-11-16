@@ -50,7 +50,7 @@
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
       </Label>
-      <CheckBox fx:id="addPront" layoutX="34.0" layoutY="266.0" mnemonicParsing="false" text="Adicionar prontuário?">
+      <CheckBox fx:id="addPront" layoutX="34.0" layoutY="266.0" mnemonicParsing="false" onAction="#adicionarPront" text="Adicionar prontuário?">
          <font>
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>

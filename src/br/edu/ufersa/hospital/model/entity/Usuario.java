@@ -5,7 +5,7 @@ import br.edu.ufersa.hospital.api.dto.UsuarioDTO;
 public class Usuario {
 	private String username;
 	private String senha;
-	
+	private String confirmSenha;
 	public Usuario(Usuario user) {
 		this.username = user.getUsername();
 		this.senha = user.getSenha();
@@ -34,4 +34,10 @@ public class Usuario {
 	        user.setSenha(dto.getSenha());	
 	        return user;
 	    }
+	public String getConfirmSenha() {
+		return confirmSenha;
+	}
+	public void setConfirmSenha(String confirmSenha) {
+		this.confirmSenha = confirmSenha;
+	}
 }
