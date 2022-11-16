@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
 <SplitPane dividerPositions="0.15" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <items>
@@ -51,42 +51,38 @@
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="53.0" prefHeight="15.0" prefWidth="37.0" text="Médico:" AnchorPane.leftAnchor="20.0">
+                  <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="61.0" prefHeight="15.0" prefWidth="41.0" text="Medico:" AnchorPane.leftAnchor="20.0">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="65.0" layoutY="48.0" prefHeight="25.0" prefWidth="196.0" promptText="..." />
-                  <TextField layoutX="65.0" layoutY="76.0" prefHeight="25.0" prefWidth="38.0" promptText="--:--" />
-                  <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="81.0" prefHeight="15.0" prefWidth="38.0" text="de:">
+                  <TextField layoutX="63.0" layoutY="56.0" prefHeight="25.0" prefWidth="221.0" promptText="..." />
+                  <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="91.0" prefHeight="15.0" prefWidth="40.0" text="de:" AnchorPane.leftAnchor="20.0">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" layoutX="109.0" layoutY="81.0" prefHeight="15.0" prefWidth="4.0" text="|">
+                  <TextField layoutX="63.0" layoutY="86.0" prefHeight="25.0" prefWidth="36.0" promptText="--:--" />
+                  <Label layoutX="103.0" layoutY="91.0" prefHeight="15.0" prefWidth="5.0" text="|" AnchorPane.leftAnchor="103.0">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="120.0" layoutY="76.0" prefHeight="25.0" prefWidth="62.0" promptText="--/--/----" />
-                  <TextField layoutX="340.0" layoutY="76.0" prefHeight="25.0" prefWidth="62.0" promptText="--/--/----" />
-                  <Label alignment="CENTER_RIGHT" layoutX="329.0" layoutY="81.0" prefHeight="15.0" prefWidth="4.0" text="|">
+                  <TextField layoutX="109.0" layoutY="86.0" prefHeight="25.0" prefWidth="74.0" promptText="--/--/----" />
+                  <TextField layoutX="329.0" layoutY="86.0" prefHeight="25.0" prefWidth="74.0" promptText="--/--/----" />
+                  <TextField layoutX="283.0" layoutY="86.0" prefHeight="25.0" prefWidth="36.0" promptText="--:--" />
+                  <Label layoutX="323.0" layoutY="91.0" prefHeight="15.0" prefWidth="5.0" text="|">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" layoutX="240.0" layoutY="81.0" prefHeight="15.0" prefWidth="38.0" text="até:">
+                  <Label alignment="CENTER_RIGHT" layoutX="240.0" layoutY="91.0" prefHeight="15.0" prefWidth="40.0" text="até:">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="285.0" layoutY="76.0" prefHeight="25.0" prefWidth="38.0" promptText="--:--" />
-                  <Button layoutX="456.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <TextField alignment="TOP_LEFT" layoutX="5.0" layoutY="105.0" prefHeight="182.0" prefWidth="463.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0" />
+                  <Button layoutX="457.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+                  <TextField editable="false" layoutX="20.0" layoutY="110.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="120.0" />
                </children>
             </AnchorPane>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="8.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
