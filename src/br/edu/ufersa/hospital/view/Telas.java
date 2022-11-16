@@ -35,7 +35,7 @@ public class Telas extends Application {
             Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastrarMedicos.fxml"));
             Scene scene = new Scene (root);
             stage.setScene(scene);
-            stage.setTitle("Tela de Cadastro de Médicos");
+            stage.setTitle("Tela de cadastro de Médicos");
             stage.show();
         }
         catch(Exception e) { 
@@ -48,7 +48,7 @@ public class Telas extends Application {
             Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastrarPacientes.fxml"));
             Scene scene = new Scene (root);
             stage.setScene(scene);
-            stage.setTitle("Tela de Cadastro de Pacientes");
+            stage.setTitle("Tela de cadastro de Pacientes");
             stage.show();
         }
         catch(Exception e) { 
@@ -61,7 +61,85 @@ public class Telas extends Application {
             Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastrarConsultas.fxml"));
             Scene scene = new Scene (root);
             stage.setScene(scene);
-            stage.setTitle("Tela de Cadastro de Consultas");
+            stage.setTitle("Tela de cadastro de Consultas");
+            stage.show();
+        }
+        catch(Exception e) {    // captura exception qnd qm chamar ele throws Excep.
+            e.printStackTrace();
+        }
+    }
+    
+    public static void telaEdicaoMedico() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/editarMedicos.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Tela de edição de Médicos");
+            stage.show();
+        }
+        catch(Exception e) {    // captura exception qnd qm chamar ele throws Excep.
+            e.printStackTrace();
+        }
+    }
+    
+    public static void telaEdicaoPaciente() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/editarPacientes.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Tela de edição de Pacientes");
+            stage.show();
+        }
+        catch(Exception e) {    // captura exception qnd qm chamar ele throws Excep.
+            e.printStackTrace();
+        }
+    }
+    
+    public static void telaEdicaoConsulta() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/editarConsultas.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Tela de edição de Consultas");
+            stage.show();
+        }
+        catch(Exception e) {    // captura exception qnd qm chamar ele throws Excep.
+            e.printStackTrace();
+        }
+    }
+    
+    public static void telaConfirmarExclusao() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/confirmacaoExcluir.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Tela de confirmação de exclusão");
+            stage.show();
+        }
+        catch(Exception e) {    // captura exception qnd qm chamar ele throws Excep.
+            e.printStackTrace();
+        }
+    }
+    
+    public static void telaRelatorios() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/Relatorio.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Tela de Relatórios");
+            stage.show();
+        }
+        catch(Exception e) {    // captura exception qnd qm chamar ele throws Excep.
+            e.printStackTrace();
+        }
+    }
+    
+    public static void telaProntuarios() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/Prontuario.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Tela de Prontuários");
             stage.show();
         }
         catch(Exception e) {    // captura exception qnd qm chamar ele throws Excep.

@@ -118,5 +118,14 @@ public class RegistroConsultasController implements Initializable {
     public void cadastrar() {
     	Telas.telaCadastroConsulta();
     }
+    public void editar() {
+    	Telas.telaEdicaoConsulta();
+    }
+    public void excluir() {
+    	Telas.telaConfirmarExclusao();
+    }
+    public void prontuario() {
+    	Telas.telaProntuarios();
+    }
     
 }
