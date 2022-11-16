@@ -96,5 +96,32 @@ public class ConsultaBO {
             return null;
         }
     }
+    
+    public List<ConsultaDTO> listarPorCpfPaciente(ConsultaDTO consDTO) {
+
+        List<ConsultaDTO> listaConsultas = new ArrayList<ConsultaDTO>();
+        Consulta consulta = Consulta.converter(consDTO);
+        ResultSet rs = dao.encontrar(consulta);
+
+        try {
+
+            while(rs.next()) {
+                ConsultaDTO cons = new ConsultaDTO();
+                cons.getPaciente().setId(rs.getInt("idPaciente"));
+                cons.getMedico().setId(rs.getInt("idMedico"));
+                cons.getProntuario().setId(rs.getInt("idProntuario"));
+                cons.setId(rs.getInt("idConsulta"));
+                cons.setData(LocalDate.parse(rs.getDate("dia").toString()));
+                cons.setHorario(LocalTime.parse(rs.getTime("horario").toString()));
+
+                listaConsultas.add(cons);
+            }
+            return listaConsultas;
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+    }
 
 }

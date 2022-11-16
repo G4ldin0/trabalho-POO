@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -25,6 +26,7 @@ public class RegistroMedicosController implements Initializable {
     @FXML private Button menu;
     @FXML private Button menuClose;
     @FXML private AnchorPane slider;
+    @FXML private TextField busca;
     @FXML private TableView<MedicoDTO> tabelaMedicos;
     @FXML private TableColumn<MedicoDTO, String> columnNome;
     @FXML private TableColumn<MedicoDTO, String> columnCpf;
@@ -34,6 +36,7 @@ public class RegistroMedicosController implements Initializable {
     @FXML private TableColumn<MedicoDTO, String> columnRelatorio;
     private MedicoBO bo = new MedicoBO();
     private ObservableList<MedicoDTO> listaDeMedicos;
+    private ObservableList<MedicoDTO> listaMedicosFiltrados;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -89,6 +92,20 @@ public class RegistroMedicosController implements Initializable {
         columnValorConsulta.setCellValueFactory(new PropertyValueFactory<>("valorConsulta"));
         columnRelatorio.setCellValueFactory(new PropertyValueFactory<>("emitirRelatorio"));
         tabelaMedicos.setItems(listaDeMedicos);
+    }
+    
+    public void buscar() {
+    	MedicoDTO dto = new MedicoDTO();
+    	dto.setCpf(busca.getText());
+    	List<MedicoDTO> medicos = bo.listarPorCpf(dto);
+    	listaMedicosFiltrados = FXCollections.observableArrayList(medicos);
+    	columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        columnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        columnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+        columnCodConselho.setCellValueFactory(new PropertyValueFactory<>("codConselho"));
+        columnValorConsulta.setCellValueFactory(new PropertyValueFactory<>("valorConsulta"));
+        columnRelatorio.setCellValueFactory(new PropertyValueFactory<>("emitirRelatorio"));
+        tabelaMedicos.setItems(listaMedicosFiltrados);
     }
     
     public void listarPacientes() {
