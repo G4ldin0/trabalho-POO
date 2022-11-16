@@ -30,15 +30,41 @@ public class Telas extends Application {
         cadastro();
     }
     
-    public static void telaCadastroAdm() {
+    public static void telaCadastroMedico() {
         try {
-            Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastrarMedicos.FXML"));
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastrarMedicos.fxml"));
             Scene scene = new Scene (root);
             stage.setScene(scene);
             stage.setTitle("Tela de Cadastro de Médicos");
             stage.show();
         }
         catch(Exception e) { 
+            e.printStackTrace();
+        }
+    }
+    
+    public static void telaCadastroPaciente() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastrarPacientes.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Tela de Cadastro de Pacientes");
+            stage.show();
+        }
+        catch(Exception e) { 
+            e.printStackTrace();
+        }
+    }
+    
+    public static void telaCadastroConsulta() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastrarConsultas.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Tela de Cadastro de Consultas");
+            stage.show();
+        }
+        catch(Exception e) {    // captura exception qnd qm chamar ele throws Excep.
             e.printStackTrace();
         }
     }

@@ -97,5 +97,8 @@ public class RegistroMedicosController implements Initializable {
     public void listarConsultas() {
         Telas.listarConsultas();
     }
+    public void cadastrar() {
+    	Telas.telaCadastroMedico();
+    }
     
 }

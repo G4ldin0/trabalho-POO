@@ -4,6 +4,7 @@ import java.time.LocalTime;
 
 import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
 import br.edu.ufersa.hospital.model.service.ConsultaBO;
+import br.edu.ufersa.hospital.view.Telas;
 import br.edu.ufersa.hospital.model.dao.MedicoDAO;
 import br.edu.ufersa.hospital.model.dao.PacienteDAO;
 import javafx.fxml.FXML;
@@ -26,5 +27,6 @@ public class CadastrarConsultaController {
 		dto.setData(LocalDate.parse(data.getText()));
 		dto.setHorario(LocalTime.parse(horario.getText()));
 		bo.adicionar(dto);
+		Telas.listarConsultas();
     }
 }
