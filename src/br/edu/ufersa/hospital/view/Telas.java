@@ -26,6 +26,7 @@ public class Telas extends Application {
     @Override
     public void start(Stage arg0) throws Exception {
         setStage(arg0);
+
         arg0.setTitle("Login");
         login();
     }
