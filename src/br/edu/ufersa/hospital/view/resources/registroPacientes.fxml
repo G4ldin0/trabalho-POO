@@ -100,5 +100,38 @@
          </children>
       </Pane>
       <Button layoutX="560.0" layoutY="374.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #CE5252;" text="Sair" textFill="#fff4f4" />
+      <ImageView fitHeight="20.0" fitWidth="16.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icon-excluir.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="562.0" layoutY="190.0" mnemonicParsing="false" onAction="#excluir" prefHeight="10.0" prefWidth="12.0" style="-fx-background-color: #FFFFFF;">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icon-excluir.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fitHeight="17.0" fitWidth="15.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icon-editar.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="562.0" layoutY="159.0" mnemonicParsing="false" onAction="#editar" style="-fx-background-color: #FFFFFF;">
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icon-editar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fitHeight="14.0" fitWidth="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icon-relatorio.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
