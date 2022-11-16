@@ -5,6 +5,7 @@ import java.time.LocalTime;
 
 import br.edu.ufersa.hospital.model.entity.Paciente;
 
+
 public class ProntuarioDTO{
 	private int id;
 	private LocalDate data;
