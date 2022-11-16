@@ -1,6 +1,9 @@
 package br.edu.ufersa.hospital.model.entity;
 import java.time.LocalDate;
 // import java.time.LocalTime; import feito para classe ainda não implementada
+import java.time.LocalTime;
+
+import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
 
 public class Consulta{
     
@@ -9,12 +12,14 @@ public class Consulta{
     private Medico medico;
     private LocalDate data;
     private Prontuario prontuario;
+	private LocalTime horario;
 
-    public Consulta(Paciente paciente,Medico medico, LocalDate data, Prontuario prontuario){
+    public Consulta(Paciente paciente,Medico medico, LocalDate data,LocalTime horario, Prontuario prontuario){
         setPaciente(paciente);
         setMedico(medico);
         setData(data);
         setProntuario(prontuario);
+        setHorario(horario);
     }
 
     public Consulta() {
@@ -75,4 +80,21 @@ public class Consulta{
     public Prontuario getProntuario(){ 
         return this.prontuario;
     }
+    
+    public static Consulta converter(ConsultaDTO dto) {
+        Consulta cons = new Consulta();
+        cons.getPaciente().setId(dto.getPaciente().getId());
+        cons.getMedico().setId(dto.getMedico().getId());
+        cons.getProntuario().setId(dto.getProntuario().getId());
+        cons.setId(dto.getId());
+        cons.setData(dto.getData());
+        return cons;
+    }
+    public LocalTime getHorario() {
+    	return this.horario;
+    }
+	public void setHorario(LocalTime horario) {
+		this.horario = horario;
+	}
+    
 }

@@ -3,9 +3,6 @@ package br.edu.ufersa.hospital.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 import br.edu.ufersa.hospital.model.entity.Paciente;
@@ -15,14 +12,13 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 
 	@Override
 	public boolean cadastrar(Paciente vo) {
-		String sql = "insert into Paciente (nome,endereco,cpf,id) values (?,?,?,?);";
+		String sql = "insert into Paciente (nome,endereco,cpf) values (?,?,?);";
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, vo.getNome());
 			ps.setString(2, vo.getEndereco());
 			ps.setString(3, vo.getCpf());
-			ps.setInt(4, vo.getId());
 			return ps.execute();
 
 		}catch (SQLException e) {
@@ -127,7 +123,7 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 		}
 	}
 
-	public Paciente buscarPorCPF(Paciente vo) {
+	public Paciente encontrarPorCPF(Paciente vo) {
 		String sql = "SELECT * FROM Paciente WHERE cpf=? ;";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -145,8 +141,9 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 
 		}
 	}
-	public Paciente buscarPorId(Paciente vo) {
-		String sql = "SELECT * FROM Medico WHERE idPaciente=? ;"; // 3  idPaciente = 3
+	
+	public Paciente encontrarPorId(Paciente vo) {
+		String sql = "SELECT * FROM Paciente WHERE idPaciente=? ;"; // 3  idPaciente = 3
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setInt(1, vo.getId());
@@ -162,6 +159,41 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 			return null;
 			
 		}
+	}
+	
+	public ResultSet encontrar(Paciente vo){
+        String sql = "SELECT * FROM Paciente WHERE cpf=? ;";
+
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setString(1, vo.getCpf());
+
+            ResultSet rs = ps.executeQuery();
+            return rs;
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public ResultSet exibir() {
+        String sql = "SELECT * FROM Paciente;";
+        try {
+            PreparedStatement pst = getConnection().prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            return rs;
+        } catch (SQLException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+	@Override
+	public ResultSet encontrarPorCampoEspecifico(Paciente e, String field) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

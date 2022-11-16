@@ -4,6 +4,8 @@ import br.edu.ufersa.hospital.model.dao.PacienteDAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.edu.ufersa.hospital.api.dto.PacienteDTO;
 import br.edu.ufersa.hospital.model.dao.BaseInterDAO;
@@ -31,14 +33,66 @@ public class PacienteBO {
         }   
     }
     
-    public void Alterar(Paciente alteracao){
-    alteracao.setNome(alteracao.getNome());
-    alteracao.setEndereco(alteracao.getEndereco());
-    alteracao.setCpf(alteracao.getCpf());
+    public boolean atualizar(PacienteDTO pacDTO) {
+        
+        Paciente pac = Paciente.converter(pacDTO);
+        
+        ResultSet rs = dao.encontrar(pac);
+        try {
+            if(rs==null || !(rs.next())) {
+                if(dao.editar(pac) == true)
+                    return true;
+                    else return false;
+            }
+            else return false;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return false;
+        }
     }
-    public static void Cadastrar(){}
-    public static void Excluir(){}
- 
- public static Paciente buscarPorNome(Paciente busca){ return null;}
- public static Paciente buscarPorCpf(Paciente busca){ return null;}
+
+    public boolean apagar(PacienteDTO pacDTO) {   // o apagar vai vir do DTO?
+    
+        Paciente pac = Paciente.converter(pacDTO);
+    
+        ResultSet rs = dao.encontrar(pac);
+        try {
+            if(rs==null || !(rs.next())) {
+                if(dao.excluirPorId(pac) == true)
+                    return true;
+                    else return false;
+            }
+            else return false;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public List<PacienteDTO> listar() {
+
+        List<PacienteDTO> pacientes = new ArrayList<PacienteDTO>();
+        ResultSet rs = dao.exibir();
+
+        try {
+
+            while(rs.next()) {
+                PacienteDTO pac = new PacienteDTO();
+                pac.setId(rs.getInt("idMedico"));
+                pac.setNome(rs.getString("nome"));
+                pac.setCpf(rs.getString("cpf"));
+                pac.setEndereco(rs.getString("endereco"));
+
+                pacientes.add(pac);
+            }
+            return pacientes;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

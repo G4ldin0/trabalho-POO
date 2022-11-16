@@ -1,17 +1,20 @@
 package br.edu.ufersa.hospital.api.dto;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import br.edu.ufersa.hospital.model.entity.Medico;
 import br.edu.ufersa.hospital.model.entity.Paciente;
 import br.edu.ufersa.hospital.model.entity.Prontuario;
 
-class ConsultaDTO{
+public class ConsultaDTO{
 	private int id;
     private Paciente paciente;
     private Medico medico;
     private LocalDate data;
+    private LocalTime horario;
     private Prontuario prontuario;
+    
     public int getId(){
         return this.id;
     }
@@ -66,4 +69,12 @@ class ConsultaDTO{
     public Prontuario getProntuario(){ 
         return this.prontuario;
     }
+
+	public LocalTime getHorario() {
+		return horario;
+	}
+
+	public void setHorario(LocalTime horario) {
+		this.horario = horario;
+	}
 }

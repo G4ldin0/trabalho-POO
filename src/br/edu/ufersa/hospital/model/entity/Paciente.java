@@ -1,5 +1,6 @@
 package br.edu.ufersa.hospital.model.entity;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Vector;
 
 import br.edu.ufersa.hospital.api.dto.PacienteDTO;
@@ -27,7 +28,7 @@ public class Paciente extends Pessoa{
       this.prontuarios = new Vector<Prontuario>(Prontuarios);
       if (!Prontuarios.isEmpty()){
       } else { 
-         prontuarios.add(new Prontuario(LocalDate.now(), null));
+         prontuarios.add(new Prontuario(LocalDate.now(), null, LocalTime.now()));
       }
    }
 
