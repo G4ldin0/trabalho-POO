@@ -94,6 +94,11 @@
                   </ImageView>
                </children>
             </AnchorPane>
+            <Button layoutX="383.0" layoutY="8.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #BCD6E9;" text="Novo" textFill="#152734">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Button layoutX="560.0" layoutY="374.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #CE5252;" text="Sair" textFill="#fff4f4" />
