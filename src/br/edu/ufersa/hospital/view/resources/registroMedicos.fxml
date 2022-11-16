@@ -19,7 +19,7 @@
    <children>
       <Pane prefHeight="60.0" prefWidth="600.0" style="-fx-background-color: #BDE3FF;">
          <children>
-            <TextField fx:id="busca" layoutX="125.0" layoutY="17.0" prefHeight="27.0" prefWidth="435.0" />
+            <TextField fx:id="busca" layoutX="125.0" layoutY="17.0" onAction="#buscar" prefHeight="27.0" prefWidth="435.0" />
             <Button layoutX="562.0" layoutY="14.0" mnemonicParsing="false" onAction="#buscar" prefHeight="35.0" prefWidth="36.0" style="-fx-background-color: #BDE3FF;" />
             <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="566.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>

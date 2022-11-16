@@ -94,5 +94,32 @@ public class MedicoBO {
 			return null;
 		}
     }
+    
+    public List<MedicoDTO> listarPorCpf(MedicoDTO medDTO) {
+
+        List<MedicoDTO> corpoMedico = new ArrayList<MedicoDTO>();
+        Medico medico = Medico.converter(medDTO);
+        ResultSet rs = dao.encontrar(medico);
+
+        try {
+
+            while(rs.next()) {
+                MedicoDTO med = new MedicoDTO();
+                med.setId(rs.getInt("idMedico"));
+                med.setNome(rs.getString("nome"));
+                med.setCpf(rs.getString("cpf"));
+                med.setCodigoDoConselho(rs.getInt("codConselho"));
+                med.setEndereco(rs.getString("endereco"));
+                med.setValorDaConsulta(rs.getDouble("valorConsulta"));
+
+                corpoMedico.add(med);
+            }
+            return corpoMedico;
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+    }
 
 }
