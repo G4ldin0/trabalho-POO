@@ -75,7 +75,7 @@ public class ProntuarioBO {
     public List<Prontuario> listar() {
 
         List<Prontuario> listaProntuarios = new ArrayList<Prontuario>();
-        ResultSet rs = dao.exibir();
+        ResultSet rs = dao.listar();
 
         try {
 

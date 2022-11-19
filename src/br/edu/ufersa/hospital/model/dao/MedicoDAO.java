@@ -60,8 +60,8 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 		String sql = "SELECT * FROM Medico;";
 		try {
 			PreparedStatement pst = getConnection().prepareStatement(sql);
-
-			return pst.executeQuery();
+			ResultSet rs = pst.executeQuery();
+			return rs;
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();

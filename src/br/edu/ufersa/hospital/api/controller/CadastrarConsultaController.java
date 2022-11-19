@@ -29,4 +29,8 @@ public class CadastrarConsultaController {
 		bo.adicionar(dto);
 		Telas.listarConsultas();
     }
+    
+    public void cancelar() {
+    	Telas.listarConsultas();
+    }
 }
