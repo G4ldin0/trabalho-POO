@@ -9,8 +9,8 @@ import br.edu.ufersa.hospital.model.entity.Medico;
 public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 
 	@Override
-	public boolean cadastrar(Medico vo) {
-		String sql = "insert into Medico (nome, endereco, cpf, idMedico, codConselho, valorConsulta) values (?,?,?,?,?,?);";
+	public boolean cadastrar(Medico vo) { // funfando
+		String sql = "insert into Medico (nome, endereco, cpf, idMedico, codigoDoConselho, valorDaConsulta) values (?,?,?,?,?,?);";
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -32,8 +32,8 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 	}
 
 	@Override
-	public boolean editar(Medico vo) {
-		String sql = "UPDATE Medico SET nome=?,endereco=?cpf=?,codConselho=?,ValorConsulta=?, WHERE idMedico=? ";
+	public boolean editar(Medico vo) { // funfando
+		String sql = "UPDATE Medico SET nome=?,endereco=?,cpf=?,codigoDoConselho=?,ValorDaConsulta=? WHERE idMedico=? ";
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -56,7 +56,7 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 	}
 	
 	@Override
-	public ResultSet listar() {
+	public ResultSet listar() { // n testei
 		String sql = "SELECT * FROM Medico;";
 		try {
 			PreparedStatement pst = getConnection().prepareStatement(sql);
@@ -72,7 +72,7 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 	}
 
 	@Override
-	public boolean excluirPorId(Medico vo) {
+	public boolean excluirPorId(Medico vo) { // testado
 		String sql = "delete from Medico where idMedico = ?;";
 
 		try {
@@ -89,8 +89,8 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 		}
 	}
 	
-	public boolean excluirPorCPF(Medico vo) {
-		String sql = "delete from Medico where cpf = ?;";
+	public boolean excluirPorCPF(Medico vo) { // testado
+		String sql = "delete from Medico where cpf =? ;";
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -106,43 +106,58 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 		}
 	}
 
-	  public Medico encontrarPorCodigoDoConselho(Medico vo) {
-		  String sql = "SELECT * FROM Medico WHERE id=? ;";
+	  public Medico encontrarPorCodigoDoConselho(Medico e) { // testado
+		  String sql = "SELECT * FROM Medico WHERE codigoDoConselho=? ;";
 			try {
-				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1, vo.getCodigoDoConselho());
-				ResultSet rs = ps.executeQuery();
-				
-				return new Medico(rs.getInt("idMedico"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), rs.getInt("codConselho"), rs.getDouble("valorConsulta"));
-	
+				PreparedStatement pst = getConnection().prepareStatement(sql);
+				pst.setInt(1, e.getCodigoDoConselho());
+				ResultSet rs = pst.executeQuery();
+				if(rs.next()) {
+					Medico a = new Medico();
+					a.setCpf(rs.getString("cpf"));
+					a.setEndereco(rs.getString("endereco"));
+					a.setNome(rs.getString("nome"));
+					a.setValorDaConsulta(rs.getDouble("ValorDaConsulta"));
+					a.setCodigoDoConselho(rs.getInt("CodigoDoConselho"));
+					a.setId(rs.getInt("IdMedico"));
+					a.setCodigoDoConselho(e.getCodigoDoConselho());
+					return a;
+				}
+				else return null;
+			
 			} catch (SQLException ex) {
+				// TODO Auto-generated catch block
 				ex.printStackTrace();
-
 				return null;
-
 			}
 	  }
 
-	public Medico encontrarPorCPF(Medico vo){
-		String sql = "SELECT * FROM Medico WHERE cpf=? ;";
-
-		try {
-			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setString(1, vo.getCpf());
+	  public Medico encontrarPorCpf(Medico e) { // testado
+			String sql = "SELECT * FROM Medico WHERE cpf=? ;";
+			try {
+				PreparedStatement pst = getConnection().prepareStatement(sql);
+				pst.setString(1, e.getCpf());
+				ResultSet rs = pst.executeQuery();
+				if(rs.next()) {
+					Medico a = new Medico();
+					a.setEndereco(rs.getString("endereco"));
+					a.setNome(rs.getString("nome"));
+					a.setValorDaConsulta(rs.getDouble("ValorDaConsulta"));
+					a.setCodigoDoConselho(rs.getInt("CodigoDoConselho"));
+					a.setId(rs.getInt("IdMedico"));
+					a.setCpf(e.getCpf());
+					return a;
+				}
+				else return null;
 			
-			ResultSet rs = ps.executeQuery();
-
-			return new Medico(rs.getInt("idMedico"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), rs.getInt("codConselho"), rs.getDouble("valorConsulta"));
-
-		} catch(SQLException ex) {
-			ex.printStackTrace();
-
-			return null;
-
+			} catch (SQLException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+				return null;
+			}
 		}
-	}
 	
-	public ResultSet encontrar(Medico vo){
+	public ResultSet encontrar(Medico vo){ // testado
         String sql = "SELECT * FROM Medico WHERE cpf=? ;";
 
         try {
@@ -156,8 +171,8 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
             return null;
         }
     }
-	public Medico encontrarPorId(Medico e) {
-		String sql = "SELECT * FROM Medico WHERE id=? ;";
+	public Medico encontrarPorId(Medico e) { // testado
+		String sql = "SELECT * FROM Medico WHERE idMedico=? ;";
 		try {
 			PreparedStatement pst = getConnection().prepareStatement(sql);
 			pst.setInt(1, e.getId());
@@ -179,25 +194,11 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 			ex.printStackTrace();
 			return null;
 		}
-		}
-    @Override
-    public ResultSet exibir() {
-        String sql = "SELECT * FROM Medico;";
-        try {
-            PreparedStatement pst = getConnection().prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            return rs;
-        } catch (SQLException ex) {
-            // TODO Auto-generated catch block
-            ex.printStackTrace();
-            return null;
-        }
-    }
+	}
 
 	@Override
 	public ResultSet encontrarPorCampoEspecifico(Medico e, String field) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

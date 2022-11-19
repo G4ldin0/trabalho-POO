@@ -120,20 +120,6 @@ public class ProntuarioDAO extends BaseDAO implements BaseInterDAO<Prontuario> {
       }
   }
 
-  @Override
-  public ResultSet exibir() {
-      String sql = "SELECT * FROM Prontuario;";
-      try {
-          PreparedStatement pst = getConnection().prepareStatement(sql);
-          ResultSet rs = pst.executeQuery();
-          return rs;
-      } catch (SQLException ex) {
-          // TODO Auto-generated catch block
-          ex.printStackTrace();
-          return null;
-      }
-  }
-
 @Override
 public Prontuario encontrarPorId(Prontuario e) {
 	// TODO Auto-generated method stub

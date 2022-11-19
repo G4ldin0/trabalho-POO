@@ -175,25 +175,12 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
             return null;
         }
     }
-
-    @Override
-    public ResultSet exibir() {
-        String sql = "SELECT * FROM Paciente;";
-        try {
-            PreparedStatement pst = getConnection().prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            return rs;
-        } catch (SQLException ex) {
-            // TODO Auto-generated catch block
-            ex.printStackTrace();
-            return null;
-        }
-    }
-
 	@Override
 	public ResultSet encontrarPorCampoEspecifico(Paciente e, String field) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	public static void main(String args[]) {
+		
+	}
 }
