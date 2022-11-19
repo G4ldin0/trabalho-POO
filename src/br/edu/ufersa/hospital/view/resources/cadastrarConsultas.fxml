@@ -23,7 +23,7 @@
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="195.0" layoutY="321.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000;" text="Cadastrar">
+      <Button layoutX="195.0" layoutY="321.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000;" text="Cadastrar">
          <font>
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
@@ -33,7 +33,7 @@
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="64.0" layoutY="321.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000;" text="Cancelar">
+      <Button layoutX="64.0" layoutY="321.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000;" text="Cancelar">
          <font>
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
