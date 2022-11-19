@@ -32,4 +32,4 @@ public class CadastroConsultaController {
 		bo.adicionar(dto);
 		Telas.listarConsultas();
     }
-} IGNORAR ESSA CLASSE?*/
+} IGNORAR ESSA CLASSE? SIM, REPETIDA POR CAUSA DO NOME*/

@@ -75,7 +75,7 @@ public class ConsultaBO {
     public List<ConsultaDTO> listar() {
 
         List<ConsultaDTO> listaConsultas = new ArrayList<ConsultaDTO>();
-        ResultSet rs = dao.exibir();
+        ResultSet rs = dao.listar();
 
         try {
 

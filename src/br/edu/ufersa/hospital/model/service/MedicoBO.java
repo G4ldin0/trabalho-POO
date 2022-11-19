@@ -72,7 +72,7 @@ public class MedicoBO {
     public List<MedicoDTO> listar() {
 
         List<MedicoDTO> corpoMedico = new ArrayList<MedicoDTO>();
-        ResultSet rs = dao.exibir();
+        ResultSet rs = dao.listar();
 
         try {
 
@@ -81,9 +81,9 @@ public class MedicoBO {
                 med.setId(rs.getInt("idMedico"));
                 med.setNome(rs.getString("nome"));
                 med.setCpf(rs.getString("cpf"));
-                med.setCodigoDoConselho(rs.getInt("codConselho"));
+                med.setCodigoDoConselho(rs.getInt("codigoDoConselho"));
                 med.setEndereco(rs.getString("endereco"));
-                med.setValorDaConsulta(rs.getDouble("valorConsulta"));
+                med.setValorDaConsulta(rs.getDouble("valorDaConsulta"));
 
                 corpoMedico.add(med);
             }

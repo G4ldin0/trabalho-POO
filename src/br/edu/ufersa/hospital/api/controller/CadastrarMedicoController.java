@@ -11,8 +11,8 @@ public class CadastrarMedicoController {
     @FXML private TextField nome;
     @FXML private TextField cpf;
     @FXML private TextField endereco;
-    @FXML private TextField codConselho;
-    @FXML private TextField valorConsulta;
+    @FXML private TextField codigoDoConselho;
+    @FXML private TextField valorDaConsulta;
     private MedicoBO bo = new MedicoBO();
     
     public void cadastrar() {
@@ -20,10 +20,14 @@ public class CadastrarMedicoController {
         dto.setNome(nome.getText());
         dto.setCpf(cpf.getText());
         dto.setEndereco(endereco.getText());
-        //dto.setCodigoDoConselho(codConselho.getText());
-        //dto.setValorDaConsulta(valorConsulta.getText());
+        dto.setCodigoDoConselho(Integer.parseInt(codigoDoConselho.getText()));	
+        dto.setValorDaConsulta(Double.parseDouble(valorDaConsulta.getText()));
         bo.adicionar(dto);
         Telas.listarMedicos();
+    }
+    
+    public void cancelar() {
+    	Telas.listarMedicos();
     }
     
 }

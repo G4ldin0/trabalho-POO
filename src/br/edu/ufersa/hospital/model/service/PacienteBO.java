@@ -74,7 +74,7 @@ public class PacienteBO {
     public List<PacienteDTO> listar() {
 
         List<PacienteDTO> pacientes = new ArrayList<PacienteDTO>();
-        ResultSet rs = dao.exibir();
+        ResultSet rs = dao.listar();
 
         try {
 
