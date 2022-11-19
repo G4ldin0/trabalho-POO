@@ -19,9 +19,13 @@ public class CadastrarPacienteController {
         dto.setNome(nome.getText());
         dto.setCpf(cpf.getText());
         dto.setEndereco(endereco.getText());
-        dto.setIdade(idade.getText());
+        dto.setIdade(Integer.parseInt(idade.getText()));
         bo.adicionar(dto);
         Telas.listarPacientes();
+    }
+    
+    public void cancelar() {
+    	Telas.listarPacientes();
     }
     
 }

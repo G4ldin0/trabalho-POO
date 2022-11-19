@@ -83,6 +83,7 @@ public class PacienteBO {
                 pac.setId(rs.getInt("idPaciente"));
                 pac.setNome(rs.getString("nome"));
                 pac.setCpf(rs.getString("cpf"));
+                pac.setIdade(rs.getInt("idade"));
                 pac.setEndereco(rs.getString("endereco"));
 
                 pacientes.add(pac);
@@ -108,7 +109,7 @@ public class PacienteBO {
                 pac.setId(rs.getInt("idPaciente"));
                 pac.setNome(rs.getString("nome"));
                 pac.setCpf(rs.getString("cpf"));
-                //pac.setIdade(rs.getInt("idade"));
+                pac.setIdade(rs.getInt("idade"));
                 pac.setEndereco(rs.getString("endereco"));
 
                 listaPacientes.add(pac);

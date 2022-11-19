@@ -12,13 +12,14 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 
 	@Override
 	public boolean cadastrar(Paciente vo) {
-		String sql = "insert into Paciente (nome,endereco,cpf) values (?,?,?);";
+		String sql = "insert into Paciente (nome,endereco,cpf,idade) values (?,?,?,?);";
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, vo.getNome());
 			ps.setString(2, vo.getEndereco());
 			ps.setString(3, vo.getCpf());
+			ps.setInt(4, vo.getIdade());
 			return ps.execute();
 
 		}catch (SQLException e) {
@@ -31,14 +32,15 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 
 	@Override
 	public boolean editar(Paciente vo) {
-		String sql = "UPDATE Paciente SET cpf=?,endereco=?,nome=? WHERE idPaciente=? ";
+		String sql = "UPDATE Paciente SET cpf=?,endereco=?,nome=?,idade=? WHERE idPaciente=? ";
 		
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, vo.getCpf());
 			ps.setString(2, vo.getEndereco());
 			ps.setString(3, vo.getNome());
-			ps.setInt(4, vo.getId());
+			ps.setInt(4, vo.getIdade());
+			ps.setInt(5, vo.getId());
 			ps.executeUpdate();
 
 			return true;		
@@ -53,12 +55,13 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 	}
 
 	public boolean editarPorCpf(Paciente vo) {
-		String sql = "UPDATE Paciente SET nome=?,endereco=? WHERE cpf=? ";
+		String sql = "UPDATE Paciente SET nome=?,endereco=?,idade=? WHERE cpf=? ";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, vo.getNome());
 			ps.setString(2, vo.getEndereco());
-			ps.setString(3, vo.getCpf());
+			ps.setInt(3, vo.getIdade());
+			ps.setString(4, vo.getCpf());
 			ps.executeUpdate();
 
 			return true;		
@@ -114,7 +117,8 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 
-			return ps.executeQuery(sql);
+			ResultSet rs = ps.executeQuery(sql);
+			return rs;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,7 +135,7 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 
 			ResultSet rs = ps.executeQuery();
 			
-			return new Paciente(rs.getInt("idPaciente"), rs.getString("nome"), rs.getString("Endereco"), rs.getString("cpf"), new Vector<Prontuario>());
+			return new Paciente(rs.getInt("idPaciente"), rs.getString("nome"), rs.getString("Endereco"), rs.getString("cpf"), rs.getInt("idade"), new Vector<Prontuario>());
 			//substituir o new vector pelo vector cheio
 
 		} catch (SQLException ex) {
@@ -150,7 +154,7 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 
 			ResultSet rs = ps.executeQuery();
 			
-			return new Paciente(rs.getInt("idPaciente"), rs.getString("nome"), rs.getString("Endereco"), rs.getString("cpf"), new Vector<Prontuario>());
+			return new Paciente(rs.getInt("idPaciente"), rs.getString("nome"), rs.getString("Endereco"), rs.getString("cpf"), rs.getInt("idade"), new Vector<Prontuario>());
 			//substituir o new vector pelo vector cheio
 
 		} catch (SQLException ex) {

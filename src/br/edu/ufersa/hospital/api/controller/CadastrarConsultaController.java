@@ -33,4 +33,8 @@ public class CadastrarConsultaController {
     public void cancelar() {
     	Telas.listarConsultas();
     }
+    
+    public void adicionarPront() {
+    	
+    }
 }
