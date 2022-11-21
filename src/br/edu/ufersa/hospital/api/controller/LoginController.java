@@ -32,6 +32,11 @@ public class LoginController {
             	botaoFechar.setDisable(false);
             }
     }
+    
+    public void telaCadastro() {
+    	Telas.cadastro();
+    }
+    
     public void fecharError(ActionEvent action) {
     	erroAutent.setVisible(false);
     	botaoFechar.setVisible(false);

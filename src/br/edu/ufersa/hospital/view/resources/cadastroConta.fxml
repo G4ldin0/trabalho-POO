@@ -11,55 +11,55 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #BDE3FF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.hospital.api.controller.CadastroController">
    <children>
-      <Label layoutX="134.0" layoutY="64.0" text="Centro Médico">
+      <Label layoutX="144.0" layoutY="74.0" text="Centro Médico">
          <font>
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
       </Label>
-      <ImageView fitHeight="98.0" fitWidth="109.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="98.0" fitWidth="109.0" layoutX="10.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@logosaude.png" />
          </image>
       </ImageView>
-      <Label layoutX="112.0" layoutY="47.0" text="Memorial Luiz Potiguar">
+      <Label layoutX="122.0" layoutY="57.0" text="Memorial Luiz Potiguar">
          <font>
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="310.0" layoutY="292.0" mnemonicParsing="false" onAction="#cadastrar" style="-fx-background-color: #CBD0D1;" text="Cadastrar">
+      <Button layoutX="291.0" layoutY="292.0" mnemonicParsing="false" onAction="#cadastrar" style="-fx-background-color: #CBD0D1;" text="Cadastrar">
          <font>
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
       </Button>
-      <Label layoutX="291.0" layoutY="92.0" text="Login">
+      <Label layoutX="279.0" layoutY="92.0" text="Login">
          <font>
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="username" layoutX="234.0" layoutY="108.0" promptText="Login do usuário" />
-      <TextField fx:id="senha" layoutX="234.0" layoutY="154.0" promptText="Senha" />
-      <Label layoutX="290.0" layoutY="138.0" text="Senha">
+      <TextField fx:id="username" layoutX="224.0" layoutY="108.0" promptText="Login do usuário" />
+      <TextField fx:id="email" layoutX="224.0" layoutY="249.0" promptText="E-mail" />
+      <Label layoutX="279.0" layoutY="138.0" text="Senha">
          <font>
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="256.0" layoutY="186.0" text="Confirmar Senha">
+      <Label layoutX="246.0" layoutY="187.0" text="Confirmar Senha">
          <font>
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="289.0" layoutY="233.0" text="E-mail">
+      <Label layoutX="279.0" layoutY="233.0" text="E-mail">
          <font>
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="228.0" layoutY="292.0" mnemonicParsing="false" onAction="#voltarTelaLogin" style="-fx-background-color: #CBD0D1;" text="Voltar">
+      <Button layoutX="224.0" layoutY="292.0" mnemonicParsing="false" onAction="#voltarTelaLogin" style="-fx-background-color: #CBD0D1;" text="Voltar">
          <font>
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
       </Button>
-      <PasswordField fx:id="confirmSenha" layoutX="236.0" layoutY="202.0" promptText="Senha" />
-      <PasswordField fx:id="email" layoutX="236.0" layoutY="249.0" promptText="E-mail" />
+      <PasswordField fx:id="confirmSenha" layoutX="224.0" layoutY="203.0" promptText="Confirmar Senha" />
+      <PasswordField fx:id="senha" layoutX="224.0" layoutY="154.0" promptText="Senha" />
       <Label fx:id="erroAutent" alignment="CENTER" disable="true" layoutX="204.0" layoutY="172.0" prefHeight="62.0" prefWidth="219.0" style="-fx-background-color: red; -fx-border-color: black; -fx-border-style: solid; -fx-border-width: 3;" textFill="#fffdfd" visible="false">
          <font>
             <Font size="15.0" />
