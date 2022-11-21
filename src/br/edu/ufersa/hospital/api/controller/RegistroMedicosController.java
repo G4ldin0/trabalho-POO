@@ -71,7 +71,7 @@ public class RegistroMedicosController implements Initializable {
         slide.play();
         
         slider.setTranslateY(0);
-        slide.setOnFinished((ActionEvent e) -> {
+        slide.setOnFinished((ActionEvent e) -> {	// ao fim da transição, dá pra tirar isso
             slider.setVisible(false);
             menu.setVisible(true);
             menuClose.setVisible(false);

@@ -13,7 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class CadastroController {
-		@FXML private TextField nomeUsuario;
+		@FXML private TextField username;
 	    @FXML private PasswordField senha;
 	    @FXML private PasswordField confirmSenha;
 	    @FXML private TextField email;
@@ -24,7 +24,7 @@ public class CadastroController {
 	      UsuarioDTO user = new UsuarioDTO();
 	      if(senha.getText().equals(confirmSenha.getText())) {
 	      user.setSenha(senha.getText());
-	      user.setUsername(nomeUsuario.getText()); 
+	      user.setUsername(username.getText()); 
 	         }
 	           try {
 		           Usuario cadastrado = bo.adicionar(user);
@@ -37,6 +37,11 @@ public class CadastroController {
 		      botaoFechar.setDisable(false);
 		       }            
 	    }
+	    
+	    public void voltarTelaLogin() {
+	    	Telas.login();
+	    }
+	    
 	    public void fecharError(ActionEvent action) {
 	    	erroAutent.setVisible(false);
 	    	botaoFechar.setVisible(false);
