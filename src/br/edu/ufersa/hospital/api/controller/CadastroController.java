@@ -1,6 +1,7 @@
 package br.edu.ufersa.hospital.api.controller;
 
 import br.edu.ufersa.hospital.Exception.PasswordErrorException;
+import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import br.edu.ufersa.hospital.api.dto.UsuarioDTO;
 import br.edu.ufersa.hospital.model.entity.Usuario;
 import br.edu.ufersa.hospital.model.service.UsuarioBO;
@@ -13,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class CadastroController {
+	
 		@FXML private TextField username;
 	    @FXML private PasswordField senha;
 	    @FXML private PasswordField confirmSenha;
@@ -20,11 +22,13 @@ public class CadastroController {
 	    @FXML private Label erroAutent;
 	    @FXML private Button botaoFechar;
 	    UsuarioBO bo = new UsuarioBO();
+	    
 	    public void cadastrar(ActionEvent action){
 	      UsuarioDTO user = new UsuarioDTO();
 	      if(senha.getText().equals(confirmSenha.getText())) {
+	    	  
 	      user.setSenha(senha.getText());
-	      user.setUsername(username.getText()); 
+	      user.setUsername(username.getText());
 	      try {
 	           Usuario cadastrado = bo.adicionar(user);
 	           Telas.login();
@@ -43,6 +47,7 @@ public class CadastroController {
 		      botaoFechar.setDisable(false);
 	      }
 	    }
+	    
 	    public void voltarTelaLogin() {
 	    	Telas.login();
 	    }

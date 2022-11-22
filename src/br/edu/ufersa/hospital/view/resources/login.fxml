@@ -33,7 +33,7 @@
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
       </Button>
-      <Label fx:id="erroAutent" alignment="CENTER" layoutX="143.0" layoutY="166.0" prefHeight="69.0" prefWidth="319.0" style="-fx-background-color: red; -fx-border-color: black; -fx-border-style: solid; -fx-border-width: 3;" textFill="WHITE" visible="false">
+      <Label fx:id="erroAutent" alignment="CENTER" layoutX="143.0" layoutY="166.0" prefHeight="69.0" prefWidth="319.0" style="-fx-background-color: #CE5252; -fx-border-color: black; -fx-border-style: solid; -fx-border-width: 3;" textFill="WHITE" visible="false">
          <font>
             <Font size="18.0" />
          </font>

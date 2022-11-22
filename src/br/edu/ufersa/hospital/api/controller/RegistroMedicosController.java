@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import javafx.util.Callback;
 
 public class RegistroMedicosController implements Initializable {
 
@@ -108,6 +109,10 @@ public class RegistroMedicosController implements Initializable {
         tabelaMedicos.setItems(listaMedicosFiltrados);
     }
     
+    
+    public void telaListarMedicos() {
+    	Telas.listarMedicos();
+    }
     public void listarPacientes() {
         Telas.listarPacientes();
     }

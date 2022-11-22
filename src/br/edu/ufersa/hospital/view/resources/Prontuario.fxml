@@ -112,7 +112,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <Button fx:id="botaoVoltar" layoutX="5.0" layoutY="26.0" mnemonicParsing="false" onAction="#voltar" style="-fx-background-color: #FFFFFF;">
+            <Button fx:id="botaoVoltar" layoutX="5.0" layoutY="26.0" mnemonicParsing="false" onAction="#listarConsultas" style="-fx-background-color: #FFFFFF;">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>

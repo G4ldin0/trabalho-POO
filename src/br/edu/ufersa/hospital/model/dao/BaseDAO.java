@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public abstract class BaseDAO{
 	Connection conn = null;
-	String url = "jdbc:mysql://localhost/hospital";	// remover esse ":3307" ou adicionar a porta q seu BD tá
+	String url = "jdbc:mysql://localhost:3307/hospital";	// remover esse ":3307" ou adicionar a porta q seu BD tá
 	String user = "root";	// colocar seu usuario, mas geralmente é "root" mesmo
-	String password = "senha123";	// colocar a senha de acesso aos seus BDs
+	String password = "admin";	// colocar a senha de acesso aos seus BDs
 
 	synchronized public Connection getConnection() {
 		if(conn == null) {
