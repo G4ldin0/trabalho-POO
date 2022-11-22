@@ -20,7 +20,8 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 			ps.setString(2, vo.getEndereco());
 			ps.setString(3, vo.getCpf());
 			ps.setInt(4, vo.getIdade());
-			return ps.execute();
+			ps.execute();
+			return true;
 
 		}catch (SQLException e) {
 			e.printStackTrace();
