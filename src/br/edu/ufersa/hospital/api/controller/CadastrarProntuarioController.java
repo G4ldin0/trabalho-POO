@@ -66,9 +66,6 @@ public class CadastrarProntuarioController {
     public void logout() {
         Telas.logout();
     }
-    public void voltar() {
-    	Telas.listarConsultas();
-    }
     public void listarPacientes() {
         Telas.listarPacientes();
     }

@@ -60,11 +60,11 @@
       </Button>
       <PasswordField fx:id="confirmSenha" layoutX="224.0" layoutY="203.0" promptText="Confirmar Senha" />
       <PasswordField fx:id="senha" layoutX="224.0" layoutY="154.0" promptText="Senha" />
-      <Label fx:id="erroAutent" alignment="CENTER" disable="true" layoutX="204.0" layoutY="172.0" prefHeight="62.0" prefWidth="219.0" style="-fx-background-color: red; -fx-border-color: black; -fx-border-style: solid; -fx-border-width: 3;" textFill="#fffdfd" visible="false">
+      <Label fx:id="erroAutent" alignment="CENTER" layoutX="187.0" layoutY="179.0" prefHeight="62.0" prefWidth="219.0" style="-fx-background-color: #CE5252; -fx-border-color: black; -fx-border-style: solid; -fx-border-width: 3;" textFill="WHITE" visible="false">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="botaoFechar" disable="true" layoutX="391.0" layoutY="174.0" mnemonicParsing="false" onAction="#fecharError" prefHeight="25.0" prefWidth="29.0" style="-fx-background-color: white;" text="X" visible="false" />
+      <Button fx:id="botaoFechar" layoutX="374.0" layoutY="181.0" mnemonicParsing="false" onAction="#fecharError" prefHeight="25.0" prefWidth="29.0" style="-fx-background-color: white;" text="X" visible="false" />
    </children>
 </Pane>

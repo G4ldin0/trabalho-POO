@@ -105,6 +105,10 @@ public class RegistroPacientesController implements Initializable {
         tabelaPacientes.setItems(listaPacientesFiltrados);
     }
     
+    
+    public void telaListarPacientes() {
+    	Telas.listarPacientes();
+    }
     public void listarMedicos() {
         Telas.listarMedicos();
     }

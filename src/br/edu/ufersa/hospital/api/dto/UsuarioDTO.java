@@ -1,6 +1,7 @@
 package br.edu.ufersa.hospital.api.dto;
 
 public class UsuarioDTO {
+	
 	private String username;
 	private String senha;
 	private String confirmSenha;

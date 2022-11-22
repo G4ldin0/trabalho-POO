@@ -109,6 +109,9 @@ public class RegistroConsultasController implements Initializable {
         tabelaConsultas.setItems(listaConsultasFiltradas);
     }
     
+    public void telaListarConsultas() {
+    	Telas.listarConsultas();
+    }
     public void listarPacientes() {
         Telas.listarPacientes();
     }
