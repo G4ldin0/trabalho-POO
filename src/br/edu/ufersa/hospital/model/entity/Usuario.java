@@ -14,6 +14,10 @@ public class Usuario {
 		this.username = null;
 		this.senha = null;
 	}
+	public Usuario(String username, String senha) {
+		setUsername(username);
+		setSenha(senha);
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -31,7 +35,8 @@ public class Usuario {
 	 public static Usuario converter(UsuarioDTO dto) {
 	        Usuario user = new Usuario();
 	        user.setUsername(dto.getUsername());
-	        user.setSenha(dto.getSenha());	
+	        user.setSenha(dto.getSenha());
+	        user.setConfirmSenha(dto.getConfirmSenha());
 	        return user;
 	    }
 	public String getConfirmSenha() {

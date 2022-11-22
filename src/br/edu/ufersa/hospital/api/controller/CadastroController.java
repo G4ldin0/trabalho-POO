@@ -25,19 +25,24 @@ public class CadastroController {
 	      if(senha.getText().equals(confirmSenha.getText())) {
 	      user.setSenha(senha.getText());
 	      user.setUsername(username.getText()); 
+	      try {
+	           Usuario cadastrado = bo.adicionar(user);
+	           Telas.login();
+	           }
+	       catch(PasswordErrorException e){
+	       erroAutent.setText("Username ou senha não encontrados!");
+	       erroAutent.setVisible(true);
+	       botaoFechar.setVisible(true);
+	      botaoFechar.setDisable(false);
+	       }            
 	         }
-	           try {
-		           Usuario cadastrado = bo.adicionar(user);
-		           Telas.login();
-		           }
-		       catch(PasswordErrorException e){
-		       erroAutent.setText("Username ou senha não encontrados!");
-		       erroAutent.setVisible(true);
-		       botaoFechar.setVisible(true);
+	      else {
+	    	  erroAutent.setText("Preencha corretamente!");
+		      erroAutent.setVisible(true);
+		      botaoFechar.setVisible(true);
 		      botaoFechar.setDisable(false);
-		       }            
+	      }
 	    }
-	    
 	    public void voltarTelaLogin() {
 	    	Telas.login();
 	    }

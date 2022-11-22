@@ -33,7 +33,7 @@ public class LoginController {
             }
     }
     
-    public void telaCadastro() {
+    public void telaCadastro(ActionEvent action) {
     	Telas.cadastro();
     }
     

@@ -9,13 +9,14 @@ public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
 
 	@Override
 	public boolean cadastrar(Usuario vo) {
-		String sql = "insert into conta (username,senha) values (?,?);";
+		String sql = "insert into usuario (username,senha) values (?,?);";
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1,vo.getUsername());
 			ps.setString(2,vo.getSenha());
-			return ps.execute();
+			ps.execute();
+			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -59,7 +60,7 @@ public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
 		return null;
 	}
 	public ResultSet encontrarPorUsername(Usuario vo) {
-		String sql = "SELECT * FROM conta WHERE username=? ;";
+		String sql = "SELECT * FROM usuario WHERE username=? ;";
 
         try {
             PreparedStatement ps = getConnection().prepareStatement(sql);
