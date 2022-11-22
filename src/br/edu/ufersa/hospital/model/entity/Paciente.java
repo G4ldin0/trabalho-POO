@@ -5,17 +5,19 @@ import java.util.Vector;
 
 import br.edu.ufersa.hospital.api.dto.PacienteDTO;
 
-public class Paciente extends Pessoa{
+public class Paciente extends Pessoa {
    
+   private int idade;
    private Vector<Prontuario> prontuarios;
 
    public Paciente(){}
 
-   public Paciente(int id, String nome, String endereco, String cpf, Vector<Prontuario> prontuarios){
+   public Paciente(int id, String nome, String endereco, String cpf, int idade, Vector<Prontuario> prontuarios){
       setId(id);
       setNome(nome);
       setEndereco(endereco);
       setCpf(cpf);
+      setIdade(idade);
       setProntuarios(prontuarios);
    }
 
@@ -23,6 +25,16 @@ public class Paciente extends Pessoa{
    /*
     * GETTERS E SETTERS
    */
+   
+   public int getIdade() {
+       return idade;
+   }
+
+   public void setIdade(int idade) {
+       if (idade < 0){ 
+           System.out.println("Idade inválida.");
+       } else this.idade = idade;
+   }
 
    public void setProntuarios(Vector<Prontuario> Prontuarios){ 
       this.prontuarios = new Vector<Prontuario>(Prontuarios);
@@ -39,6 +51,7 @@ public class Paciente extends Pessoa{
        pac.setCpf(dto.getCpf());
        pac.setEndereco(dto.getEndereco());
        pac.setNome(dto.getNome());
+       pac.setIdade(dto.getIdade());
        pac.setId(dto.getId());
        return pac;
    }

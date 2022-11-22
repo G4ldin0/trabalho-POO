@@ -1,4 +1,4 @@
-package br.edu.ufersa.hospital.api.controller;
+/*package br.edu.ufersa.hospital.api.controller;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -32,4 +32,4 @@ public class CadastroConsultaController {
 		bo.adicionar(dto);
 		Telas.listarConsultas();
     }
-}
+} IGNORAR ESSA CLASSE? SIM, REPETIDA POR CAUSA DO NOME*/

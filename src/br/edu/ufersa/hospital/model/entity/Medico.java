@@ -9,9 +9,16 @@ public class Medico extends Pessoa{
 
     public Medico(){}
 
-    public Medico(int id, String nome, String cpf, String endereco, int codConselho, double valorConsulta){
-        setId(id);
+    public Medico(String nome, String cpf, String endereco, int codConselho, double valorConsulta){
         setNome(nome);
+        setCpf(cpf);
+        setCodigoDoConselho(codConselho);
+        setEndereco(endereco);
+        setValorDaConsulta(valorConsulta);
+    }
+    public Medico(int id,String nome, String cpf, String endereco, int codConselho, double valorConsulta){
+        setId(id);
+    	setNome(nome);
         setCpf(cpf);
         setCodigoDoConselho(codConselho);
         setEndereco(endereco);
@@ -33,7 +40,16 @@ public class Medico extends Pessoa{
         this.endereco = "Condomínio dos Médicos";
         this.valorDaConsulta = 5499.99;
     }
-    public int getCodigoDoConselho() {
+    public Medico(Medico med) {
+		setNome(med.getNome());
+		setCpf(med.getCpf());
+		setId(med.getId());
+		setCodigoDoConselho(med.getCodigoDoConselho());
+		setValorDaConsulta(med.getValorDaConsulta());
+		setEndereco(med.getEndereco());
+	}
+
+	public int getCodigoDoConselho() {
         return this.codigoDoConselho;
     }
 

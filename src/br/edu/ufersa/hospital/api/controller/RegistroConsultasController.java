@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -26,6 +27,7 @@ public class RegistroConsultasController implements Initializable {
     @FXML private Button menu;
     @FXML private Button menuClose;
     @FXML private AnchorPane slider;
+    @FXML private TextField busca;
     @FXML private TableView<ConsultaDTO> tabelaConsultas;
     @FXML private TableColumn<ConsultaDTO, String> columnPaciente;
     @FXML private TableColumn<ConsultaDTO, String> columnData;
@@ -35,6 +37,7 @@ public class RegistroConsultasController implements Initializable {
     @FXML private TableColumn<ConsultaDTO, String> columnEmitirProntuario;
     private ConsultaBO bo = new ConsultaBO();
     private ObservableList<ConsultaDTO> listaDeConsultas;
+    private ObservableList<ConsultaDTO> listaConsultasFiltradas;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -92,11 +95,40 @@ public class RegistroConsultasController implements Initializable {
         tabelaConsultas.setItems(listaDeConsultas);
     }
     
+    public void buscar() {
+    	ConsultaDTO dto = new ConsultaDTO();
+    	dto.getPaciente().setCpf(busca.getText());	// busca consulta pelo cpf do paciente
+    	List<ConsultaDTO> consultas = bo.listarPorCpfPaciente(dto);
+    	listaConsultasFiltradas = FXCollections.observableArrayList(consultas);
+    	columnPaciente.setCellValueFactory(new PropertyValueFactory<>("idPaciente"));
+        columnData.setCellValueFactory(new PropertyValueFactory<>("data"));
+        columnHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
+        columnMedico.setCellValueFactory(new PropertyValueFactory<>("idMedico"));
+        columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        columnEmitirProntuario.setCellValueFactory(new PropertyValueFactory<>("emitirProntuario"));
+        tabelaConsultas.setItems(listaConsultasFiltradas);
+    }
+    
+    public void telaListarConsultas() {
+    	Telas.listarConsultas();
+    }
     public void listarPacientes() {
         Telas.listarPacientes();
     }
     public void listarMedicos() { 
         Telas.listarMedicos();
+    }
+    public void cadastrar() {
+    	Telas.telaCadastroConsulta();
+    }
+    public void editar() {
+    	Telas.telaEdicaoConsulta();
+    }
+    public void excluir() {
+    	Telas.telaConfirmarExclusao();
+    }
+    public void prontuario() {
+    	Telas.telaProntuarios();
     }
     
 }

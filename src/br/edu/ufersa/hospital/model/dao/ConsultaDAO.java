@@ -26,7 +26,8 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 			ps.setInt(3,vo.getProntuario().getId());
 			ps.setDate(4, Date.valueOf(vo.getData()));
 			ps.setTime(5,Time.valueOf(vo.getHorario()));
-			return ps.execute();
+			ps.execute();
+			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -159,12 +160,6 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 
 			return null;
 		}
-	}
-
-	@Override
-	public ResultSet exibir() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

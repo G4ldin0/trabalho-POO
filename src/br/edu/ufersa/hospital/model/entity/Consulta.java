@@ -96,5 +96,5 @@ public class Consulta{
 	public void setHorario(LocalTime horario) {
 		this.horario = horario;
 	}
-    
+   
 }

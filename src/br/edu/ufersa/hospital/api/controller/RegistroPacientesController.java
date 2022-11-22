@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -25,6 +26,7 @@ public class RegistroPacientesController implements Initializable {
     @FXML private Button menu;
     @FXML private Button menuClose;
     @FXML private AnchorPane slider;
+    @FXML private TextField busca;
     @FXML private TableView<PacienteDTO> tabelaPacientes;
     @FXML private TableColumn<PacienteDTO, String> columnNome;
     @FXML private TableColumn<PacienteDTO, String> columnCpf;
@@ -33,6 +35,7 @@ public class RegistroPacientesController implements Initializable {
     @FXML private TableColumn<PacienteDTO, String> columnHistorico;
     private PacienteBO bo = new PacienteBO();
     private ObservableList<PacienteDTO> listaDePacientes;
+    private ObservableList<PacienteDTO> listaPacientesFiltrados;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -89,11 +92,37 @@ public class RegistroPacientesController implements Initializable {
         tabelaPacientes.setItems(listaDePacientes);
     }
     
+    public void buscar() {
+    	PacienteDTO dto = new PacienteDTO();
+    	dto.setCpf(busca.getText());
+    	List<PacienteDTO> pacientes = bo.listarPorCpf(dto);
+    	listaPacientesFiltrados = FXCollections.observableArrayList(pacientes);
+    	columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        columnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        columnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+        columnIdade.setCellValueFactory(new PropertyValueFactory<>("idade"));//ver no bd
+        columnHistorico.setCellValueFactory(new PropertyValueFactory<>("historico"));//ver no bd
+        tabelaPacientes.setItems(listaPacientesFiltrados);
+    }
+    
+    
+    public void telaListarPacientes() {
+    	Telas.listarPacientes();
+    }
     public void listarMedicos() {
         Telas.listarMedicos();
     }
     public void listarConsultas() {
         Telas.listarConsultas();
+    }
+    public void cadastrar() {
+    	Telas.telaCadastroPaciente();
+    }
+    public void editar() {
+    	Telas.telaEdicaoPaciente();
+    }
+    public void excluir() {
+    	Telas.telaConfirmarExclusao();
     }
     
 }

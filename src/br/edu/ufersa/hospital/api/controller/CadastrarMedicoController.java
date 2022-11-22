@@ -4,25 +4,32 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import br.edu.ufersa.hospital.model.service.MedicoBO;
+import br.edu.ufersa.hospital.view.Telas;
 
 public class CadastrarMedicoController {
     
     @FXML private TextField nome;
     @FXML private TextField cpf;
     @FXML private TextField endereco;
-    @FXML private TextField codConselho;
-    @FXML private TextField valorConsulta;
+    @FXML private TextField codigoDoConselho;
+    @FXML private TextField valorDaConsulta;
     private MedicoBO bo = new MedicoBO();
     
-    public void cadastrar() {
+    public boolean cadastrar() {
         MedicoDTO dto = new MedicoDTO();
         dto.setNome(nome.getText());
         dto.setCpf(cpf.getText());
         dto.setEndereco(endereco.getText());
-        //dto.setCodigoDoConselho(codConselho.getText());
-        //dto.setValorDaConsulta(valorConsulta.getText());
+        dto.setCodigoDoConselho(Integer.parseInt(codigoDoConselho.getText()));	
+        dto.setValorDaConsulta(Double.parseDouble(valorDaConsulta.getText()));
         bo.adicionar(dto);
-        // Telas.listarMedicos();   método ainda não implementado
+        Telas.listarMedicos();
+        
+        return true;	// adicionar Exception?
+    }
+    
+    public void cancelar() {
+    	Telas.listarMedicos();
     }
     
 }

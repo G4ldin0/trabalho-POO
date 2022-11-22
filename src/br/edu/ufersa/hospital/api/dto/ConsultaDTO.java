@@ -25,10 +25,11 @@ public class ConsultaDTO{
         } else this.id = id;
     }
 
-    public void setPaciente(Paciente temp){
+    public void setPaciente(Paciente temp){	// colocar PacienteDTO?
         this.paciente.setNome(temp.getNome());
         this.paciente.setEndereco(temp.getEndereco());
         this.paciente.setCpf(temp.getCpf());
+        this.paciente.setIdade(temp.getIdade());
         this.paciente.setProntuarios(temp.getProntuarios());
 
     }

@@ -74,15 +74,16 @@ public class PacienteBO {
     public List<PacienteDTO> listar() {
 
         List<PacienteDTO> pacientes = new ArrayList<PacienteDTO>();
-        ResultSet rs = dao.exibir();
+        ResultSet rs = dao.listar();
 
         try {
 
             while(rs.next()) {
                 PacienteDTO pac = new PacienteDTO();
-                pac.setId(rs.getInt("idMedico"));
+                pac.setId(rs.getInt("idPaciente"));
                 pac.setNome(rs.getString("nome"));
                 pac.setCpf(rs.getString("cpf"));
+                pac.setIdade(rs.getInt("idade"));
                 pac.setEndereco(rs.getString("endereco"));
 
                 pacientes.add(pac);
@@ -93,6 +94,32 @@ public class PacienteBO {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    public List<PacienteDTO> listarPorCpf(PacienteDTO pacDTO) {
+
+        List<PacienteDTO> listaPacientes = new ArrayList<PacienteDTO>();
+        Paciente paciente = Paciente.converter(pacDTO);
+        ResultSet rs = dao.encontrar(paciente);
+
+        try {
+
+            while(rs.next()) {
+                PacienteDTO pac = new PacienteDTO();
+                pac.setId(rs.getInt("idPaciente"));
+                pac.setNome(rs.getString("nome"));
+                pac.setCpf(rs.getString("cpf"));
+                pac.setIdade(rs.getInt("idade"));
+                pac.setEndereco(rs.getString("endereco"));
+
+                listaPacientes.add(pac);
+            }
+            return listaPacientes;
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
     }
 
 }

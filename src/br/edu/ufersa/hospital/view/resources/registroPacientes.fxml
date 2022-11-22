@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -12,26 +7,29 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style-registros.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.hospital.api.controller.RegistroPacientesController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style-registros.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.hospital.api.controller.RegistroPacientesController">
    <children>
-      <Pane fx:id="menu" prefHeight="60.0" prefWidth="600.0" style="-fx-background-color: #BDE3FF;">
+      <Pane prefHeight="60.0" prefWidth="600.0" style="-fx-background-color: #BDE3FF;">
          <children>
-            <TextField fx:id="busca" layoutX="125.0" layoutY="17.0" prefHeight="27.0" prefWidth="435.0" />
-            <Button layoutX="562.0" layoutY="12.0" mnemonicParsing="false" onAction="#buscar" prefHeight="35.0" prefWidth="36.0" style="-fx-background-color: #BDE3FF;" />
-            <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="566.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@lupa%201.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="menu" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#abrirMenu" prefHeight="44.0" prefWidth="108.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" text="Menu">
+            <TextField fx:id="busca" layoutX="125.0" layoutY="17.0" onAction="#buscar" prefHeight="27.0" prefWidth="435.0" />
+            <Button layoutX="560.0" layoutY="13.0" mnemonicParsing="false" onAction="#buscar" prefHeight="35.0" prefWidth="36.0" style="-fx-background-color: #BDE3FF;" styleClass="button-hand">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@lupa%201.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="menu" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#abrirMenu" prefHeight="44.0" prefWidth="108.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" styleClass="button-hand" text="Menu">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="menuClose" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#fecharMenu" prefHeight="44.0" prefWidth="108.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" text="Menu">
+            <Button fx:id="menuClose" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#fecharMenu" prefHeight="44.0" prefWidth="108.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" styleClass="button-hand" text="Menu">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -61,17 +59,17 @@
             </Label>
             <AnchorPane fx:id="slider" layoutX="-27.0" layoutY="-18.0" prefHeight="107.0" prefWidth="89.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" visible="false">
                <children>
-                  <Button alignment="CENTER_RIGHT" layoutY="70.0" mnemonicParsing="false" onAction="#listarConsultas" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" text="Consultas">
+                  <Button alignment="CENTER_RIGHT" layoutY="70.0" mnemonicParsing="false" onAction="#listarConsultas" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" styleClass="button-hand" text="Consultas">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER_RIGHT" layoutY="35.0" mnemonicParsing="false" onAction="#listarPacientes" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" text="Pacientes" textAlignment="RIGHT">
+                  <Button alignment="CENTER_RIGHT" layoutY="35.0" mnemonicParsing="false" onAction="#telaListarPacientes" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" styleClass="button-hand" text="Pacientes" textAlignment="RIGHT">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#listarMedicos" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" text="Médicos  ">
+                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#listarMedicos" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" styleClass="button-hand" text="Médicos  ">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -92,8 +90,31 @@
                      </image>
                   </ImageView>
                </children></AnchorPane>
+            <Button layoutX="383.0" layoutY="8.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #BCD6E9;" styleClass="button-hand" text="Novo" textFill="#152734">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
-      <Button layoutX="560.0" layoutY="374.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #CE5252;" text="Sair" textFill="#fff4f4" />
+      <Button layoutX="560.0" layoutY="374.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #CE5252;" styleClass="button-hand" text="Sair" textFill="#fff4f4" />
+      <Button layoutX="562.0" layoutY="190.0" mnemonicParsing="false" onAction="#excluir" prefHeight="10.0" prefWidth="12.0" style="-fx-background-color: #FFFFFF;" styleClass="button-hand">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icon-excluir.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="562.0" layoutY="159.0" mnemonicParsing="false" onAction="#editar" style="-fx-background-color: #FFFFFF;" styleClass="button-hand">
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icon-editar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </Pane>

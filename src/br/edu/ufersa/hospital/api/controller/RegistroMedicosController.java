@@ -16,15 +16,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import javafx.util.Callback;
 
 public class RegistroMedicosController implements Initializable {
 
     @FXML private Button menu;
     @FXML private Button menuClose;
     @FXML private AnchorPane slider;
+    @FXML private TextField busca;
     @FXML private TableView<MedicoDTO> tabelaMedicos;
     @FXML private TableColumn<MedicoDTO, String> columnNome;
     @FXML private TableColumn<MedicoDTO, String> columnCpf;
@@ -34,6 +37,7 @@ public class RegistroMedicosController implements Initializable {
     @FXML private TableColumn<MedicoDTO, String> columnRelatorio;
     private MedicoBO bo = new MedicoBO();
     private ObservableList<MedicoDTO> listaDeMedicos;
+    private ObservableList<MedicoDTO> listaMedicosFiltrados;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -68,7 +72,7 @@ public class RegistroMedicosController implements Initializable {
         slide.play();
         
         slider.setTranslateY(0);
-        slide.setOnFinished((ActionEvent e) -> {
+        slide.setOnFinished((ActionEvent e) -> {	// ao fim da transição, dá pra tirar isso
             slider.setVisible(false);
             menu.setVisible(true);
             menuClose.setVisible(false);
@@ -85,17 +89,47 @@ public class RegistroMedicosController implements Initializable {
         columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         columnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         columnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
-        columnCodConselho.setCellValueFactory(new PropertyValueFactory<>("codConselho"));
-        columnValorConsulta.setCellValueFactory(new PropertyValueFactory<>("valorConsulta"));
+        columnCodConselho.setCellValueFactory(new PropertyValueFactory<>("codigoDoConselho"));
+        columnValorConsulta.setCellValueFactory(new PropertyValueFactory<>("valorDaConsulta"));
         columnRelatorio.setCellValueFactory(new PropertyValueFactory<>("emitirRelatorio"));
         tabelaMedicos.setItems(listaDeMedicos);
     }
     
+    public void buscar() {
+    	MedicoDTO dto = new MedicoDTO();
+    	dto.setCpf(busca.getText());
+    	List<MedicoDTO> medicos = bo.listarPorCpf(dto);
+    	listaMedicosFiltrados = FXCollections.observableArrayList(medicos);
+    	columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        columnCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        columnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+        columnCodConselho.setCellValueFactory(new PropertyValueFactory<>("codConselho"));
+        columnValorConsulta.setCellValueFactory(new PropertyValueFactory<>("valorConsulta"));
+        columnRelatorio.setCellValueFactory(new PropertyValueFactory<>("emitirRelatorio"));
+        tabelaMedicos.setItems(listaMedicosFiltrados);
+    }
+    
+    
+    public void telaListarMedicos() {
+    	Telas.listarMedicos();
+    }
     public void listarPacientes() {
         Telas.listarPacientes();
     }
     public void listarConsultas() {
         Telas.listarConsultas();
+    }
+    public void cadastrar() {
+    	Telas.telaCadastroMedico();
+    }
+    public void editar() {
+    	Telas.telaEdicaoMedico();
+    }
+    public void excluir() {
+    	Telas.telaConfirmarExclusao();
+    }
+    public void relatorio() {
+    	Telas.telaRelatorios();
     }
     
 }

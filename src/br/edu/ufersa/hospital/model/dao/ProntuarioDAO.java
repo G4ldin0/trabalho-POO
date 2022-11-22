@@ -25,8 +25,8 @@ public class ProntuarioDAO extends BaseDAO implements BaseInterDAO<Prontuario> {
 			ps.setDate(1, Date.valueOf(vo.getData()));
 			ps.setString(2, vo.getObs());
 			ps.setInt(3, vo.getPaciente().getId());
-			
-			return ps.execute();
+			ps.execute();
+			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,20 +115,6 @@ public class ProntuarioDAO extends BaseDAO implements BaseInterDAO<Prontuario> {
           ResultSet rs = ps.executeQuery();
           return rs;
       } catch(SQLException ex) {
-          ex.printStackTrace();
-          return null;
-      }
-  }
-
-  @Override
-  public ResultSet exibir() {
-      String sql = "SELECT * FROM Prontuario;";
-      try {
-          PreparedStatement pst = getConnection().prepareStatement(sql);
-          ResultSet rs = pst.executeQuery();
-          return rs;
-      } catch (SQLException ex) {
-          // TODO Auto-generated catch block
           ex.printStackTrace();
           return null;
       }
