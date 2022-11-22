@@ -21,8 +21,8 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 			ps.setInt(5, vo.getCodigoDoConselho());
 			ps.setDouble(6, vo.getValorDaConsulta());
 			
-			return ps.execute();
-
+			ps.execute();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 

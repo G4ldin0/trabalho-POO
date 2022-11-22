@@ -25,8 +25,8 @@ public class ProntuarioDAO extends BaseDAO implements BaseInterDAO<Prontuario> {
 			ps.setDate(1, Date.valueOf(vo.getData()));
 			ps.setString(2, vo.getObs());
 			ps.setInt(3, vo.getPaciente().getId());
-			
-			return ps.execute();
+			ps.execute();
+			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
