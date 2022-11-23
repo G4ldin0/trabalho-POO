@@ -10,8 +10,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Callback;
 
-public class Utils {
-
+public class UtilsController {
+	
   // Método genérico para adicionar um botão dentro da coluna de uma TableColumn
   public static <T> void initButtons(TableColumn<T, T> tableColumn, int size, String svgIcon,
     String colorClassName, BiConsumer<T, ActionEvent> buttonAction) {

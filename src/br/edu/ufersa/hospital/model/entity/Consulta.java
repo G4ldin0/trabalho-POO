@@ -8,8 +8,8 @@ import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
 public class Consulta{
     
     private int id;
-    private Paciente paciente;
-    private Medico medico;
+    private Paciente paciente = new Paciente();
+    private Medico medico = new Medico();
     private LocalDate data;
     private Prontuario prontuario;
 	private LocalTime horario;
@@ -83,11 +83,11 @@ public class Consulta{
     
     public static Consulta converter(ConsultaDTO dto) {
         Consulta cons = new Consulta();
-        cons.getPaciente().setId(dto.getPaciente().getId());
-        cons.getMedico().setId(dto.getMedico().getId());
-        cons.getProntuario().setId(dto.getProntuario().getId());
-        cons.setId(dto.getId());
-        cons.setData(dto.getData());
+        cons.getPaciente().setCpf(dto.getPaciente().getCpf());
+        cons.getMedico().setCpf(dto.getMedico().getCpf());
+        //cons.getProntuario().setId(dto.getProntuario().getId());
+        //cons.setId(dto.getId());
+        //cons.setData(dto.getData());
         return cons;
     }
     public LocalTime getHorario() {

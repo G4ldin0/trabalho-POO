@@ -108,9 +108,36 @@ public class MedicoBO {
                 med.setId(rs.getInt("idMedico"));
                 med.setNome(rs.getString("nome"));
                 med.setCpf(rs.getString("cpf"));
-                med.setCodigoDoConselho(rs.getInt("codConselho"));
+                med.setCodigoDoConselho(rs.getInt("codigoDoConselho"));
                 med.setEndereco(rs.getString("endereco"));
-                med.setValorDaConsulta(rs.getDouble("valorConsulta"));
+                med.setValorDaConsulta(rs.getDouble("valorDaConsulta"));
+
+                corpoMedico.add(med);
+            }
+            return corpoMedico;
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+    }
+    
+    public List<MedicoDTO> listarPorNome(MedicoDTO medDTO) {
+
+        List<MedicoDTO> corpoMedico = new ArrayList<MedicoDTO>();
+        Medico medico = Medico.converter(medDTO);
+        ResultSet rs = dao.encontrarPorNome(medico);
+
+        try {
+
+            while(rs.next()) {
+                MedicoDTO med = new MedicoDTO();
+                med.setId(rs.getInt("idMedico"));
+                med.setNome(rs.getString("nome"));
+                med.setCpf(rs.getString("cpf"));
+                med.setCodigoDoConselho(rs.getInt("codigoDoConselho"));
+                med.setEndereco(rs.getString("endereco"));
+                med.setValorDaConsulta(rs.getDouble("valorDaConsulta"));
 
                 corpoMedico.add(med);
             }

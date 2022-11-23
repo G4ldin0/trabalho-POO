@@ -134,10 +134,11 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, vo.getCpf());
 
-			ResultSet rs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery(sql);
 			
-			return new Paciente(rs.getInt("idPaciente"), rs.getString("nome"), rs.getString("Endereco"), rs.getString("cpf"), rs.getInt("idade"), new Vector<Prontuario>());
+			Paciente pc = new Paciente(rs.getInt("idPaciente"), rs.getString("nome"), rs.getString("Endereco"), rs.getString("cpf"), rs.getInt("idade")/*, new Vector<Prontuario>()*/);
 			//substituir o new vector pelo vector cheio
+			return pc;
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -180,6 +181,24 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
             return null;
         }
     }
+	
+	@Override
+	public ResultSet encontrarPorNome(Paciente e) {
+		String sql = "SELECT * FROM Paciente WHERE nome=? ;";
+		try {
+			PreparedStatement pst = getConnection().prepareStatement(sql);
+			pst.setString(1, e.getNome());
+			ResultSet rs = pst.executeQuery();
+			
+			return rs;
+		
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	
 	@Override
 	public ResultSet encontrarPorCampoEspecifico(Paciente e, String field) {
 		// TODO Auto-generated method stub
@@ -188,4 +207,6 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 	public static void main(String args[]) {
 		
 	}
+
+
 }

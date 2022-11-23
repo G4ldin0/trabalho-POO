@@ -20,6 +20,14 @@ public class Paciente extends Pessoa {
       setIdade(idade);
       setProntuarios(prontuarios);
    }
+   
+   public Paciente(int id, String nome, String endereco, String cpf, int idade){
+	      setId(id);
+	      setNome(nome);
+	      setEndereco(endereco);
+	      setCpf(cpf);
+	      setIdade(idade);
+   }
 
    
    /*

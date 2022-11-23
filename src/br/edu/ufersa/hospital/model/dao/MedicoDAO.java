@@ -156,6 +156,22 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 				return null;
 			}
 		}
+	  
+	  public ResultSet encontrarPorNome(Medico e) { // testado
+			String sql = "SELECT * FROM Medico WHERE nome=? ;";
+			try {
+				PreparedStatement pst = getConnection().prepareStatement(sql);
+				pst.setString(1, e.getNome());
+				ResultSet rs = pst.executeQuery();
+				
+				return rs;
+			
+			} catch (SQLException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+				return null;
+			}
+		}
 	
 	public ResultSet encontrar(Medico vo){ // testado
         String sql = "SELECT * FROM Medico WHERE cpf=? ;";
@@ -171,6 +187,8 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
             return null;
         }
     }
+	
+	
 	public Medico encontrarPorId(Medico e) { // testado
 		String sql = "SELECT * FROM Medico WHERE idMedico=? ;";
 		try {

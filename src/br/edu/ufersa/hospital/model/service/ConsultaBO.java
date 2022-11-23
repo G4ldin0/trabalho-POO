@@ -83,7 +83,7 @@ public class ConsultaBO {
                 ConsultaDTO cons = new ConsultaDTO();
                 cons.getPaciente().setId(rs.getInt("idPaciente"));
                 cons.getMedico().setId(rs.getInt("idMedico"));
-                cons.getProntuario().setId(rs.getInt("idProntuario"));
+                //cons.getProntuario().setId(rs.getInt("idProntuario"));
                 cons.setId(rs.getInt("idConsulta"));
                 cons.setData(LocalDate.parse(rs.getDate("dia").toString()));
                 cons.setHorario(LocalTime.parse(rs.getTime("horario").toString()));

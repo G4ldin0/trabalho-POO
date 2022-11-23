@@ -1,6 +1,7 @@
 CREATE DATABASE IF NOT EXISTS hospital;
 use hospital;
 
+CREATE TABLE IF NOT EXISTS conta (username VARCHAR(30), senha VARCHAR(30));
 CREATE TABLE IF NOT EXISTS usuario (username VARCHAR(30), senha VARCHAR(30));
 CREATE TABLE IF NOT EXISTS adm (username VARCHAR(30), senha VARCHAR(30));
 CREATE TABLE IF NOT EXISTS Medico (nome VARCHAR(40),endereco VARCHAR(50),cpf CHAR(11),valorDaConsulta DECIMAL,codigoDoConselho INT NOT NULL, idMedico INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(idMedico));
