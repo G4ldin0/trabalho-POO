@@ -13,6 +13,16 @@ public class ProntuarioDTO{
 	private String obs;
 	private Paciente paciente;
 	
+
+	//adicionado construtores
+	public ProntuarioDTO(){}
+
+	public ProntuarioDTO(LocalDate data, LocalTime horario, String obs, Paciente paciente){
+		setData(data);
+		setHorario(horario);
+		setObs(obs);
+		setPaciente(paciente);
+	}
 	
 	public int getId(){
 	      return this.id;
