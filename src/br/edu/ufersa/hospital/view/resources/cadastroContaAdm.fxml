@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #BDE3FF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.hospital.api.controller.CadastroController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #BDE3FF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.hospital.api.controller.CadastroAdminController">
    <children>
       <Label layoutX="144.0" layoutY="74.0" text="Centro Médico">
          <font>
@@ -26,7 +26,7 @@
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="291.0" layoutY="314.0" mnemonicParsing="false" onAction="#cadastrar" style="-fx-background-color: #CBD0D1;" text="Cadastrar">
+      <Button layoutX="297.0" layoutY="288.0" mnemonicParsing="false" onAction="#cadastrar" style="-fx-background-color: #CBD0D1;" text="Cadastrar">
          <font>
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
@@ -53,7 +53,7 @@
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="224.0" layoutY="314.0" mnemonicParsing="false" onAction="#voltarTelaLogin" style="-fx-background-color: #CBD0D1;" text="Voltar">
+      <Button layoutX="224.0" layoutY="288.0" mnemonicParsing="false" onAction="#voltarTelaLogin" style="-fx-background-color: #CBD0D1;" text="Voltar">
          <font>
             <Font name="Yu Gothic Regular" size="14.0" />
          </font>
@@ -66,10 +66,5 @@
          </font>
       </Label>
       <Button fx:id="botaoFechar" layoutX="374.0" layoutY="181.0" mnemonicParsing="false" onAction="#fecharError" prefHeight="25.0" prefWidth="29.0" style="-fx-background-color: white;" text="X" visible="false" />
-      <Button layoutX="224.0" layoutY="283.0" mnemonicParsing="false" onAction="#IrTelaCadastroAdmin" style="-fx-background-color: #BDE3FF;" text="Sou Administrador">
-         <font>
-            <Font size="8.0" />
-         </font>
-      </Button>
    </children>
 </Pane>

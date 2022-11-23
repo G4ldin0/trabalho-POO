@@ -1,11 +1,10 @@
 package br.edu.ufersa.hospital.api.controller;
 
 import br.edu.ufersa.hospital.Exception.PasswordErrorException;
-import br.edu.ufersa.hospital.api.dto.MedicoDTO;
-import br.edu.ufersa.hospital.api.dto.UsuarioDTO;
-import br.edu.ufersa.hospital.model.entity.Usuario;
+import br.edu.ufersa.hospital.api.dto.AdmDTO;
+import br.edu.ufersa.hospital.model.entity.Adm;
+import br.edu.ufersa.hospital.model.service.AdmBO;
 import br.edu.ufersa.hospital.model.service.ContaBO;
-import br.edu.ufersa.hospital.model.service.UsuarioBO;
 import br.edu.ufersa.hospital.view.Telas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class CadastroController {
+public class CadastroAdminController {
 	
 		@FXML private TextField username;
 	    @FXML private PasswordField senha;
@@ -22,21 +21,21 @@ public class CadastroController {
 	    @FXML private TextField email;
 	    @FXML private Label erroAutent;
 	    @FXML private Button botaoFechar;
-	    UsuarioBO bo = new UsuarioBO();
+	    AdmBO bo = new AdmBO();
 	    ContaBO bo2 = new ContaBO();
 	    public void cadastrar(ActionEvent action){
-	      UsuarioDTO user = new UsuarioDTO();
+	      AdmDTO admin = new AdmDTO();
 	      if(senha.getText().equals(confirmSenha.getText())) {
 	    	  
-	      user.setSenha(senha.getText());
-	      user.setUsername(username.getText());
+	      admin.setSenha(senha.getText());
+	      admin.setUsername(username.getText());
 	      try {
-	           Usuario cadastrado = bo.adicionar(user);
-	           bo2.adicionar(user);
+	           Adm cadastrado = bo.adicionar(admin);
+	           bo2.adicionar(admin);
 	           Telas.login();
 	           }
 	       catch(PasswordErrorException e){
-	       erroAutent.setText("Username ou senha não encontrados!");
+	       erroAutent.setText("username ou senha não encontrados!");
 	       erroAutent.setVisible(true);
 	       botaoFechar.setVisible(true);
 	      botaoFechar.setDisable(false);
