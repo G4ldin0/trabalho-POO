@@ -73,4 +73,10 @@ public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
             return null;
         }
     }
+
+	@Override
+	public ResultSet encontrarPorNome(Usuario e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
