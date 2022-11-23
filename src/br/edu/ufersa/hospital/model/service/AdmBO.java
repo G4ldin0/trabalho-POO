@@ -5,27 +5,23 @@ import java.sql.SQLException;
 
 import br.edu.ufersa.hospital.Exception.AutenticationException;
 import br.edu.ufersa.hospital.Exception.PasswordErrorException;
-import br.edu.ufersa.hospital.api.dto.UsuarioDTO;
+import br.edu.ufersa.hospital.api.dto.AdmDTO;
 import br.edu.ufersa.hospital.model.dao.AdmDAO;
-import br.edu.ufersa.hospital.model.dao.UsuarioDAO;
-import br.edu.ufersa.hospital.model.entity.Usuario;
+import br.edu.ufersa.hospital.model.entity.Adm;
 
-@SuppressWarnings("unused")
-public class UsuarioBO{
+public class AdmBO {
 	
-	UsuarioDAO dao = new UsuarioDAO();
-public Usuario adicionar(UsuarioDTO userDTO) throws PasswordErrorException {
+	AdmDAO dao = new AdmDAO();
+public Adm adicionar(AdmDTO admDTO) throws PasswordErrorException {
 	    
-	    Usuario user = Usuario.converter(userDTO);
+	    Adm admin = Adm.converter(admDTO);
       
-		ResultSet rs = dao.encontrarPorUsername(user);
+		ResultSet rs = dao.encontrarPorUsername(admin);
 		try {
-			if(rs==null || !(rs.next())) { // verifica se foi encontrado algum usuario com mesmo username
-				if(dao.cadastrar(user) == true)
-					return user;
+			if(rs==null || !(rs.next())) {
+				if(dao.cadastrar(admin) == true)
+					return admin;
 					else throw new PasswordErrorException();
-			}
-			else throw new PasswordErrorException();
 			}
 			else throw new PasswordErrorException();
 		} catch (SQLException e) {
@@ -34,7 +30,7 @@ public Usuario adicionar(UsuarioDTO userDTO) throws PasswordErrorException {
 			throw new PasswordErrorException();
 		}	
 	} 
-public Usuario autenticar(Usuario vo) throws AutenticationException{
+public Adm autenticar(Adm vo) throws AutenticationException{
 	ResultSet rs =  dao.encontrarPorUsername(vo);
 	try {
 		if(rs.next()) {
