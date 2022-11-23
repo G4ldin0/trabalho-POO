@@ -24,8 +24,8 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 			ps.setInt(1,vo.getPaciente().getId());
 			ps.setInt(2,vo.getMedico().getId());
 			ps.setInt(3,vo.getProntuario().getId());
-			ps.setDate(4, Date.valueOf(vo.getData()));
-			ps.setTime(5,Time.valueOf(vo.getHorario()));
+			ps.setDate(3, Date.valueOf(vo.getData()));
+			ps.setTime(4,Time.valueOf(vo.getHorario()));
 			ps.execute();
 			return true;
 
@@ -81,7 +81,8 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 		try {
 			Statement st = getConnection().createStatement();
 
-			return st.executeQuery(sql);
+			ResultSet rs = st.executeQuery(sql);
+			return rs;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -237,6 +238,12 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 
 	@Override
 	public ResultSet encontrarPorCampoEspecifico(Consulta e, String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet encontrarPorNome(Consulta e) {
 		// TODO Auto-generated method stub
 		return null;
 	}

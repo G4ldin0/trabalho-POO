@@ -1,4 +1,5 @@
 package br.edu.ufersa.hospital.model.service;
+import br.edu.ufersa.hospital.model.entity.Medico;
 import br.edu.ufersa.hospital.model.entity.Paciente;
 import br.edu.ufersa.hospital.model.dao.PacienteDAO;
 
@@ -7,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import br.edu.ufersa.hospital.api.dto.PacienteDTO;
 import br.edu.ufersa.hospital.model.dao.BaseInterDAO;
 
@@ -106,6 +108,32 @@ public class PacienteBO {
 
             while(rs.next()) {
                 PacienteDTO pac = new PacienteDTO();
+                pac.setId(rs.getInt("idPaciente"));
+                pac.setNome(rs.getString("nome"));
+                pac.setCpf(rs.getString("cpf"));
+                pac.setIdade(rs.getInt("idade"));
+                pac.setEndereco(rs.getString("endereco"));
+
+                listaPacientes.add(pac);
+            }
+            return listaPacientes;
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+    }
+    
+    public List<PacienteDTO> listarPorNome(PacienteDTO pacDTO) {
+
+        List<PacienteDTO> listaPacientes = new ArrayList<PacienteDTO>();
+        Paciente paciente = Paciente.converter(pacDTO);
+        ResultSet rs = dao.encontrarPorNome(paciente);
+
+        try {
+
+            while(rs.next()) {
+            	PacienteDTO pac = new PacienteDTO();
                 pac.setId(rs.getInt("idPaciente"));
                 pac.setNome(rs.getString("nome"));
                 pac.setCpf(rs.getString("cpf"));

@@ -11,17 +11,20 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 public class CadastrarConsultaController {
+	
 	@FXML private TextField cpfPaciente;
     @FXML private TextField cpfMedico;
     @FXML private TextField data;
     @FXML private TextField horario;
     @FXML private CheckBox addPront;
+    
     	private ConsultaBO bo = new ConsultaBO();
     	private PacienteDAO dao = new PacienteDAO();
     	private MedicoDAO dao1 = new MedicoDAO();
     public void cadastrar() {
     	ConsultaDTO dto = new ConsultaDTO();
     	dto.getPaciente().setCpf(cpfPaciente.getText());
+    	dto.getMedico().setCpf(cpfMedico.getText());
     	dto.setPaciente(dao.encontrarPorCPF(dto.getPaciente()));
 		dto.setMedico(dao1.encontrarPorCpf(dto.getMedico()));
 		dto.setData(LocalDate.parse(data.getText()));
