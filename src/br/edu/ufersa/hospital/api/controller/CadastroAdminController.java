@@ -59,6 +59,6 @@ public class CadastroAdminController {
 	    	botaoFechar.setDisable(true);
 	    }
 	    public void IrTelaCadastroAdmin(ActionEvent action) {
-	    	Telas.CadastroAdmin();
+	    	Telas.cadastroAdmin();
 	    }
 	}

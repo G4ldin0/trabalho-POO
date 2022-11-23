@@ -234,7 +234,7 @@ public class Telas extends Application {
             e.printStackTrace();
         }
     }
-	public static void CadastroAdmin() {
+	public static void cadastroAdmin() {
 		try {
             Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastroContaAdm.fxml"));
             Scene scene = new Scene (root);
