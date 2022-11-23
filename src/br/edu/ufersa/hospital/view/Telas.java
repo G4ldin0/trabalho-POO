@@ -222,7 +222,7 @@ public class Telas extends Application {
             e.printStackTrace();
         }
     }
-    public static void cadastro() {
+    public static void cadastroUsuario() {
     	try {
             Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastroConta.fxml"));
             Scene scene = new Scene (root);
@@ -234,4 +234,16 @@ public class Telas extends Application {
             e.printStackTrace();
         }
     }
+	public static void CadastroAdmin() {
+		try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/cadastroContaAdm.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Cadastro Admin");
+            stage.show();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }	
+	}
 }

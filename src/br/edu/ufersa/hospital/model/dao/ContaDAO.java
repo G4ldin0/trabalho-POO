@@ -3,35 +3,39 @@ package br.edu.ufersa.hospital.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import br.edu.ufersa.hospital.model.entity.Usuario;
 
-public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
+import br.edu.ufersa.hospital.model.entity.Conta;
+import br.edu.ufersa.hospital.model.entity.Usuario;
+import br.edu.ufersa.hospital.model.entity.Adm;
+
+public class ContaDAO<entity extends Conta> extends BaseDAO implements BaseInterDAO<entity> {
 
 	@Override
-	public boolean cadastrar(Usuario vo) {
-		String sql = "insert into usuario (username,senha) values (?,?);";
+	public boolean cadastrar(entity e) {
+		String sql = "insert into conta (username,senha) values (?,?);";
+
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setString(1,vo.getUsername());
-			ps.setString(2,vo.getSenha());
+			ps.setString(1,e.getUsername());
+			ps.setString(2,e.getSenha());
 			ps.execute();
 			return true;
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException x) {
+			x.printStackTrace();
 
 			return false;
 		}
 	}
 
 	@Override
-	public boolean editar(Usuario vo) {
+	public boolean editar(entity e) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean excluirPorId(Usuario vo) {
+	public boolean excluirPorId(entity e) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -41,29 +45,30 @@ public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
-	public ResultSet encontrar(Usuario vo) {
+	public ResultSet encontrar(entity e) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Usuario encontrarPorId(Usuario vo) {
+	public entity encontrarPorId(entity e) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultSet encontrarPorCampoEspecifico(Usuario vo, String field) {
+	public ResultSet encontrarPorCampoEspecifico(entity e, String field) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public ResultSet encontrarPorUsername(Usuario vo) {
-		String sql = "SELECT * FROM usuario WHERE username=? ;";
+	public ResultSet encontrarPorUsername(entity e) {
+		String sql = "SELECT * FROM conta WHERE username=? ;";
 
         try {
             PreparedStatement ps = getConnection().prepareStatement(sql);
-            ps.setString(1, vo.getUsername());
+            ps.setString(1, e.getUsername());
 
             ResultSet rs = ps.executeQuery();
             return rs;

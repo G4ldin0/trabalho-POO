@@ -3,13 +3,14 @@ package br.edu.ufersa.hospital.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import br.edu.ufersa.hospital.model.entity.Usuario;
+import br.edu.ufersa.hospital.model.entity.Adm;
 
-public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
+public class AdmDAO extends BaseDAO implements BaseInterDAO<Adm> {
 
 	@Override
-	public boolean cadastrar(Usuario vo) {
-		String sql = "insert into usuario (username,senha) values (?,?);";
+	public boolean cadastrar(Adm vo) {
+		String sql = "insert into adm (username,senha) values (?,?);";
+
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1,vo.getUsername());
@@ -25,13 +26,13 @@ public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
 	}
 
 	@Override
-	public boolean editar(Usuario vo) {
+	public boolean editar(Adm vo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean excluirPorId(Usuario vo) {
+	public boolean excluirPorId(Adm vo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -43,23 +44,23 @@ public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
 	}
 	
 	@Override
-	public ResultSet encontrar(Usuario vo) {
+	public ResultSet encontrar(Adm vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Usuario encontrarPorId(Usuario vo) {
+	public Adm encontrarPorId(Adm vo) {
 		return null;
 	}
 
 	@Override
-	public ResultSet encontrarPorCampoEspecifico(Usuario vo, String field) {
+	public ResultSet encontrarPorCampoEspecifico(Adm vo, String field) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public ResultSet encontrarPorUsername(Usuario vo) {
-		String sql = "SELECT * FROM usuario WHERE username=? ;";
+	public ResultSet encontrarPorUsername(Adm vo) {
+		String sql = "SELECT * FROM adm WHERE username=? ;";
 
         try {
             PreparedStatement ps = getConnection().prepareStatement(sql);

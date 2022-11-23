@@ -1,7 +1,9 @@
 package br.edu.ufersa.hospital.api.controller;
 
 import br.edu.ufersa.hospital.Exception.AutenticationException;
+import br.edu.ufersa.hospital.model.entity.Conta;
 import br.edu.ufersa.hospital.model.entity.Usuario;
+import br.edu.ufersa.hospital.model.service.ContaBO;
 import br.edu.ufersa.hospital.model.service.UsuarioBO;
 import br.edu.ufersa.hospital.view.Telas;
 import javafx.event.ActionEvent;
@@ -16,14 +18,19 @@ public class LoginController {
     @FXML private PasswordField senha;
     @FXML private Label erroAutent;
     @FXML private Button botaoFechar;
-    UsuarioBO bo = new UsuarioBO();
+    ContaBO<Conta> bo = new ContaBO<Conta>();
     public void autenticar(ActionEvent action) {
-            Usuario user = new Usuario();
-            user.setSenha(senha.getText());
-            user.setUsername(nomeUsuario.getText());            
+            Conta conta = new Conta();
+            conta.setSenha(senha.getText());
+            conta.setUsername(nomeUsuario.getText());            
             try {
-            	 Usuario autenticado = bo.autenticar(user);
-            	 Telas.listarPacientes();
+            	 Conta autenticado = bo.autenticar(conta);
+            	 if(autenticado instanceof Usuario) {
+            		 Telas.listarPacientes(); 
+            	 }
+            	 else{
+            		 Telas.listarMedicos();
+            	 }
             }
             catch(AutenticationException e){
             	erroAutent.setText(e.getMessage());
@@ -34,7 +41,7 @@ public class LoginController {
     }
     
     public void telaCadastro(ActionEvent action) {
-    	Telas.cadastro();
+    	Telas.cadastroUsuario();
     }
     
     public void fecharError(ActionEvent action) {
