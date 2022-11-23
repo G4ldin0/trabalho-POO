@@ -26,7 +26,6 @@ public class CadastrarProntuarioController extends Object implements Initializab
     @FXML private AnchorPane slider;
     @FXML private Button botaoVoltar;
 
-    @FXML private TextField medico;
     @FXML private TextField paciente;
     @FXML private TextField horario;
     @FXML private TextField dia;
@@ -47,7 +46,6 @@ public class CadastrarProntuarioController extends Object implements Initializab
     //String medico, String paciente, String horario, String dia, String prontuario
     public void set(ProntuarioDTO prontuario)
     {
-        this.medico.setText("MEDICO PLACEHOLDER");
         this.paciente.setText("PACIENTE PLACEHOLDER");
         this.horario.setText(prontuario.getHorario().toString());
         this.dia.setText(prontuario.getData().toString());

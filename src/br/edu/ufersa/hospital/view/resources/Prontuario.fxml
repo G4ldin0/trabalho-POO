@@ -58,14 +58,8 @@
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="paciente" editable="false" layoutX="265.0" layoutY="56.0" onAction="#teste" prefHeight="15.0" prefWidth="149.0" />
-                  <Label layoutX="220.0" layoutY="61.0" prefHeight="15.0" prefWidth="45.0" text="Paciente:" AnchorPane.leftAnchor="220.0">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="medico" editable="false" layoutX="63.0" layoutY="56.0" prefHeight="15.0" prefWidth="149.0" />
-                  <Label layoutX="20.0" layoutY="61.0" prefHeight="15.0" prefWidth="45.0" text="Medico:" AnchorPane.leftAnchor="20.0">
+                  <TextField fx:id="paciente" editable="false" layoutX="63.0" layoutY="56.0" prefHeight="15.0" prefWidth="149.0" />
+                  <Label layoutX="20.0" layoutY="61.0" prefHeight="15.0" prefWidth="45.0" text="Paciente:" AnchorPane.leftAnchor="20.0">
                      <font>
                         <Font size="10.0" />
                      </font>
