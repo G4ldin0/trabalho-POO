@@ -19,12 +19,9 @@ public Usuario adicionar(UsuarioDTO userDTO) throws PasswordErrorException {
 		ResultSet rs = dao.encontrarPorUsername(user);
 		try {
 			if(rs==null || !(rs.next())) {
-				if(user.getConfirmSenha().equals(user.getSenha())) {
 				if(dao.cadastrar(user) == true)
 					return user;
 					else throw new PasswordErrorException();
-			}
-			else throw new PasswordErrorException();
 			}
 			else throw new PasswordErrorException();
 		} catch (SQLException e) {
