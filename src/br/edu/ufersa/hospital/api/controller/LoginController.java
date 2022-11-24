@@ -29,7 +29,7 @@ public class LoginController {
             		 Telas.listarPacientes(); 
             	 }
             	 else{
-            		 Telas.listarMedicos();
+            		 Telas.listarMedicosAdmin();
             	 }
             }
             catch(AutenticationException e){

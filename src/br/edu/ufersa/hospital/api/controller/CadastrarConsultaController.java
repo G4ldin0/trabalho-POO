@@ -7,6 +7,8 @@ import br.edu.ufersa.hospital.model.service.ConsultaBO;
 import br.edu.ufersa.hospital.view.Telas;
 import br.edu.ufersa.hospital.model.dao.MedicoDAO;
 import br.edu.ufersa.hospital.model.dao.PacienteDAO;
+import br.edu.ufersa.hospital.model.entity.Medico;
+import br.edu.ufersa.hospital.model.entity.Paciente;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -22,11 +24,15 @@ public class CadastrarConsultaController {
     	private PacienteDAO dao = new PacienteDAO();
     	private MedicoDAO dao1 = new MedicoDAO();
     public void cadastrar() {
+    	Paciente p = new Paciente();
+    	Medico m = new Medico();
+    	m.setCpf(cpfMedico.getText());
+    	m = dao1.encontrarPorCpf(m);
+    	p.setCpf(cpfPaciente.getText());
+    	p = dao.encontrarPorCPF(p);
     	ConsultaDTO dto = new ConsultaDTO();
-    	dto.getPaciente().setCpf(cpfPaciente.getText());
-    	dto.getMedico().setCpf(cpfMedico.getText());
-    	dto.setPaciente(dao.encontrarPorCPF(dto.getPaciente()));
-		dto.setMedico(dao1.encontrarPorCpf(dto.getMedico()));
+    	dto.setPaciente(p);
+    	dto.setMedico(m);
 		dto.setData(LocalDate.parse(data.getText()));
 		dto.setHorario(LocalTime.parse(horario.getText()));
 		bo.adicionar(dto);
