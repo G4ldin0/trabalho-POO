@@ -4,7 +4,7 @@ public class MedicoDTO extends PessoaDTO{
     
     private int codigoDoConselho;
     private double valorDaConsulta;
-
+    
     public int getCodigoDoConselho() {
         return this.codigoDoConselho;
     }

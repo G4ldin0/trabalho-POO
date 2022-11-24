@@ -40,6 +40,15 @@ public class Medico extends Pessoa{
         this.endereco = "Condomínio dos Médicos";
         this.valorDaConsulta = 5499.99;
     }
+    
+    public Medico(String nome, String cpf){
+        setNome(nome);
+        setCpf(cpf);
+        setCodigoDoConselho(000);
+        this.endereco = "Condomínio dos Médicos";
+        this.valorDaConsulta = 5499.99;
+    }
+    
     public Medico(Medico med) {
 		setNome(med.getNome());
 		setCpf(med.getCpf());

@@ -10,6 +10,7 @@ public interface BaseInterDAO<entity> {
 	public boolean cadastrar (entity e);
 	public boolean editar(entity e);
 	public boolean excluirPorId(entity e);
+	public boolean excluirPorCPF(entity e);
 	public ResultSet listar();
     public ResultSet encontrar(entity e);
     public entity encontrarPorId(entity e);

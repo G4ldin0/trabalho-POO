@@ -37,7 +37,7 @@ public class MedicoBO {
         
         ResultSet rs = dao.encontrar(med);
 		try {
-			if(rs==null || !(rs.next())) {
+			if(rs!=null || (rs.next())) {
 				if(dao.editar(med) == true)
 					return true;
 					else return false;
@@ -56,8 +56,8 @@ public class MedicoBO {
         
         ResultSet rs = dao.encontrar(med);
 		try {
-			if(rs==null || !(rs.next())) {
-				if(dao.excluirPorId(med) == true)
+			if(rs!=null || (rs.next())) {
+				if(dao.excluirPorCPF(med) == true)
 					return true;
 					else return false;
 			}

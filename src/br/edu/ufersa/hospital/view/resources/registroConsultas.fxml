@@ -58,7 +58,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="slider" layoutX="-27.0" layoutY="-20.0" prefHeight="107.0" prefWidth="89.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" visible="false">
+            <AnchorPane fx:id="slider" layoutX="-27.0" layoutY="-14.0" prefHeight="107.0" prefWidth="89.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" visible="false">
                <children>
                   <Button alignment="CENTER_RIGHT" layoutY="70.0" mnemonicParsing="false" onAction="#telaListarConsultas" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" styleClass="button-hand" text="Consultas">
                      <font>
@@ -100,32 +100,5 @@
          </children>
       </Pane>
       <Button layoutX="560.0" layoutY="374.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #CE5252;" styleClass="button-hand" text="Sair" textFill="#fff4f4" />
-      <Button layoutX="562.0" layoutY="196.0" mnemonicParsing="false" onAction="#excluir" prefHeight="10.0" prefWidth="12.0" style="-fx-background-color: #FFFFFF;" styleClass="button-hand">
-         <graphic>
-            <ImageView fitHeight="20.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icon-excluir.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="562.0" layoutY="165.0" mnemonicParsing="false" onAction="#editar" style="-fx-background-color: #FFFFFF;" styleClass="button-hand">
-         <graphic>
-            <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icon-editar.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="563.0" layoutY="133.0" mnemonicParsing="false" onAction="#prontuario" prefHeight="14.0" prefWidth="3.0" style="-fx-background-color: #FFFFFF;" styleClass="button-hand">
-         <graphic>
-            <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icon-relatorio.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
    </children>
 </Pane>

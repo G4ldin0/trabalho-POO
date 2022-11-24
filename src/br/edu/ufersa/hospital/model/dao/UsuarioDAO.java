@@ -79,4 +79,10 @@ public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean excluirPorCPF(Usuario e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

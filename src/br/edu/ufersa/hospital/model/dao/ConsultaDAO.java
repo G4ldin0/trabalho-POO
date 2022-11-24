@@ -247,4 +247,10 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean excluirPorCPF(Consulta e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
