@@ -83,4 +83,10 @@ public class ContaDAO<entity extends Conta> extends BaseDAO implements BaseInter
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean excluirPorCPF(entity e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

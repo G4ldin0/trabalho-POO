@@ -79,4 +79,10 @@ public class AdmDAO extends BaseDAO implements BaseInterDAO<Adm> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean excluirPorCPF(Adm e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
