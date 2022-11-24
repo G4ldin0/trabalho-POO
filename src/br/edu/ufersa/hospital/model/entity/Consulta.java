@@ -1,23 +1,32 @@
 package br.edu.ufersa.hospital.model.entity;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 // import java.time.LocalTime; import feito para classe ainda não implementada
+import java.time.LocalTime;
+
+import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
 
 public class Consulta{
     
     private int id;
-    private Paciente paciente;
-    private Medico medico;
-    private LocalDateTime diaEHorario;
-    private Prontuario prontuario;
+    private int idPaciente;
+    private int idMedico;
+    private LocalDate data;
+    private int idProntuario;
+	private LocalTime horario;
 
-    public Consulta(Paciente paciente,Medico medico, LocalDateTime diaEhorario, Prontuario prontuario){
-        setPaciente(paciente);
-        setMedico(medico);
-        setDiaEHorario(diaEhorario);
-        setProntuario(prontuario);
+    public Consulta(int idPaciente,int idMedico, LocalDate data,LocalTime horario, int idProntuario){
+        setIdPaciente(idPaciente);
+        setIdMedico(idMedico);
+        setData(data);
+        setIdProntuario(idProntuario);
+        setHorario(horario);
     }
 
-    public int getId(){
+    public Consulta() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId(){
         return this.id;
     }
 
@@ -27,7 +36,7 @@ public class Consulta{
         } else this.id = id;
     }
 
-    public void setPaciente(Paciente temp){
+    /*public void setPaciente(Paciente temp){
         this.paciente.setNome(temp.getNome());
         this.paciente.setEndereco(temp.getEndereco());
         this.paciente.setCpf(temp.getCpf());
@@ -37,9 +46,9 @@ public class Consulta{
     public Paciente getPaciente(){
         return this.paciente;
 
-    }
+    }*/
     
-    public void setMedico(Medico temp){
+    /*public void setMedico(Medico temp){
         this.medico.setNome(temp.getNome());
         this.medico.setCodigoDoConselho(temp.getCodigoDoConselho());
         this.medico.setCpf(temp.getCpf());
@@ -48,39 +57,65 @@ public class Consulta{
     }
     public Medico getMedico(){
         return this.medico;
-    }
+    }*/
     
-    public void setDiaEHorario(LocalDateTime temp){
-        LocalDateTime agora = LocalDateTime.now();
-        LocalDateTime limiteMinimo = agora.minusYears(150);
-        LocalDateTime limiteMaximo = agora.plusYears(2);
+    public void setData(LocalDate temp){
+        LocalDate agora = LocalDate.now();
+        LocalDate limiteMinimo = agora.minusYears(150);
+        LocalDate limiteMaximo = agora.plusYears(2);
         if(temp.isAfter(limiteMinimo) && temp.isBefore(limiteMaximo)){
-            this.diaEHorario = temp;
+            this.data = temp;
         }
-        else this.diaEHorario = agora.plusMonths(2); // se não colocar uma data válida, a consulta será alterada para dois meses após.
+        else this.data = agora.plusMonths(2);
     }
-    public LocalDateTime getDiaEHorario(){
-        return this.diaEHorario;
+    public LocalDate getData(){
+        return this.data;
     }
     
-    public void setProntuario(Prontuario prontuario){
-        if(prontuario != null){
-            this.prontuario = prontuario;
+    public void setIdProntuario(int idProntuario){
+        if(idProntuario >= 0){
+            this.idProntuario = idProntuario;
         }
     }
-    public Prontuario getProntuario(){ 
-        return this.prontuario;
+    public int getIdProntuario(){ 
+        return this.idProntuario;
     }
-
     
-    // public Consulta buscarporMedico(Medico medicoBusca){
-    //     //
-    // }
-    // public Consulta buscarPorPaciente(Paciente pacienteBusca){
-    //     //
-    // }
-    // public Consulta buscarPorHorario(LocalTime horario){
-    //     // 
-    // }
+    public LocalTime getHorario() {
+    	return this.horario;
+    }
+	public void setHorario(LocalTime horario) {
+		this.horario = horario;
+	}
 
+	public int getIdPaciente() {
+		return this.idPaciente;
+	}
+
+	public void setIdPaciente(int idPaciente) {
+		this.idPaciente = idPaciente;
+	}
+
+	public int getIdMedico() {
+		return this.idMedico;
+	}
+
+	public void setIdMedico(int idMedico) {
+		this.idMedico = idMedico;
+	}
+	
+	public static Consulta converter(ConsultaDTO dto) {
+        Consulta cons = new Consulta();
+        //cons.getPaciente().setCpf(dto.getPaciente().getCpf());
+        //cons.getMedico().setCpf(dto.getMedico().getCpf());
+        //cons.getProntuario().setId(dto.getProntuario().getId());
+        cons.setIdMedico(dto.getIdMedico());
+        cons.setIdPaciente(dto.getIdPaciente());
+        cons.setIdProntuario(dto.getIdProntuario());
+        //cons.setId(dto.getId());
+        //cons.setData(dto.getData());
+        //cons.setHorario(dto.getHorario());
+        return cons;
+    }
+   
 }

@@ -4,83 +4,144 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 
+import br.edu.ufersa.hospital.model.entity.Medico;
 import br.edu.ufersa.hospital.model.entity.Paciente;
 import br.edu.ufersa.hospital.model.entity.Prontuario;
 
-public class ProntuarioDAO extends BaseDAO<Prontuario> {
-  Prontuario vo;
-  public boolean cadastrar(Prontuario vo) {
-	  conn = getConnection();
-	  String sql = "insert into Prontuario (momento,obs,idPaciente) values (?,?,?);";
-	  PreparedStatement ps;
-	try {
-		ps = conn.prepareStatement(sql);
-		ps.setDateTime(1, vo.getmomento());
-		ps.setString(2, vo.getObs());
-		ps.setInt(3, vo.getId());
-		ps.execute();
-		return true;
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		return false;
-	}
-  }
-  public boolean editar(Prontuario vo) {
-	  String sql = "UPDATE Prontuario SET momento = ?, obs = ?, idPaciente = ? WHERE idProntuario=? ";
+@SuppressWarnings("unused")
+public class ProntuarioDAO extends BaseDAO implements BaseInterDAO<Prontuario> {
+
+	@Override
+  	public boolean cadastrar(Prontuario vo) {
+	  String sql = "INSERT INTO Prontuario (momento,obs,idPaciente) VALUES (?,?,?);";
+
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setDateTime(1, vo.getMomento());
+			ps.setDate(1, Date.valueOf(vo.getData()));
 			ps.setString(2, vo.getObs());
-			ps.setInt(3, vo.getIdPaciente());
-			ps.setInt(4, vo.getIdProntuario());
+			ps.setInt(3, vo.getPaciente().getId());
+			ps.execute();
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			return false;
+		}
+  	}
+
+	@Override
+	public boolean editar(Prontuario vo) {
+	  String sql = "UPDATE Prontuario SET momento = ?, obs = ?, idPaciente = ? WHERE idProntuario=? ";
+
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setDate(1, Date.valueOf(vo.getData()));
+			ps.setString(2, vo.getObs());
+			ps.setInt(3, vo.getPaciente().getId());
+			ps.setInt(4, vo.getId());
 			ps.executeUpdate();
-			return true;		
+
+			return true;
 		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 			return false;
 		}	
-  }
+ 	}
   
-  public boolean excluirPorCPF(Prontuario vo) {
-	  conn = getConnection();
-	  String sql = "delete from Medico where idProntuario = ?;";
-	  PreparedStatement ps;
-	try {
-		ps = conn.prepareStatement(sql);
-		ps.setInt(1, vo.getIdProntuario());
-		  ps.execute();
-		  return true;
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		return false;
-	}
-  }
-  public Prontuario buscarPorPaciente(Prontuario vo) {
-	  String sql = "SELECT * FROM Prontuario WHERE idPaciente=? ;";
+	@Override
+ 	public boolean excluirPorId(Prontuario vo) {
+		String sql = "DELETE FROM Prontuario WHERE idProntuario = ?;";
+
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setInt(1, vo.getIdPaciente());
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()) {
-				Prontuario m = new Prontuario();
-				m.setMomento(rs.getDateTime("momento"));
-				m.setObs(rs.getString("obs"));
-				m.setIdPaciente(rs.getInt("idPaciente"));
-				return m;
-			}
-			else return null;
-		
+			ps.setInt(1, vo.getId());
+			
+			return ps.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			return false;
+		}
+  	}
+
+	@Override
+	public ResultSet listar(){
+		String sql = "SELECT * FROM prontuario;";
+
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+
+			return ps.executeQuery();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			return null;
+		}
+	}
+
+  public ResultSet encontrarPorPaciente(Prontuario vo) {
+	  String sql = "SELECT * FROM Prontuario WHERE idPaciente=? ;";
+
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setInt(1, vo.getPaciente().getId());
+
+			return ps.executeQuery();
+
 		} catch (SQLException ex) {
-			// TODO Auto-generated catch block
 			ex.printStackTrace();
+
 			return null;
 		}
   }
+  
+  public ResultSet encontrar(Prontuario vo){
+      String sql = "SELECT * FROM Prontuario WHERE idPaciente=? ;";
+
+      try {
+          PreparedStatement ps = getConnection().prepareStatement(sql);
+          ps.setInt(1, vo.getPaciente().getId());
+
+          ResultSet rs = ps.executeQuery();
+          return rs;
+      } catch(SQLException ex) {
+          ex.printStackTrace();
+          return null;
+      }
+  }
+
+@Override
+public Prontuario encontrarPorId(Prontuario e) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public ResultSet encontrarPorCampoEspecifico(Prontuario e, String field) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public ResultSet encontrarPorNome(Prontuario e) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public boolean excluirPorCPF(Prontuario e) {
+	// TODO Auto-generated method stub
+	return false;
+}
+  
 }

@@ -1,157 +1,266 @@
 package br.edu.ufersa.hospital.model.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import br.edu.ufersa.hospital.model.entity.Consulta;
+import br.edu.ufersa.hospital.model.entity.Medico;
+import br.edu.ufersa.hospital.model.entity.Paciente;
 
-public class ConsultaDAO extends BaseDAO<Consulta> {
-	Consulta vo;
-	  public boolean cadastrar(Consulta vo) {
-		  conn = getConnection();
-		  String sql = "insert into Consulta (idPaciente,idMedico,momento,idProntuario) values (?,?,?,?);";
-		  PreparedStatement ps;
+public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
+
+	@Override
+	public boolean cadastrar(Consulta vo) {
+		String sql = "insert into Consulta (idPaciente, idMedico, idProntuario) values (?,?,?);";
+
 		try {
-			ps = conn.prepareStatement(sql);
+			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setInt(1,vo.getIdPaciente());
 			ps.setInt(2,vo.getIdMedico());
-			ps.setDate(3, vo.getMomento()); // Nao existe setDateTime
-			ps.setInt(4,vo.getIdProntuario());
-			  ps.execute();
-			  return true;
+			ps.setInt(3, 120/*vo.getProntuario().getId()*/);
+			//ps.setDate(3, Date.valueOf(vo.getData()));
+			//ps.setTime(4,Time.valueOf(vo.getHorario()));
+			ps.execute();
+			return true;
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 			return false;
 		}
-	  }
-	  public boolean editar(Consulta vo) {
-		  String sql = "UPDATE Consulta SET idPaciente = ?, idMedico = ?, momento = ?, idProntuario = ?  WHERE idConsulta=? ";
-			try {
-				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1,vo.getIdPaciente());
-				ps.setInt(2,vo.getIdMedico());
-				ps.setDate(3, vo.getMomento());
-				ps.setInt(4,vo.getIdProntuario());
-				ps.setInt(5, vo.getIdConsulta());
-				ps.executeUpdate();
-				return true;		
-			
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}	
-			
-	  }
-	  
-	  public boolean excluirPorID(Consulta vo) {
-		  conn = getConnection();
-		  String sql = "delete from Consulta where idConsulta = ?;";
-		  PreparedStatement ps;
+	}
+
+	@Override
+	public boolean editar(Consulta vo, String cpfPaciente) {
+		String sql = "UPDATE Consulta SET idPaciente = ?, idMedico = ?, idProntuario = ?  WHERE idPaciente=? ";
+		
 		try {
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, vo.getIdConsulta());
-			  ps.execute();
-			  return true;
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setInt(1,vo.getIdPaciente());
+			ps.setInt(2,vo.getIdMedico());
+			ps.setInt(3,vo.getIdProntuario());
+			ps.setString(4, cpfPaciente);
+			ps.executeUpdate();
+
+			return true;
+		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
+			return false;
+		}	
+	}
+	
+	@Override
+	public boolean excluirPorId(Consulta vo) {
+		String sql = "delete from Consulta where idConsulta = ?;";
+		
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setInt(1, vo.getId());
+
+			return ps.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
 			return false;
 		}
-	  }
-	  public Consulta buscarPorMomento(Consulta vo) {
-		  String sql = "SELECT * FROM Consulta WHERE momento=? ;";
-			try {
-				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setDateTime(1, vo.getDiaEHorario()); // setDateTime não existe, depois será resolvido
-				ResultSet rs = ps.executeQuery();
-				if(rs.next()) {
-					Consulta m = new Consulta();
-					m.setIdPaciente(rs.getInt("idPaciente"));
-					m.setIdMedico(rs.getInt("idMedico"));
-					m.setMomento(rs.getDate("Momento"));
-					m.setIdProntuario(rs.getInt("idProntuario"));
-					return m;
-				}
-				else return null;
-			
-			} catch (SQLException ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
-				return null;
-			}
-	  }
-	  public Consulta buscarPorPaciente(Consulta vo) {
-		  String sql = "SELECT * FROM Consulta WHERE idPaciente=? ;";
-			try {
-				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setIdPaciente(1, vo.getIdPaciente());
-				ResultSet rs = ps.executeQuery();
-				if(rs.next()) {
-					Consulta m = new Consulta();
-					m.setIdPaciente(rs.getInt("idPaciente"));
-					m.setIdMedico(rs.getInt("idMedico"));
-					m.setMomento(rs.getDateTime("Momento"));
-					m.setIdProntuario(rs.getInt("idProntuario"));
-					return m;
-				}
-				else return null;
-			
-			} catch (SQLException ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
-				return null;
-			}
-	  }
-	  public Consulta buscarPorMedico(Consulta vo) {
-		  String sql = "SELECT * FROM Consulta WHERE idMedico=? ;";
-			try {
-				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1, vo.getIdMedico());
-				ResultSet rs = ps.executeQuery();
-				if(rs.next()) {
-					Consulta m = new Consulta();
-					m.setIdPaciente(rs.getInt("idPaciente"));
-					m.setIdMedico(rs.getInt("idMedico"));
-					m.setMomento(rs.getDateTime("Momento"));
-					m.setIdProntuario(rs.getInt("idProntuario"));
-					return m;
-				}
-				else return null;
-			
-			} catch (SQLException ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
-				return null;
-			}
-	  }
-	  
-	  public List<Consulta> listar(){
-		  conn = getConnection();
-		  String sql = "select * from Consulta";
-		  Statement st;
-		  ResultSet rs;
-		  List<Consulta> listaConsulta = new ArrayList<Consulta>();
-		  try {
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while(rs.next()) {
-				Consulta vo = new Consulta();
-				vo.setIdPaciente(rs.getInt("idPaciente"));
-				vo.setIdMedico(rs.getInt("idMedico"));
-				vo.setIdConsulta(rs.getInt("idConsulta"));
-				vo.setMomento(rs.getDate("momento"));
-				listaConsulta.add(vo);
-			}
+	}
+	
+	@Override
+	public ResultSet listar(){
+		String sql = "select * from Consulta";
+		
+		try {
+			Statement st = getConnection().createStatement();
+
+			ResultSet rs = st.executeQuery(sql);
+			return rs;
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
+			return null;
+
 		}
-		  return listaConsulta;
-	  }
+	}
+
+	
+	// public Consulta buscarPorMomento(Consulta vo) {
+	// 	String sql = "SELECT * FROM Consulta WHERE Momento=? ;";
+
+	// 	try {
+	// 		PreparedStatement ps = getConnection().prepareStatement(sql);
+	// 		Date data = Date.valueOf(vo.getData());
+	// 		ps.setDate(1,data);
+	// 		ResultSet rs = ps.executeQuery();
+			
+	// 		if(rs.next()) {
+	// 			Consulta m = new Consulta();
+	// 			m.getPaciente().setId(rs.getInt("idPaciente"));
+	// 			m.getMedico().setId(rs.getInt("idMedico"));
+	// 			LocalDate data1 = LocalDate.parse(rs.getDate("Momento").toString());
+	// 			m.setData(data1);
+	// 			m.getProntuario().setId(rs.getInt("idProntuario"));
+	// 			return m;
+	// 		}
+	// 		else return null;
+
+	// 	} catch (SQLException ex) {
+	// 		// TODO Auto-generated catch block
+	// 		ex.printStackTrace();
+	// 		return null;
+	// 	}
+	// }
+
+	public Consulta buscarPorPaciente(Paciente vo) {
+		String sql = "SELECT * FROM Consulta WHERE idPaciente=? ;";
+		Consulta result = new Consulta();
+
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setInt(1, vo.getId());
+			ResultSet rs = ps.executeQuery();
+			
+			result.setId(rs.getInt("idConsulta"));
+			//TO DO
+
+			return result;
+		
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+
+			return null;
+		}
+	}
+
+	public Consulta buscarPorMedico(Medico vo) { //O OBJETO COMPLETO OU APENAS UM FIELD?
+		String sql = "SELECT * FROM Consulta WHERE idMedico=? ;";
+		Consulta result = new Consulta();
+
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setInt(1, vo.getId());
+			ResultSet rs = ps.executeQuery();
+			
+			result.setId(rs.getInt("idConsulta"));
+			//TODO
+
+
+			return result;
+		
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+
+			return null;
+		}
+	}
+
+	@Override
+	public ResultSet encontrar(Consulta e) {
+		String sql = "SELECT * FROM Consulta WHERE idPaciente=? ;";
+
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setInt(1, e.getIdPaciente());
+
+            ResultSet rs = ps.executeQuery();
+            return rs;
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+	}
+	public Consulta BuscarPorId(Consulta e) {
+		String sql = "SELECT * FROM Consulta WHERE idPaciente=? ;";
+		try {
+			PreparedStatement pst = getConnection().prepareStatement(sql);
+			pst.setInt(1, e.getId());
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				Consulta a = new Consulta();
+				MedicoDAO dao1 = new MedicoDAO();
+				PacienteDAO dao2 = new PacienteDAO();
+				a.setHorario(LocalTime.parse(rs.getTime("horario").toString()));
+				a.setData(LocalDate.parse(rs.getDate("dia").toString()));
+				/*a.getMedico().setId(rs.getInt("idMedico"));
+				a.setMedico(dao1.encontrarPorId(a.getMedico()));
+				a.getPaciente().setId(rs.getInt("idPaciente"));
+				a.setPaciente(dao2.encontrarPorId(a.getPaciente()));*/
+				a.setId(e.getId());
+				return a;
+			}
+			else return null;
+		
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	public ResultSet BuscarPorCampoEspecifico(Consulta e, String field) {
+		String sql = "SELECT * FROM Consulta WHERE " + field +"=? ;";
+		try {
+			PreparedStatement pst = getConnection().prepareStatement(sql);
+			switch (field) {
+			case "dia":
+				pst.setDate(1, Date.valueOf(e.getHorario().toString()));
+				break;
+				
+			case "horario":
+				pst.setTime(1, Time.valueOf(e.getData().toString()));
+				break;
+				
+			case "idPaciente":
+				pst.setInt(1, e.getIdPaciente());
+				break;
+				
+			case "idMedico":
+				pst.setInt(1, e.getIdMedico());
+				break;
+			
+			default: 
+				pst.setInt(1, e.getId()); // id da consulta
+			}
+			
+			ResultSet rs = pst.executeQuery();
+			return rs;
+		
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Consulta encontrarPorId(Consulta e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet encontrarPorCampoEspecifico(Consulta e, String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet encontrarPorNome(Consulta e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean excluirPorCPF(Consulta e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

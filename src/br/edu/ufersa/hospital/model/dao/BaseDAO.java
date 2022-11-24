@@ -4,11 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class BaseDAO<entity> implements BaseInterDAO<entity>{
+public abstract class BaseDAO{
 	Connection conn = null;
-	String url = "jdbc:mariaDB://localhost:3306/hospital";
-	String user = "root";
-	String password = "senha123";
+	String url = "jdbc:mysql://localhost:3307/hospital";	// remover esse ":3307" ou adicionar a porta q seu BD tá
+	String user = "root";	// colocar seu usuario, mas geralmente é "root" mesmo
+	String password = "admin";	// colocar a senha de acesso aos seus BDs
+
 	synchronized public Connection getConnection() {
 		if(conn == null) {
 			try {
@@ -20,25 +21,5 @@ public class BaseDAO<entity> implements BaseInterDAO<entity>{
 			return conn;
 		}
 		else return conn;
-	}
-	@Override
-	public boolean adicionar(entity e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean excluir(entity e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean editar(entity e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public entity buscarPorCpf(entity e) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

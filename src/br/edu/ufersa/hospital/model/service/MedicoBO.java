@@ -5,13 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import br.edu.ufersa.hospital.model.entity.Medico;
 import br.edu.ufersa.hospital.model.dao.MedicoDAO;
+import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import br.edu.ufersa.hospital.model.dao.BaseInterDAO;
 
 public class MedicoBO {
 
     BaseInterDAO<Medico> dao = new MedicoDAO();
 
-	public boolean adicionar(Medico med) {
+	public boolean adicionar(MedicoDTO medDTO) {
+	    
+	    Medico med = Medico.converter(medDTO);
+      
 		ResultSet rs = dao.encontrar(med);
 		try {
 			if(rs==null || !(rs.next())) {
@@ -27,11 +31,15 @@ public class MedicoBO {
 		}	
 	} 
 
-    public boolean atualizar(Medico med) {
+    public boolean atualizar(MedicoDTO medDTO, String cpf) {
+        
+        Medico med = Medico.converter(medDTO);
+        
         ResultSet rs = dao.encontrar(med);
+        dao.editar(med, cpf);
 		try {
-			if(rs==null || !(rs.next())) {
-				if(dao.editar(med) == true)
+			if(rs!=null || (rs.next())) {
+				if(dao.editar(med, cpf) == true)
 					return true;
 					else return false;
 			}
@@ -43,10 +51,13 @@ public class MedicoBO {
 		}
     }
 
-    public boolean apagar(Medico med) {
+    public boolean apagar(MedicoDTO medDTO) {   // o apagar vai vir do DTO?
+        
+        Medico med = Medico.converter(medDTO);
+        
         ResultSet rs = dao.encontrar(med);
 		try {
-			if(rs==null || !(rs.next())) {
+			if(rs!=null || (rs.next())) {
 				if(dao.excluirPorCPF(med) == true)
 					return true;
 					else return false;
@@ -59,21 +70,21 @@ public class MedicoBO {
 		}
     }
 
-    public List<Medico> listar() {
+    public List<MedicoDTO> listar() {
 
-        List<Medico> corpoMedico = new ArrayList<Medico>();
-        ResultSet rs = dao.exibir();
+        List<MedicoDTO> corpoMedico = new ArrayList<MedicoDTO>();
+        ResultSet rs = dao.listar();
 
         try {
 
             while(rs.next()) {
-                Medico med = new Medico();
+                MedicoDTO med = new MedicoDTO();
                 med.setId(rs.getInt("idMedico"));
                 med.setNome(rs.getString("nome"));
                 med.setCpf(rs.getString("cpf"));
-                med.setCodigoDoConselho(rs.getInt("codConselho"));
+                med.setCodigoDoConselho(rs.getInt("codigoDoConselho"));
                 med.setEndereco(rs.getString("endereco"));
-                med.setValorDaConsulta(rs.getDouble("valorConsulta"));
+                med.setValorDaConsulta(rs.getDouble("valorDaConsulta"));
 
                 corpoMedico.add(med);
             }
@@ -84,39 +95,59 @@ public class MedicoBO {
 			return null;
 		}
     }
+    
+    public List<MedicoDTO> listarPorCpf(MedicoDTO medDTO) {
 
-public void cadastrar(Medico med){ // Melhorar cadastrar() com a implementação do banco de dados
-    med.setNome(med.getNome()); // Esses sets provavelmente vão pro BD
-    med.setCpf(med.getCpf());
-    med.setCodigoDoConselho(med.getCodigoDoConselho());
-    med.setEndereco(med.getEndereco());
-    med.setValorDaConsulta(med.getValorDaConsulta());
-}
+        List<MedicoDTO> corpoMedico = new ArrayList<MedicoDTO>();
+        Medico medico = Medico.converter(medDTO);
+        ResultSet rs = dao.encontrar(medico);
 
-public void editar(Medico med){
-    med.setNome(med.getNome());
-    med.setCpf(med.getCpf());
-    med.setCodigoDoConselho(med.getCodigoDoConselho());
-    med.setEndereco(med.getEndereco());
-    med.setValorDaConsulta(med.getValorDaConsulta());
-}
+        try {
 
-public void excluir(Medico med){
-    med = null;
-}
+            while(rs.next()) {
+                MedicoDTO med = new MedicoDTO();
+                med.setId(rs.getInt("idMedico"));
+                med.setNome(rs.getString("nome"));
+                med.setCpf(rs.getString("cpf"));
+                med.setCodigoDoConselho(rs.getInt("codigoDoConselho"));
+                med.setEndereco(rs.getString("endereco"));
+                med.setValorDaConsulta(rs.getDouble("valorDaConsulta"));
 
-public Medico buscarPorCodigo(Medico med){ // "Medico med" vai ter o med.buscar == codConselho ou cpf buscado
-    //if (this.codigoDoConselho == med.codigoDoConselho){
-    //    return Medico.this; // Retorna a própria classe
-    //} else return med; // Alterar esse else?
-    return med;
-}
+                corpoMedico.add(med);
+            }
+            return corpoMedico;
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+    }
+    
+    public List<MedicoDTO> listarPorNome(MedicoDTO medDTO) {
 
-public Medico buscarPorCpf(Medico med){ // "Medico med" vai ter o med.buscar == codConselho ou cpf buscado
-    //if (this.cpf == med.cpf){
-    //  return Medico.this; // Retorna a própria classe
-    //} else return med; // Alterar esse else
-    return med;
-}
+        List<MedicoDTO> corpoMedico = new ArrayList<MedicoDTO>();
+        Medico medico = Medico.converter(medDTO);
+        ResultSet rs = dao.encontrarPorNome(medico);
+
+        try {
+
+            while(rs.next()) {
+                MedicoDTO med = new MedicoDTO();
+                med.setId(rs.getInt("idMedico"));
+                med.setNome(rs.getString("nome"));
+                med.setCpf(rs.getString("cpf"));
+                med.setCodigoDoConselho(rs.getInt("codigoDoConselho"));
+                med.setEndereco(rs.getString("endereco"));
+                med.setValorDaConsulta(rs.getDouble("valorDaConsulta"));
+
+                corpoMedico.add(med);
+            }
+            return corpoMedico;
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+    }
 
 }

@@ -3,159 +3,210 @@ package br.edu.ufersa.hospital.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Vector;
 
 import br.edu.ufersa.hospital.model.entity.Paciente;
+import br.edu.ufersa.hospital.model.entity.Prontuario;
 
-public class PacienteDAO extends BaseDAO<Paciente> {
-	Paciente vo;
-	  public boolean cadastrar(Paciente vo) {
-		  conn = getConnection();
-		  String sql = "insert into Paciente (nome,cpf,endereco) values (?,?,?);";
-		  PreparedStatement ps;
+public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
+
+	@Override
+	public boolean cadastrar(Paciente vo) {
+		String sql = "insert into Paciente (nome,endereco,cpf,idade) values (?,?,?,?);";
+
 		try {
-			ps = conn.prepareStatement(sql);
+			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setString(1, vo.getNome());
-			ps.setLong(2, vo.getCpf());
-			ps.setString(3, vo.getEndereco());
+			ps.setString(2, vo.getEndereco());
+			ps.setString(3, vo.getCpf());
+			ps.setInt(4, vo.getIdade());
 			ps.execute();
-			  return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			return true;
+
+		}catch (SQLException e) {
 			e.printStackTrace();
+
 			return false;
+			
 		}
-	  }
-	  public boolean editarPorID(Paciente vo) {
-		  String sql = "UPDATE Paciente SET cpf=?,nome=?,endereco=? WHERE idPaciente=? ";
-			try {
-				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setLong(1, vo.getCpf());
-				ps.setString(2, vo.getNome());
-				ps.setString(3, vo.getEndereco());
-				ps.setInt(4, vo.getIdConsulta());
-				ps.executeUpdate();
-				return true;		
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}	
+	}
+
+	@Override
+	public boolean editar(Paciente vo, String cpf) {
+		String sql = "UPDATE Paciente SET cpf=?,endereco=?,nome=?,idade=? WHERE cpf=? ";
+		
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setString(1, vo.getCpf());
+			ps.setString(2, vo.getEndereco());
+			ps.setString(3, vo.getNome());
+			ps.setInt(4, vo.getIdade());
+			ps.setString(5, cpf);
+			ps.executeUpdate();
+
+			return true;		
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			return false;
+
+		}	
+		
+	}
+
+	public boolean editarPorCpf(Paciente vo) {
+		String sql = "UPDATE Paciente SET nome=?,endereco=?,idade=? WHERE cpf=? ";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setString(1, vo.getNome());
+			ps.setString(2, vo.getEndereco());
+			ps.setInt(3, vo.getIdade());
+			ps.setString(4, vo.getCpf());
+			ps.executeUpdate();
+
+			return true;		
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			return false;
+
+		}	
+		
+	}
+
+	@Override
+	public boolean excluirPorId(Paciente vo) {
+		String sql = "delete from Paciente where idPaciente = ?;";
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, vo.getId());
+
+			return ps.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			return false;
 			
-	  }
-	  public boolean editarPorCpf(Paciente vo) {
-		  String sql = "UPDATE Paciente SET cpf=?,nome=?,endereco=? WHERE cpf=? ";
-			try {
-				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setLong(1, vo.getCpf());
-				ps.setString(2, vo.getNome());
-				ps.setString(3, vo.getEndereco());
-				ps.setLong(4, vo.getCpf());
-				ps.executeUpdate();
-				return true;		
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}	
-			
-	  }
+		}
+	}
 	  
-	  public boolean excluirPorCPF(Paciente vo) {
-		  conn = getConnection();
-		  String sql = "delete from Paciente where cpf = ?;";
-		  PreparedStatement ps;
+	public boolean excluirPorCPF(Paciente vo) {
+		String sql = "delete from Paciente where cpf = ?;";
+
 		try {
-			ps = conn.prepareStatement(sql);
-			ps.setLong(1, vo.getCpf());
-			  ps.execute();
-			  return true;
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setString(1, vo.getCpf());
+
+			return ps.execute();
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 			return false;
+			
 		}
-	  }
-	  public boolean excluirPorId(Paciente vo) {
-		  conn = getConnection();
-		  String sql = "delete from Paciente where idPaciente = ?;";
-		  PreparedStatement ps;
+	}
+
+	@Override
+	public ResultSet listar(){
+		String sql = "select * from Paciente";
+
 		try {
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, vo.getIdPaciente());
-			  ps.execute();
-			  return true;
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery(sql);
+			return rs;
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+
+			return null;
 		}
-	  }
-	  public Paciente buscarPorCPF(Paciente vo) {
-		  String sql = "SELECT * FROM Paciente WHERE cpf=? ;";
-			try {
-				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setLong(1, vo.getCpf());
-				ResultSet rs = ps.executeQuery();
-				if(rs.next()) {
-					Paciente m = new Paciente();
-					m.setCpf(rs.getLong("cpf"));
-					m.setEndereco(rs.getString("endereco"));
-					m.setNome(rs.getString("nome"));
-					return m;
-				}
-				else return null;
+	}
+
+	public Paciente encontrarPorCPF(Paciente vo) {
+		String sql = "SELECT * FROM Paciente WHERE cpf=? ;";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setString(1, vo.getCpf());
+
+			ResultSet rs = ps.executeQuery(sql);
 			
-			} catch (SQLException ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
-				return null;
-			}
-	  }
-	  public Paciente buscarPorId(Paciente vo) {
-		  String sql = "SELECT * FROM Medico WHERE idPaciente=? ;"; // 3  idPaciente = 3
-			try {
-				PreparedStatement ps = getConnection().prepareStatement(sql);
-				ps.setInt(1, vo.getIdPaciente());
-				ResultSet rs = ps.executeQuery();
-				if(rs.next()) {
-					Paciente m = new Paciente();
-					m.setCpf(rs.getLong("cpf"));
-					m.setEndereco(rs.getString("endereco"));
-					m.setNome(rs.getString("nome"));
-					return m;
-				}
-				else return null;
+			Paciente pc = new Paciente(rs.getInt("idPaciente"), rs.getString("nome"), rs.getString("Endereco"), rs.getString("cpf"), rs.getInt("idade")/*, new Vector<Prontuario>()*/);
+			//substituir o new vector pelo vector cheio
+			return pc;
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+
+			return null;
+
+		}
+	}
+	
+	public Paciente encontrarPorId(Paciente vo) {
+		String sql = "SELECT * FROM Paciente WHERE idPaciente=? ;"; // 3  idPaciente = 3
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setInt(1, vo.getId());
+
+			ResultSet rs = ps.executeQuery();
 			
-			} catch (SQLException ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
-				return null;
-			}
-	  }
-	  public List<Paciente> listar(){
-		  conn = getConnection();
-		  String sql = "select * from Paciente";
-		  Statement st;
-		  ResultSet rs;
-		  List<Paciente> listaPaciente = new ArrayList<Paciente>();
-		  try {
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
-			while(rs.next()) {
-				Paciente vo = new Paciente();
-				vo.setCpf(rs.getLong("cpf"));
-				vo.setNome(rs.getString("nome"));
-				vo.setEndereco(rs.getString("endereco"));
-				vo.setProntuarios(rs.getDouble("prontuario")); //arrumar
-				listaPaciente.add(vo);
-			}
-		} catch (SQLException e) {
+			return new Paciente(rs.getInt("idPaciente"), rs.getString("nome"), rs.getString("Endereco"), rs.getString("cpf"), rs.getInt("idade"), new Vector<Prontuario>());
+			//substituir o new vector pelo vector cheio
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+
+			return null;
+			
+		}
+	}
+	
+	public ResultSet encontrar(Paciente vo){
+        String sql = "SELECT * FROM Paciente WHERE cpf=? ;";
+
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setString(1, vo.getCpf());
+
+            ResultSet rs = ps.executeQuery();
+            return rs;
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+	
+	@Override
+	public ResultSet encontrarPorNome(Paciente e) {
+		String sql = "SELECT * FROM Paciente WHERE nome=? ;";
+		try {
+			PreparedStatement pst = getConnection().prepareStatement(sql);
+			pst.setString(1, e.getNome());
+			ResultSet rs = pst.executeQuery();
+			
+			return rs;
+		
+		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ex.printStackTrace();
+			return null;
 		}
-		  return listaPaciente;
-	  }
+	}
+	
+	@Override
+	public ResultSet encontrarPorCampoEspecifico(Paciente e, String field) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public static void main(String args[]) {
+		
+	}
+
+
 }
