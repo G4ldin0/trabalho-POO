@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import br.edu.ufersa.hospital.model.entity.Adm;
+import br.edu.ufersa.hospital.model.entity.Consulta;
 
 public class AdmDAO extends BaseDAO implements BaseInterDAO<Adm> {
 
@@ -23,12 +24,6 @@ public class AdmDAO extends BaseDAO implements BaseInterDAO<Adm> {
 
 			return false;
 		}
-	}
-
-	@Override
-	public boolean editar(Adm vo) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
@@ -82,6 +77,24 @@ public class AdmDAO extends BaseDAO implements BaseInterDAO<Adm> {
 
 	@Override
 	public boolean excluirPorCPF(Adm e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean editar(Adm e, String cpf) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ResultSet BuscarPorId(Adm e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean editar(Consulta vo, int idPaciente) {
 		// TODO Auto-generated method stub
 		return false;
 	}

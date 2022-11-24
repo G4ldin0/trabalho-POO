@@ -22,14 +22,18 @@ public class Conta {
 		return username;
 	}
 	public void setUsername(String username) {
-		this.username = username;
+		if(username != null){
+            this.username = username;
+        }
 	}
 	
 	public String getSenha() {
 		return senha;
 	}
 	public void setSenha(String senha) {
-		this.senha = senha;
+		if(senha != null){
+            this.senha = senha;
+        }
 	}
 	
 	 public static Conta converter(ContaDTO dto) {
@@ -43,6 +47,8 @@ public class Conta {
 		return confirmSenha;
 	}
 	public void setConfirmSenha(String confirmSenha) {
-		this.confirmSenha = confirmSenha;
+		if(confirmSenha != null){
+            this.confirmSenha = confirmSenha;
+        }
 	}
 }

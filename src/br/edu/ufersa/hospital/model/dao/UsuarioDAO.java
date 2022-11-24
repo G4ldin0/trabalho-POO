@@ -3,6 +3,8 @@ package br.edu.ufersa.hospital.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import br.edu.ufersa.hospital.model.entity.Consulta;
 import br.edu.ufersa.hospital.model.entity.Usuario;
 
 public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
@@ -25,7 +27,7 @@ public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
 	}
 
 	@Override
-	public boolean editar(Usuario vo) {
+	public boolean editar(Usuario vo, String valor) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -81,6 +83,18 @@ public class UsuarioDAO extends BaseDAO implements BaseInterDAO<Usuario> {
 
 	@Override
 	public boolean excluirPorCPF(Usuario e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ResultSet BuscarPorId(Usuario e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean editar(Consulta vo, int idPaciente) {
 		// TODO Auto-generated method stub
 		return false;
 	}

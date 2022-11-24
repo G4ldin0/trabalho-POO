@@ -9,6 +9,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
 import br.edu.ufersa.hospital.model.entity.Consulta;
 import br.edu.ufersa.hospital.model.entity.Medico;
 import br.edu.ufersa.hospital.model.entity.Paciente;
@@ -17,13 +18,13 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 
 	@Override
 	public boolean cadastrar(Consulta vo) {
-		String sql = "insert into Consulta (idPaciente, idMedico, idProntuario) values (?,?,?);";
+		String sql = "insert into Consulta (idPaciente, idMedico) values (?,?);";
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setInt(1,vo.getIdPaciente());
 			ps.setInt(2,vo.getIdMedico());
-			ps.setInt(3, 120/*vo.getProntuario().getId()*/);
+			//ps.setInt(3, 1/*vo.getProntuario().getId()*/);
 			//ps.setDate(3, Date.valueOf(vo.getData()));
 			//ps.setTime(4,Time.valueOf(vo.getHorario()));
 			ps.execute();
@@ -37,15 +38,15 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 	}
 
 	@Override
-	public boolean editar(Consulta vo, String cpfPaciente) {
-		String sql = "UPDATE Consulta SET idPaciente = ?, idMedico = ?, idProntuario = ?  WHERE idPaciente=? ";
+	public boolean editar(Consulta vo, int idPaciente) {
+		String sql = "UPDATE Consulta SET idPaciente = ?, idMedico = ?  WHERE idPaciente=? ";
 		
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
 			ps.setInt(1,vo.getIdPaciente());
 			ps.setInt(2,vo.getIdMedico());
-			ps.setInt(3,vo.getIdProntuario());
-			ps.setString(4, cpfPaciente);
+			//ps.setInt(3,vo.getIdProntuario());
+			ps.setInt(3, idPaciente);
 			ps.executeUpdate();
 
 			return true;
@@ -59,11 +60,11 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 	
 	@Override
 	public boolean excluirPorId(Consulta vo) {
-		String sql = "delete from Consulta where idConsulta = ?;";
+		String sql = "delete from Consulta where idPaciente = ?;";
 		
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setInt(1, vo.getId());
+			ps.setInt(1, vo.getIdPaciente());
 
 			return ps.execute();
 
@@ -178,7 +179,7 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
             return null;
         }
 	}
-	public Consulta BuscarPorId(Consulta e) {
+	public ResultSet BuscarPorId(Consulta e) {
 		String sql = "SELECT * FROM Consulta WHERE idPaciente=? ;";
 		try {
 			PreparedStatement pst = getConnection().prepareStatement(sql);
@@ -195,7 +196,7 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 				a.getPaciente().setId(rs.getInt("idPaciente"));
 				a.setPaciente(dao2.encontrarPorId(a.getPaciente()));*/
 				a.setId(e.getId());
-				return a;
+				return rs;
 			}
 			else return null;
 		
@@ -260,6 +261,12 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 
 	@Override
 	public boolean excluirPorCPF(Consulta e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean editar(Consulta e, String cpf) {
 		// TODO Auto-generated method stub
 		return false;
 	}

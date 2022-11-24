@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import br.edu.ufersa.hospital.model.entity.Consulta;
 import br.edu.ufersa.hospital.model.entity.Paciente;
 import br.edu.ufersa.hospital.model.entity.Prontuario;
 
@@ -206,6 +207,18 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 	}
 	public static void main(String args[]) {
 		
+	}
+
+	@Override
+	public ResultSet BuscarPorId(Paciente e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean editar(Consulta vo, int idPaciente) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 
