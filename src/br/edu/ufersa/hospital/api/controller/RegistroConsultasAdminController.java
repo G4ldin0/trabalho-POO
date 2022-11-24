@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
 import br.edu.ufersa.hospital.api.dto.ProntuarioDTO;
 import br.edu.ufersa.hospital.api.dto.MedicoDTO;
+import br.edu.ufersa.hospital.api.dto.ProntuarioDTO;
 import br.edu.ufersa.hospital.model.service.ConsultaBO;
 import br.edu.ufersa.hospital.view.Telas;
 import javafx.animation.TranslateTransition;
@@ -105,7 +106,7 @@ public class RegistroConsultasAdminController implements Initializable {
         tabelaConsultas.setItems(listaDeConsultas);
         
         UtilsController.initButtons(columnEmitirProntuario, 18, pathIconRelatorio, "icon-svg-editar", (ConsultaDTO consDTO, ActionEvent event) -> {
-        	Telas.telaProntuarios();
+        	Telas.telaProntuarios(new ProntuarioDTO());
         });
         UtilsController.initButtons(columnEdit, 18, pathIconEditar, "icon-svg-editar", (ConsultaDTO consDTO, ActionEvent event) -> {
         	editar();

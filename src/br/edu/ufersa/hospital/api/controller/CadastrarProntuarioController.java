@@ -1,11 +1,7 @@
 package br.edu.ufersa.hospital.api.controller;
 
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
-
-import javax.swing.Action;
 
 import br.edu.ufersa.hospital.api.dto.ProntuarioDTO;
 import br.edu.ufersa.hospital.view.Telas;
