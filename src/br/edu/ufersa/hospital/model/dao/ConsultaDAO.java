@@ -21,8 +21,8 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setString(1,vo.getCpfPaciente());
-			ps.setString(2,vo.getCpfMedico());
+			ps.setInt(1,vo.getIdPaciente());
+			ps.setInt(2,vo.getIdMedico());
 			ps.setInt(3, 120/*vo.getProntuario().getId()*/);
 			//ps.setDate(3, Date.valueOf(vo.getData()));
 			//ps.setTime(4,Time.valueOf(vo.getHorario()));
@@ -42,9 +42,9 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 		
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setString(1,vo.getCpfPaciente());
-			ps.setString(2,vo.getCpfMedico());
-			ps.setInt(3,vo.getProntuario().getId());
+			ps.setInt(1,vo.getIdPaciente());
+			ps.setInt(2,vo.getIdMedico());
+			ps.setInt(3,vo.getIdProntuario());
 			ps.setString(4, cpfPaciente);
 			ps.executeUpdate();
 
@@ -169,7 +169,7 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 
         try {
             PreparedStatement ps = getConnection().prepareStatement(sql);
-            ps.setString(1, e.getCpfPaciente());
+            ps.setInt(1, e.getIdPaciente());
 
             ResultSet rs = ps.executeQuery();
             return rs;
@@ -219,11 +219,11 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 				break;
 				
 			case "idPaciente":
-				pst.setString(1, e.getCpfPaciente());
+				pst.setInt(1, e.getIdPaciente());
 				break;
 				
 			case "idMedico":
-				pst.setString(1, e.getCpfMedico());
+				pst.setInt(1, e.getIdMedico());
 				break;
 			
 			default: 

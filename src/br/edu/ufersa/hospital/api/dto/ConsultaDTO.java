@@ -9,11 +9,11 @@ import br.edu.ufersa.hospital.model.entity.Prontuario;
 
 public class ConsultaDTO{
 	private int id;
-    private String cpfPaciente;
-    private String cpfMedico;
+    private int idPaciente;
+    private int idMedico;
+    private int idProntuario;
     private LocalDate data;
     private LocalTime horario;
-    private Prontuario prontuario;
     
     public int getId(){
         return this.id;
@@ -62,13 +62,13 @@ public class ConsultaDTO{
         return this.data;
     }
     
-    public void setProntuario(Prontuario prontuario){
-        if(prontuario != null){
-            this.prontuario = prontuario;
+    public void setIdProntuario(int idProntuario){
+        if(idProntuario >= 0){
+            this.idProntuario = idProntuario;
         }
     }
-    public Prontuario getProntuario(){ 
-        return this.prontuario;
+    public int getIdProntuario(){ 
+        return this.idProntuario;
     }
 
 	public LocalTime getHorario() {
@@ -79,19 +79,20 @@ public class ConsultaDTO{
 		this.horario = horario;
 	}
 
-	public String getCpfPaciente() {
-		return cpfPaciente;
+	public int getIdPaciente() {
+		return this.idPaciente;
 	}
 
-	public void setCpfPaciente(String cpfPaciente) {
-		this.cpfPaciente = cpfPaciente;
+	public void setIdPaciente(int idPaciente) {
+		this.idPaciente = idPaciente;
 	}
 
-	public String getCpfMedico() {
-		return cpfMedico;
+	public int getIdMedico() {
+		return this.idMedico;
 	}
 
-	public void setCpfMedico(String cpfMedico) {
-		this.cpfMedico = cpfMedico;
+	public void setIdMedico(int idMedico) {
+		this.idMedico = idMedico;
 	}
+	
 }

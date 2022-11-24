@@ -31,8 +31,8 @@ public class CadastrarConsultaController {
     	p.setCpf(cpfPaciente.getText());
     	p = dao.encontrarPorCPF(p);*/
     	ConsultaDTO dto = new ConsultaDTO();
-    	dto.setCpfPaciente(cpfPaciente.getText());
-    	dto.setCpfMedico(cpfMedico.getText());
+    	dto.setIdPaciente(Integer.parseInt(cpfPaciente.getText()));
+    	dto.setIdMedico(Integer.parseInt(cpfMedico.getText()));
 		//dto.setData(LocalDate.parse(data.getText()));
 		//dto.setHorario(LocalTime.parse(horario.getText()));
 		bo.adicionar(dto);

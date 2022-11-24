@@ -87,18 +87,18 @@ public class RegistroConsultasAdminController implements Initializable {
         List<ConsultaDTO> consultas = bo.listar();
         listaDeConsultas = FXCollections.observableArrayList(consultas);
         columnPaciente.setCellValueFactory(new PropertyValueFactory<>("idPaciente"));
-        columnData.setCellValueFactory(new PropertyValueFactory<>("data"));
-        columnHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
+        //columnData.setCellValueFactory(new PropertyValueFactory<>("data"));
+        //columnHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
         columnMedico.setCellValueFactory(new PropertyValueFactory<>("idMedico"));
-        columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        columnEmitirProntuario.setCellValueFactory(new PropertyValueFactory<>("emitirProntuario"));
+        //columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        //columnEmitirProntuario.setCellValueFactory(new PropertyValueFactory<>("emitirProntuario"));
         tabelaConsultas.setItems(listaDeConsultas);
     }
     
     public void buscar() {
     	ConsultaDTO dto = new ConsultaDTO();
-    	dto.setCpfPaciente(busca.getText()); // busca consulta pelo cpf do paciente
-    	dto.setCpfMedico(busca.getText()); // busca consulta pelo cpf do medico
+    	dto.setIdPaciente(Integer.parseInt(busca.getText())); // busca consulta pelo id do paciente
+    	dto.setIdMedico(Integer.parseInt(busca.getText())); // busca consulta pelo id do medico
     	List<ConsultaDTO> consultas = bo.listarPorCpfPaciente(dto);
     	listaConsultasFiltradas = FXCollections.observableArrayList(consultas);
     	columnPaciente.setCellValueFactory(new PropertyValueFactory<>("idPaciente"));

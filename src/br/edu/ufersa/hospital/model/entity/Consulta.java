@@ -8,17 +8,17 @@ import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
 public class Consulta{
     
     private int id;
-    private String cpfPaciente;
-    private String cpfMedico;
+    private int idPaciente;
+    private int idMedico;
     private LocalDate data;
-    private Prontuario prontuario;
+    private int idProntuario;
 	private LocalTime horario;
 
-    public Consulta(String cpfPaciente,String cpfMedico, LocalDate data,LocalTime horario, Prontuario prontuario){
-        setCpfPaciente(cpfPaciente);
-        setCpfMedico(cpfMedico);
+    public Consulta(int idPaciente,int idMedico, LocalDate data,LocalTime horario, int idProntuario){
+        setIdPaciente(idPaciente);
+        setIdMedico(idMedico);
         setData(data);
-        setProntuario(prontuario);
+        setIdProntuario(idProntuario);
         setHorario(horario);
     }
 
@@ -72,13 +72,13 @@ public class Consulta{
         return this.data;
     }
     
-    public void setProntuario(Prontuario prontuario){
-        if(prontuario != null){
-            this.prontuario = prontuario;
+    public void setIdProntuario(int idProntuario){
+        if(idProntuario >= 0){
+            this.idProntuario = idProntuario;
         }
     }
-    public Prontuario getProntuario(){ 
-        return this.prontuario;
+    public int getIdProntuario(){ 
+        return this.idProntuario;
     }
     
     public LocalTime getHorario() {
@@ -88,20 +88,20 @@ public class Consulta{
 		this.horario = horario;
 	}
 
-	public String getCpfPaciente() {
-		return this.cpfPaciente;
+	public int getIdPaciente() {
+		return this.idPaciente;
 	}
 
-	public void setCpfPaciente(String cpfPaciente) {
-		this.cpfPaciente = cpfPaciente;
+	public void setIdPaciente(int idPaciente) {
+		this.idPaciente = idPaciente;
 	}
 
-	public String getCpfMedico() {
-		return this.cpfMedico;
+	public int getIdMedico() {
+		return this.idMedico;
 	}
 
-	public void setCpfMedico(String cpfMedico) {
-		this.cpfMedico = cpfMedico;
+	public void setIdMedico(int idMedico) {
+		this.idMedico = idMedico;
 	}
 	
 	public static Consulta converter(ConsultaDTO dto) {
@@ -109,8 +109,9 @@ public class Consulta{
         //cons.getPaciente().setCpf(dto.getPaciente().getCpf());
         //cons.getMedico().setCpf(dto.getMedico().getCpf());
         //cons.getProntuario().setId(dto.getProntuario().getId());
-        cons.setCpfMedico(dto.getCpfMedico());
-        cons.setCpfPaciente(dto.getCpfPaciente());
+        cons.setIdMedico(dto.getIdMedico());
+        cons.setIdPaciente(dto.getIdPaciente());
+        cons.setIdProntuario(dto.getIdProntuario());
         //cons.setId(dto.getId());
         //cons.setData(dto.getData());
         //cons.setHorario(dto.getHorario());
