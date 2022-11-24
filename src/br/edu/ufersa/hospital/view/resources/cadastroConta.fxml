@@ -66,7 +66,7 @@
          </font>
       </Label>
       <Button fx:id="botaoFechar" layoutX="374.0" layoutY="181.0" mnemonicParsing="false" onAction="#fecharError" prefHeight="25.0" prefWidth="29.0" style="-fx-background-color: white;" styleClass="button-hand" text="X" visible="false" />
-      <Button layoutX="224.0" layoutY="283.0" mnemonicParsing="false" onAction="#IrTelaCadastroAdmin" style="-fx-background-color: #BDE3FF;" text="Sou Administrador">
+      <Button layoutX="224.0" layoutY="283.0" mnemonicParsing="false" onAction="#IrTelaCadastroAdmin" style="-fx-background-color: #BDE3FF;" styleClass="button-hand" text="Sou Administrador">
          <font>
             <Font size="8.0" />
          </font>

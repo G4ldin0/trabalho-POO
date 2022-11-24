@@ -34,14 +34,14 @@ public class ProntuarioBO {
         }   
     } 
     
-    public boolean atualizar(ProntuarioDTO prontDTO) {
+    public boolean atualizar(ProntuarioDTO prontDTO, String valor) {
         
         Prontuario pront = Prontuario.converter(prontDTO);
         
         ResultSet rs = dao.encontrar(pront);
         try {
             if(rs==null || !(rs.next())) {
-                if(dao.editar(pront) == true)
+                if(dao.editar(pront, valor) == true)
                     return true;
                     else return false;
             }

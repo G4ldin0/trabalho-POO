@@ -84,7 +84,9 @@ public class ConsultaDTO{
 	}
 
 	public void setIdPaciente(int idPaciente) {
-		this.idPaciente = idPaciente;
+		if(idPaciente >= 0){
+            this.idPaciente = idPaciente;
+        }
 	}
 
 	public int getIdMedico() {
@@ -92,7 +94,9 @@ public class ConsultaDTO{
 	}
 
 	public void setIdMedico(int idMedico) {
-		this.idMedico = idMedico;
+		if(idMedico >= 0){
+            this.idMedico = idMedico;
+        }
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.edu.ufersa.hospital.model.entity.Consulta;
 import br.edu.ufersa.hospital.model.entity.Medico;
 
 public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
@@ -218,5 +219,17 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 	public ResultSet encontrarPorCampoEspecifico(Medico e, String field) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ResultSet BuscarPorId(Medico e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean editar(Consulta vo, int idPaciente) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

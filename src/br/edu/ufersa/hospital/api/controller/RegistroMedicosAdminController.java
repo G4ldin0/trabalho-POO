@@ -192,7 +192,7 @@ public class RegistroMedicosAdminController implements Initializable {
     	confirmarExclusao.setVisible(false);
     }
     public void relatorio() {
-    	Telas.telaRelatorios(new MedicoDTO());
+    	Telas.telaRelatorios();
     }
     
 }

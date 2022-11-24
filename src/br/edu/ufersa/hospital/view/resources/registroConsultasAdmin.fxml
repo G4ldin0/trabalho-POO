@@ -25,12 +25,12 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="menuClose" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#fecharMenu" prefHeight="44.0" prefWidth="108.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" styleClass="button-hand" text="Menu">
+            <Button fx:id="menuClose" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#fecharMenu" prefHeight="44.0" prefWidth="107.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" styleClass="button-hand" text="Menu">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="menu" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#abrirMenu" prefHeight="44.0" prefWidth="108.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" styleClass="button-hand" text="Menu">
+            <Button fx:id="menu" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#abrirMenu" prefHeight="44.0" prefWidth="107.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" styleClass="button-hand" text="Menu">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -50,9 +50,10 @@
                   <TableColumn fx:id="columnData" prefWidth="46.0" text="Data" />
                   <TableColumn fx:id="columnHorario" prefWidth="51.0" text="Horário" />
                   <TableColumn fx:id="columnMedico" prefWidth="101.0" text="Médico" />
-                  <TableColumn fx:id="columnStatus" prefWidth="50.0" text="Status" />
-                  <TableColumn fx:id="columnEmitirProntuario" prefWidth="103.0" text="Emitir Prontuário" />
-                  <TableColumn fx:id="editDelete" prefWidth="39.0" />
+                  <TableColumn fx:id="columnId" prefWidth="50.0" text="Consulta" />
+                  <TableColumn fx:id="columnEmitirProntuario" prefWidth="79.0" text="Emitir Prontuário" />
+                  <TableColumn fx:id="columnEdit" prefWidth="33.0" />
+                  <TableColumn fx:id="columnDelete" prefWidth="33.0" />
                </columns>
             </TableView>
             <Label layoutX="219.0" layoutY="14.0" text="Consultas">
@@ -60,7 +61,28 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="slider" layoutX="-27.0" layoutY="-20.0" prefHeight="107.0" prefWidth="89.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" visible="false">
+            <Button layoutX="383.0" layoutY="5.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #BCD6E9; -fx-border-width: 2px; -fx-border-color: #909090; -fx-border-radius: 2px;" styleClass="button-hand" text="Novo" textFill="#152734">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Pane fx:id="confirmarExclusao" layoutX="93.0" layoutY="124.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="335.0" style="-fx-background-color: B9B9B9; -fx-border-style: solid; -fx-border-width: 2px; -fx-border-radius: 2px;" visible="false">
+               <children>
+                  <Label layoutX="60.0" layoutY="15.0" prefHeight="37.0" prefWidth="216.0" text="Deseja mesmo excluir os dados?">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="276.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Rectangle%2033.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="90.0" layoutY="51.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #FFFFFF;" styleClass="button-hand" text="Cancelar" />
+                  <Button layoutX="183.0" layoutY="51.0" mnemonicParsing="false" onAction="#excluir" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #CE5252;" styleClass="button-hand" text="Excluir" textFill="#fffbfb" />
+               </children>
+            </Pane>
+            <AnchorPane fx:id="slider" layoutX="-28.0" layoutY="-14.0" prefHeight="107.0" prefWidth="89.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" visible="false">
                <children>
                   <Button alignment="CENTER_RIGHT" layoutY="70.0" mnemonicParsing="false" onAction="#telaListarConsultas" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" styleClass="button-hand" text="Consultas">
                      <font>
@@ -94,11 +116,6 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Button layoutX="383.0" layoutY="5.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #BCD6E9; -fx-border-width: 2px; -fx-border-color: #909090; -fx-border-radius: 2px;" styleClass="button-hand" text="Novo" textFill="#152734">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
       <Button layoutX="560.0" layoutY="374.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #CE5252;" styleClass="button-hand" text="Sair" textFill="#fff4f4" />

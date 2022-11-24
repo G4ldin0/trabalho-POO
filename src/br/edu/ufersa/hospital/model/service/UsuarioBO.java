@@ -17,7 +17,9 @@ public class UsuarioBO{
 public Usuario adicionar(UsuarioDTO userDTO) throws PasswordErrorException {
 	    
 	    Usuario user = Usuario.converter(userDTO);
-      
+	    if(user.getUsername().equals("")) {
+	    	throw new PasswordErrorException();
+	    }
 		ResultSet rs = dao.encontrarPorUsername(user);
 		try {
 			if(rs==null || !(rs.next())) { // verifica se foi encontrado algum usuario com mesmo username
