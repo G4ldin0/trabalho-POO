@@ -106,7 +106,7 @@ public class RegistroMedicosAdminController implements Initializable {
         	Telas.telaEdicaoMedico();
         });
         UtilsController.initButtons(columnEdit, 18, pathIconEditar, "icon-svg-editar", (MedicoDTO medDTO, ActionEvent event) -> {
-        	Telas.telaRelatorios();
+        	Telas.telaRelatorios(new MedicoDTO());
         });
         UtilsController.initButtons(columnDelete, 18, pathIconExcluir, "icon-svg-excluir", (MedicoDTO medDTO, ActionEvent event) -> {
         	Telas.telaConfirmarExclusao();
@@ -163,7 +163,7 @@ public class RegistroMedicosAdminController implements Initializable {
     	Telas.telaConfirmarExclusao();
     }
     public void relatorio() {
-    	Telas.telaRelatorios();
+    	Telas.telaRelatorios(new MedicoDTO());
     }
     
 }

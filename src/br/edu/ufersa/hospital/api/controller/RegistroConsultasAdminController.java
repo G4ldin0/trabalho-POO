@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
+import br.edu.ufersa.hospital.api.dto.ProntuarioDTO;
 import br.edu.ufersa.hospital.model.service.ConsultaBO;
 import br.edu.ufersa.hospital.view.Telas;
 import javafx.animation.TranslateTransition;
@@ -128,7 +129,7 @@ public class RegistroConsultasAdminController implements Initializable {
     	Telas.telaConfirmarExclusao();
     }
     public void prontuario() {
-    	Telas.telaProntuarios();
+    	Telas.telaProntuarios(new ProntuarioDTO());
     }
     
 }
