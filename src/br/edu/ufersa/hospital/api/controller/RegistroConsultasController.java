@@ -1,10 +1,14 @@
 package br.edu.ufersa.hospital.api.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
+import br.edu.ufersa.hospital.api.dto.ProntuarioDTO;
+import br.edu.ufersa.hospital.model.entity.Paciente;
 import br.edu.ufersa.hospital.model.service.ConsultaBO;
 import br.edu.ufersa.hospital.view.Telas;
 import javafx.animation.TranslateTransition;
@@ -128,7 +132,8 @@ public class RegistroConsultasController implements Initializable {
     	Telas.telaConfirmarExclusao();
     }
     public void prontuario() {
-    	Telas.telaProntuarios();
+        //temporario
+    	Telas.telaProntuarios(new ProntuarioDTO(LocalDate.now(), LocalTime.now(), "teste", new Paciente()));
     }
     
 }

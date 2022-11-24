@@ -1,8 +1,13 @@
 package br.edu.ufersa.hospital.api.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
+import javax.swing.Action;
+
+import br.edu.ufersa.hospital.api.dto.ProntuarioDTO;
 import br.edu.ufersa.hospital.view.Telas;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -13,14 +18,41 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
-public class CadastrarProntuarioController {
+public class CadastrarProntuarioController extends Object implements Initializable{
 
     @FXML private TextField busca;
     @FXML private Button menu;
     @FXML private Button menuClose;
     @FXML private AnchorPane slider;
     @FXML private Button botaoVoltar;
+
+    @FXML private TextField paciente;
+    @FXML private TextField horario;
+    @FXML private TextField dia;
+    @FXML private TextField prontuario;
     
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("testes");
+        teste();
+        
+    }
+
+    public void teste(){
+        System.out.println("alo");
+    }
+
+    //String medico, String paciente, String horario, String dia, String prontuario
+    public void set(ProntuarioDTO prontuario)
+    {
+        this.paciente.setText("PACIENTE PLACEHOLDER");
+        this.horario.setText(prontuario.getHorario().toString());
+        this.dia.setText(prontuario.getData().toString());
+        this.prontuario.setText(prontuario.getObs());
+    }
+
+    //botão menu
     @FXML
     void abrirMenu(ActionEvent event) {
     	// menu.setOnMouseClicked(event -> {});
@@ -62,7 +94,10 @@ public class CadastrarProntuarioController {
 
     }
 
-    
+    //opções da tela
+    public void teste(ActionEvent event) {}
+
+    //trocar de tela
     public void logout() {
         Telas.logout();
     }
@@ -75,6 +110,7 @@ public class CadastrarProntuarioController {
     public void listarConsultas() {
     	Telas.listarConsultas();
     }
+
     
 }
 

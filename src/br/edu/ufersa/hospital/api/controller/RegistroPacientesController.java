@@ -102,7 +102,10 @@ public class RegistroPacientesController implements Initializable {
         tabelaPacientes.setItems(listaDePacientes);
         
         UtilsController.initButtons(columnHistorico, 18, pathIconRelatorio, "icon-svg-editar", (PacienteDTO pacDTO, ActionEvent event) -> {
-        	Telas.telaRelatorios();
+        	Telas.telaEdicaoMedico();
+        });
+        UtilsController.initButtons(columnEdit, 18, pathIconEditar, "icon-svg-editar", (PacienteDTO pacDTO, ActionEvent event) -> {
+        	Telas.telaRelatorios(new MedicoDTO());
         });
         UtilsController.initButtons(columnEdit, 18, pathIconEditar, "icon-svg-editar", (PacienteDTO pacDTO, ActionEvent event) -> {
         	Telas.telaEdicaoPaciente();

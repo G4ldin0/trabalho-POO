@@ -103,7 +103,7 @@ public class RegistroMedicosController implements Initializable {
         tabelaMedicos.setItems(listaDeMedicos);
         
         UtilsController.initButtons(columnRelatorio, 18, pathIconRelatorio, "icon-svg-editar", (MedicoDTO medDTO, ActionEvent event) -> {
-        	Telas.telaRelatorios();
+        	Telas.telaRelatorios(new MedicoDTO());
         });
         UtilsController.initButtons(columnEdit, 18, pathIconEditar, "icon-svg-editar", (MedicoDTO medDTO, ActionEvent event) -> {
         	Telas.telaEdicaoMedico();
@@ -156,7 +156,7 @@ public class RegistroMedicosController implements Initializable {
     public void listarPacientes() {
         Telas.listarPacientes();
     }
-    public void listarConsultas() {
+    public void listarConsulta  s() {
         Telas.listarConsultas();
     }
     public void cadastrar() {
@@ -183,7 +183,7 @@ public class RegistroMedicosController implements Initializable {
     	confirmarExclusao.setVisible(false);
     }
     public void relatorio() {
-    	Telas.telaRelatorios();
+    	Telas.telaRelatorios(tabelaMedicos.getItems().get(tabelaMedicos.getFocusModel().getFocusedCell().getRow()));
     }
     
 }
