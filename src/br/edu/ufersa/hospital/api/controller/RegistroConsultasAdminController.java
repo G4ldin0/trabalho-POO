@@ -97,7 +97,8 @@ public class RegistroConsultasAdminController implements Initializable {
     
     public void buscar() {
     	ConsultaDTO dto = new ConsultaDTO();
-    	dto.getPaciente().setCpf(busca.getText());	// busca consulta pelo cpf do paciente
+    	dto.setCpfPaciente(busca.getText()); // busca consulta pelo cpf do paciente
+    	dto.setCpfMedico(busca.getText()); // busca consulta pelo cpf do medico
     	List<ConsultaDTO> consultas = bo.listarPorCpfPaciente(dto);
     	listaConsultasFiltradas = FXCollections.observableArrayList(consultas);
     	columnPaciente.setCellValueFactory(new PropertyValueFactory<>("idPaciente"));

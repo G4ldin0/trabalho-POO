@@ -8,7 +8,7 @@ import br.edu.ufersa.hospital.model.entity.Medico;
 public interface BaseInterDAO<entity> {
 	public Connection getConnection();
 	public boolean cadastrar (entity e);
-	public boolean editar(entity e);
+	public boolean editar(entity e, String cpf);
 	public boolean excluirPorId(entity e);
 	public boolean excluirPorCPF(entity e);
 	public ResultSet listar();

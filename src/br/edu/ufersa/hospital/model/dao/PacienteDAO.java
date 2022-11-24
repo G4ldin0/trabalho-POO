@@ -32,8 +32,8 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 	}
 
 	@Override
-	public boolean editar(Paciente vo) {
-		String sql = "UPDATE Paciente SET cpf=?,endereco=?,nome=?,idade=? WHERE idPaciente=? ";
+	public boolean editar(Paciente vo, String cpf) {
+		String sql = "UPDATE Paciente SET cpf=?,endereco=?,nome=?,idade=? WHERE cpf=? ";
 		
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -41,7 +41,7 @@ public class PacienteDAO extends BaseDAO implements BaseInterDAO<Paciente>{
 			ps.setString(2, vo.getEndereco());
 			ps.setString(3, vo.getNome());
 			ps.setInt(4, vo.getIdade());
-			ps.setInt(5, vo.getId());
+			ps.setString(5, cpf);
 			ps.executeUpdate();
 
 			return true;		

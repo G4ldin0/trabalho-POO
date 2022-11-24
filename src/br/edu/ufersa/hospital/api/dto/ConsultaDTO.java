@@ -9,8 +9,8 @@ import br.edu.ufersa.hospital.model.entity.Prontuario;
 
 public class ConsultaDTO{
 	private int id;
-    private Paciente paciente;
-    private Medico medico;
+    private String cpfPaciente;
+    private String cpfMedico;
     private LocalDate data;
     private LocalTime horario;
     private Prontuario prontuario;
@@ -25,7 +25,7 @@ public class ConsultaDTO{
         } else this.id = id;
     }
 
-    public void setPaciente(Paciente temp){	// colocar PacienteDTO?
+    /*public void setPaciente(Paciente temp){	// colocar PacienteDTO?
         this.paciente.setNome(temp.getNome());
         this.paciente.setEndereco(temp.getEndereco());
         this.paciente.setCpf(temp.getCpf());
@@ -36,9 +36,9 @@ public class ConsultaDTO{
     public Paciente getPaciente(){
         return this.paciente;
 
-    }
+    }*/
     
-    public void setMedico(Medico temp){
+    /*public void setMedico(Medico temp){
         this.medico.setNome(temp.getNome());
         this.medico.setCodigoDoConselho(temp.getCodigoDoConselho());
         this.medico.setCpf(temp.getCpf());
@@ -47,7 +47,7 @@ public class ConsultaDTO{
     }
     public Medico getMedico(){
         return this.medico;
-    }
+    }*/
     
     public void setData(LocalDate temp){
         LocalDate agora = LocalDate.now();
@@ -77,5 +77,21 @@ public class ConsultaDTO{
 
 	public void setHorario(LocalTime horario) {
 		this.horario = horario;
+	}
+
+	public String getCpfPaciente() {
+		return cpfPaciente;
+	}
+
+	public void setCpfPaciente(String cpfPaciente) {
+		this.cpfPaciente = cpfPaciente;
+	}
+
+	public String getCpfMedico() {
+		return cpfMedico;
+	}
+
+	public void setCpfMedico(String cpfMedico) {
+		this.cpfMedico = cpfMedico;
 	}
 }

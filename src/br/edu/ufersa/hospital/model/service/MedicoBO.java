@@ -31,14 +31,15 @@ public class MedicoBO {
 		}	
 	} 
 
-    public boolean atualizar(MedicoDTO medDTO) {
+    public boolean atualizar(MedicoDTO medDTO, String cpf) {
         
         Medico med = Medico.converter(medDTO);
         
         ResultSet rs = dao.encontrar(med);
+        dao.editar(med, cpf);
 		try {
 			if(rs!=null || (rs.next())) {
-				if(dao.editar(med) == true)
+				if(dao.editar(med, cpf) == true)
 					return true;
 					else return false;
 			}

@@ -100,35 +100,24 @@
                   <Font size="18.0" />
                </font>
             </Button>
+            <Pane fx:id="confirmarExclusao" layoutX="93.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="335.0" style="-fx-background-color: B9B9B9; -fx-border-style: solid; -fx-border-width: 2px; -fx-border-radius: 2px;" visible="false">
+               <children>
+                  <Label layoutX="60.0" layoutY="15.0" prefHeight="37.0" prefWidth="216.0" text="Deseja mesmo excluir os dados?">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="276.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Rectangle%2033.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="90.0" layoutY="51.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #FFFFFF;" styleClass="button-hand" text="Cancelar" />
+                  <Button layoutX="183.0" layoutY="51.0" mnemonicParsing="false" onAction="#excluir" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: #CE5252;" styleClass="button-hand" text="Excluir" textFill="#fffbfb" />
+               </children>
+            </Pane>
          </children>
       </Pane>
       <Button layoutX="560.0" layoutY="374.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #CE5252;" styleClass="button-hand" text="Sair" textFill="#fff4f4" />
-      <Button layoutX="563.0" layoutY="119.0" mnemonicParsing="false" onAction="#relatorio" prefHeight="14.0" prefWidth="3.0" style="-fx-background-color: #FFFFFF;" styleClass="button-hand">
-         <graphic>
-            <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icon-relatorio.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="562.0" layoutY="151.0" mnemonicParsing="false" onAction="#editar" style="-fx-background-color: #FFFFFF;" styleClass="button-hand">
-         <graphic>
-            <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icon-editar.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button layoutX="562.0" layoutY="182.0" mnemonicParsing="false" onAction="#excluir" prefHeight="10.0" prefWidth="12.0" style="-fx-background-color: #FFFFFF;" styleClass="button-hand">
-         <graphic>
-            <ImageView fitHeight="20.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icon-excluir.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
    </children>
 </Pane>

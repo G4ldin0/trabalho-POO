@@ -106,10 +106,9 @@ public class RegistroMedicosController implements Initializable {
         	Telas.telaRelatorios();
         });
         UtilsController.initButtons(columnEdit, 18, pathIconEditar, "icon-svg-editar", (MedicoDTO medDTO, ActionEvent event) -> {
-        	Telas.telaEdicaoMedico();
+        	editar();
         });
         UtilsController.initButtons(columnDelete, 18, pathIconExcluir, "icon-svg-excluir", (MedicoDTO medDTO, ActionEvent event) -> {
-        	
         	confirmarExclusao.setVisible(true);
         });
     }
@@ -163,7 +162,18 @@ public class RegistroMedicosController implements Initializable {
     	Telas.telaCadastroMedico();
     }
     public void editar() {
-    	Telas.telaEdicaoMedico();
+    	
+    	MedicoDTO dto = new MedicoDTO();
+    	
+    	dto.setNome(tabelaMedicos.getSelectionModel().getSelectedItem().getNome());
+    	dto.setCpf(tabelaMedicos.getSelectionModel().getSelectedItem().getCpf());
+    	dto.setEndereco(tabelaMedicos.getSelectionModel().getSelectedItem().getEndereco());
+    	dto.setCodigoDoConselho(tabelaMedicos.getSelectionModel().getSelectedItem().getCodigoDoConselho());
+    	dto.setValorDaConsulta(tabelaMedicos.getSelectionModel().getSelectedItem().getValorDaConsulta());
+
+    	EditarMedicoController.telaEditar(dto);
+
+    	
     }
     public void excluir() {
     	MedicoDTO dto = new MedicoDTO();

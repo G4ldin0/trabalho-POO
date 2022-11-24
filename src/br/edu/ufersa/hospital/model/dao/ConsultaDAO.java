@@ -17,15 +17,15 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 
 	@Override
 	public boolean cadastrar(Consulta vo) {
-		String sql = "insert into Consulta (idPaciente, idMedico, idProntuario, dia, horario) values (?,?,?,?,?);";
+		String sql = "insert into Consulta (idPaciente, idMedico, idProntuario) values (?,?,?);";
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setInt(1,vo.getPaciente().getId());
-			ps.setInt(2,vo.getMedico().getId());
-			ps.setInt(3,vo.getProntuario().getId());
-			ps.setDate(3, Date.valueOf(vo.getData()));
-			ps.setTime(4,Time.valueOf(vo.getHorario()));
+			ps.setString(1,vo.getCpfPaciente());
+			ps.setString(2,vo.getCpfMedico());
+			ps.setInt(3, 120/*vo.getProntuario().getId()*/);
+			//ps.setDate(3, Date.valueOf(vo.getData()));
+			//ps.setTime(4,Time.valueOf(vo.getHorario()));
 			ps.execute();
 			return true;
 
@@ -37,15 +37,15 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 	}
 
 	@Override
-	public boolean editar(Consulta vo) {
-		String sql = "UPDATE Consulta SET idPaciente = ?, idMedico = ?, idProntuario = ?  WHERE idConsulta=? ";
+	public boolean editar(Consulta vo, String cpfPaciente) {
+		String sql = "UPDATE Consulta SET idPaciente = ?, idMedico = ?, idProntuario = ?  WHERE idPaciente=? ";
 		
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
-			ps.setInt(1,vo.getPaciente().getId());
-			ps.setInt(2,vo.getMedico().getId());
+			ps.setString(1,vo.getCpfPaciente());
+			ps.setString(2,vo.getCpfMedico());
 			ps.setInt(3,vo.getProntuario().getId());
-			ps.setInt(4, vo.getId());
+			ps.setString(4, cpfPaciente);
 			ps.executeUpdate();
 
 			return true;
@@ -165,11 +165,21 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 
 	@Override
 	public ResultSet encontrar(Consulta e) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM Consulta WHERE idPaciente=? ;";
+
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setString(1, e.getCpfPaciente());
+
+            ResultSet rs = ps.executeQuery();
+            return rs;
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
 	}
 	public Consulta BuscarPorId(Consulta e) {
-		String sql = "SELECT * FROM Consulta WHERE id=? ;";
+		String sql = "SELECT * FROM Consulta WHERE idPaciente=? ;";
 		try {
 			PreparedStatement pst = getConnection().prepareStatement(sql);
 			pst.setInt(1, e.getId());
@@ -180,10 +190,10 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 				PacienteDAO dao2 = new PacienteDAO();
 				a.setHorario(LocalTime.parse(rs.getTime("horario").toString()));
 				a.setData(LocalDate.parse(rs.getDate("dia").toString()));
-				a.getMedico().setId(rs.getInt("idMedico"));
+				/*a.getMedico().setId(rs.getInt("idMedico"));
 				a.setMedico(dao1.encontrarPorId(a.getMedico()));
 				a.getPaciente().setId(rs.getInt("idPaciente"));
-				a.setPaciente(dao2.encontrarPorId(a.getPaciente()));
+				a.setPaciente(dao2.encontrarPorId(a.getPaciente()));*/
 				a.setId(e.getId());
 				return a;
 			}
@@ -209,11 +219,11 @@ public class ConsultaDAO extends BaseDAO implements BaseInterDAO<Consulta>{
 				break;
 				
 			case "idPaciente":
-				pst.setInt(1, e.getPaciente().getId());
+				pst.setString(1, e.getCpfPaciente());
 				break;
 				
 			case "idMedico":
-				pst.setInt(1, e.getMedico().getId());
+				pst.setString(1, e.getCpfMedico());
 				break;
 			
 			default: 
