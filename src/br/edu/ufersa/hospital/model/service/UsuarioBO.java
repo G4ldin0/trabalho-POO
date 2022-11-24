@@ -21,11 +21,10 @@ public Usuario adicionar(UsuarioDTO userDTO) throws PasswordErrorException {
 		ResultSet rs = dao.encontrarPorUsername(user);
 		try {
 			if(rs==null || !(rs.next())) { // verifica se foi encontrado algum usuario com mesmo username
-				if(dao.cadastrar(user) == true)
+				if(dao.cadastrar(user) == true){
 					return user;
-					else throw new PasswordErrorException();
-			}
-			else throw new PasswordErrorException();
+				}
+				else throw new PasswordErrorException();
 			}
 			else throw new PasswordErrorException();
 		} catch (SQLException e) {

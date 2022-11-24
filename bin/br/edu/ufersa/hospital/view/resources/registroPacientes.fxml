@@ -49,7 +49,8 @@
                   <TableColumn fx:id="columnEndereco" prefWidth="142.0" text="Endereço" />
                   <TableColumn fx:id="columnIdade" prefWidth="50.0" text="Idade" />
                   <TableColumn fx:id="columnHistorico" prefWidth="56.0" text="Histórico" />
-                  <TableColumn fx:id="editDelete" prefWidth="55.0" />
+                  <TableColumn fx:id="columnEdit" prefWidth="27.0" />
+                  <TableColumn fx:id="columnDelete" prefWidth="27.0" />
               </columns>
             </TableView>
             <Label layoutX="220.0" layoutY="14.0" text="Pacientes">

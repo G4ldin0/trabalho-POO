@@ -73,4 +73,9 @@ public class AdmDAO extends BaseDAO implements BaseInterDAO<Adm> {
             return null;
         }
     }
+
+	 @Override
+	 public ResultSet encontrarPorNome(Adm vo){ 
+		return null;
+	}
 }

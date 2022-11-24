@@ -1,6 +1,7 @@
 package br.edu.ufersa.hospital.api.controller;
 
 import br.edu.ufersa.hospital.view.Telas;
+import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,12 +12,25 @@ import javafx.util.Duration;
 
 public class CadastrarRelatorioController {
 
+    //fields
     @FXML private Button botaoVoltar;
     @FXML private TextField busca;
     @FXML private Button menu;
     @FXML private Button menuClose;
     @FXML private AnchorPane slider;
-    
+
+    @FXML private TextField nomeMedico;
+    @FXML private TextField horaInicial;
+    @FXML private TextField dataInicial;
+    @FXML private TextField horaFinal;
+    @FXML private TextField dataFinal;
+
+    //configuração inicial
+    public void set(MedicoDTO medico){
+        nomeMedico.setText(medico.getNome());
+    }
+
+    //menu
     @FXML
     void abrirMenu(ActionEvent event) {
     	// menu.setOnMouseClicked(event -> {});
@@ -58,6 +72,10 @@ public class CadastrarRelatorioController {
 
     }
 
+
+
+
+    //trocar de tela
     public void logout() {
         Telas.logout();
     }

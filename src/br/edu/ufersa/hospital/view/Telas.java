@@ -2,7 +2,9 @@ package br.edu.ufersa.hospital.view;
 
 
 import br.edu.ufersa.hospital.api.controller.CadastrarProntuarioController;
+import br.edu.ufersa.hospital.api.controller.CadastrarRelatorioController;
 import br.edu.ufersa.hospital.api.dto.ProntuarioDTO;
+import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -124,10 +126,15 @@ public class Telas extends Application {
         }
     }
     
-    public static void telaRelatorios() {
+    public static void telaRelatorios(MedicoDTO medico) {
         try {
-            Parent root = FXMLLoader.load(Telas.class.getResource("resources/Relatorio.fxml"));
+            FXMLLoader loader = new FXMLLoader((Telas.class.getResource("resources/Relatorio.fxml")));
+            Parent root = loader.load();
             Scene scene = new Scene (root);
+
+            CadastrarRelatorioController c = loader.getController();
+            c.set(medico);
+
             stage.setScene(scene);
             stage.setTitle("Tela de Relatórios");
             stage.show();

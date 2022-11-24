@@ -77,4 +77,9 @@ public class ContaDAO<entity extends Conta> extends BaseDAO implements BaseInter
             return null;
         }
     }
+
+	 @Override
+	 public ResultSet encontrarPorNome(entity e){
+		return null;
+	 }
 }
