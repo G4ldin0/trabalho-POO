@@ -73,4 +73,10 @@ public class AdmDAO extends BaseDAO implements BaseInterDAO<Adm> {
             return null;
         }
     }
+
+	@Override
+	public ResultSet encontrarPorNome(Adm e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

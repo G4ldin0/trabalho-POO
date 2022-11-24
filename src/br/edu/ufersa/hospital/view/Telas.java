@@ -27,7 +27,7 @@ public class Telas extends Application {
     public void start(Stage arg0) throws Exception {
         setStage(arg0);
         arg0.setTitle("Cadastro");
-        listarMedicos();
+        login();
     }
     
     public static void telaCadastroMedico() {
@@ -246,4 +246,42 @@ public class Telas extends Application {
             e.printStackTrace();
         }	
 	}
+	public static void listarMedicosAdmin() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/registroMedicoAdmin.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Médicos");
+            stage.show();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void listarPacientesAdmin() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/registroPacientesAdmin.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Pacientes");
+            stage.show();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void listarConsultasAdmin() {
+        try {
+            Parent root = FXMLLoader.load(Telas.class.getResource("resources/registroConsultasAdmin.fxml"));
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.setTitle("Consultas");
+            stage.show();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

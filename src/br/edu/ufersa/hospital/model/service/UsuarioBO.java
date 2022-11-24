@@ -27,8 +27,7 @@ public Usuario adicionar(UsuarioDTO userDTO) throws PasswordErrorException {
 			}
 			else throw new PasswordErrorException();
 			}
-			else throw new PasswordErrorException();
-		} catch (SQLException e) {
+		    catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new PasswordErrorException();
