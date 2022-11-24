@@ -104,7 +104,6 @@
                      </font>
                   </Label>
                   <Button layoutX="457.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
-                  <TextField editable="false" layoutX="20.0" layoutY="110.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="120.0" />
                   <AnchorPane fx:id="slider" layoutX="-38.0" layoutY="-24.0" prefHeight="107.0" prefWidth="89.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #90ADC2; -fx-border-radius: 2;" visible="false">
                      <children>
                         <Button alignment="CENTER_RIGHT" layoutY="70.0" mnemonicParsing="false" onAction="#listarConsultas" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2;" text="Consultas">
@@ -139,6 +138,7 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
+                  <TextArea fx:id="relatorioFinal" layoutX="20.0" layoutY="117.0" prefHeight="185.0" prefWidth="464.0" />
                </children>
             </AnchorPane>
             <Button layoutX="553.0" layoutY="317.0" mnemonicParsing="false" prefHeight="4.0" prefWidth="45.0" style="-fx-background-color: CE5252;" text="sair" textAlignment="CENTER" textFill="WHITE">

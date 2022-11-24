@@ -6,6 +6,7 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -24,10 +25,12 @@ public class CadastrarRelatorioController {
     @FXML private TextField dataInicial;
     @FXML private TextField horaFinal;
     @FXML private TextField dataFinal;
+    @FXML private TextArea relatorioFinal;
 
     //configuração inicial
     public void set(MedicoDTO medico){
         nomeMedico.setText(medico.getNome());
+        this.relatorioFinal.setText("teste\nteste");
     }
 
     //menu
