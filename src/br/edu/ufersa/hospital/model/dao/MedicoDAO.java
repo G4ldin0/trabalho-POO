@@ -90,7 +90,7 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 	}
 	
 	public boolean excluirPorCPF(Medico vo) { // testado
-		String sql = "delete from Medico where cpf =? ;";
+		String sql = "delete from Medico where cpf = ?;";
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);

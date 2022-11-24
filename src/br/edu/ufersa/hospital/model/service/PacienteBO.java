@@ -1,5 +1,4 @@
 package br.edu.ufersa.hospital.model.service;
-import br.edu.ufersa.hospital.model.entity.Medico;
 import br.edu.ufersa.hospital.model.entity.Paciente;
 import br.edu.ufersa.hospital.model.dao.PacienteDAO;
 
@@ -8,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import br.edu.ufersa.hospital.api.dto.PacienteDTO;
 import br.edu.ufersa.hospital.model.dao.BaseInterDAO;
 
@@ -41,7 +39,7 @@ public class PacienteBO {
         
         ResultSet rs = dao.encontrar(pac);
         try {
-            if(rs==null || !(rs.next())) {
+            if(rs!=null || (rs.next())) {
                 if(dao.editar(pac) == true)
                     return true;
                     else return false;
@@ -59,9 +57,10 @@ public class PacienteBO {
         Paciente pac = Paciente.converter(pacDTO);
     
         ResultSet rs = dao.encontrar(pac);
+
         try {
-            if(rs==null || !(rs.next())) {
-                if(dao.excluirPorId(pac) == true)
+            if(rs!=null || (rs.next())) {
+                if(dao.excluirPorCPF(pac) == true)
                     return true;
                     else return false;
             }

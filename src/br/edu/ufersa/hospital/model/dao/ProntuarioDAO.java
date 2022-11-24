@@ -137,5 +137,11 @@ public ResultSet encontrarPorNome(Prontuario e) {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+@Override
+public boolean excluirPorCPF(Prontuario e) {
+	// TODO Auto-generated method stub
+	return false;
+}
   
 }

@@ -15,7 +15,7 @@ public class CadastrarMedicoController {
     @FXML private TextField valorDaConsulta;
     private MedicoBO bo = new MedicoBO();
     
-    public boolean cadastrar() {
+    public void cadastrar() {
         MedicoDTO dto = new MedicoDTO();
         dto.setNome(nome.getText());
         dto.setCpf(cpf.getText());
@@ -24,8 +24,7 @@ public class CadastrarMedicoController {
         dto.setValorDaConsulta(Double.parseDouble(valorDaConsulta.getText()));
         bo.adicionar(dto);
         Telas.listarMedicos();
-        
-        return true;	// adicionar Exception?
+        // adicionar Exception?
     }
     
     public void cancelar() {

@@ -21,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class RegistroPacientesController implements Initializable {
@@ -37,6 +38,7 @@ public class RegistroPacientesController implements Initializable {
     @FXML private TableColumn<PacienteDTO, PacienteDTO> columnHistorico;
     @FXML private TableColumn<PacienteDTO, PacienteDTO> columnEdit;
     @FXML private TableColumn<PacienteDTO, PacienteDTO> columnDelete;
+    @FXML private Pane confirmarExclusao;
     private PacienteBO bo = new PacienteBO();
     private ObservableList<PacienteDTO> listaDePacientes;
     private ObservableList<PacienteDTO> listaPacientesFiltrados;
@@ -100,13 +102,13 @@ public class RegistroPacientesController implements Initializable {
         tabelaPacientes.setItems(listaDePacientes);
         
         UtilsController.initButtons(columnHistorico, 18, pathIconRelatorio, "icon-svg-editar", (PacienteDTO pacDTO, ActionEvent event) -> {
-        	Telas.telaEdicaoMedico();
-        });
-        UtilsController.initButtons(columnEdit, 18, pathIconEditar, "icon-svg-editar", (PacienteDTO pacDTO, ActionEvent event) -> {
         	Telas.telaRelatorios();
         });
+        UtilsController.initButtons(columnEdit, 18, pathIconEditar, "icon-svg-editar", (PacienteDTO pacDTO, ActionEvent event) -> {
+        	Telas.telaEdicaoPaciente();
+        });
         UtilsController.initButtons(columnDelete, 18, pathIconExcluir, "icon-svg-excluir", (PacienteDTO pacDTO, ActionEvent event) -> {
-        	Telas.telaConfirmarExclusao();
+        	confirmarExclusao.setVisible(true);
         });
     }
     
@@ -155,7 +157,20 @@ public class RegistroPacientesController implements Initializable {
     	Telas.telaEdicaoPaciente();
     }
     public void excluir() {
-    	Telas.telaConfirmarExclusao();
+    	PacienteDTO dto = new PacienteDTO();
+    	
+    	dto.setNome(tabelaPacientes.getSelectionModel().getSelectedItem().getNome());
+    	dto.setCpf(tabelaPacientes.getSelectionModel().getSelectedItem().getCpf());
+    	dto.setEndereco(tabelaPacientes.getSelectionModel().getSelectedItem().getEndereco());
+    	dto.setIdade(tabelaPacientes.getSelectionModel().getSelectedItem().getIdade());
+
+    	bo.apagar(dto);
+    	
+    	confirmarExclusao.setVisible(false);
+    	listarPacientes();
+    }
+    public void cancelar() {
+    	confirmarExclusao.setVisible(false);
     }
     
 }
