@@ -1,7 +1,12 @@
 package br.edu.ufersa.hospital.api.controller;
 
 import br.edu.ufersa.hospital.view.Telas;
+
+import java.util.List;
+
+import br.edu.ufersa.hospital.api.dto.ConsultaDTO;
 import br.edu.ufersa.hospital.api.dto.MedicoDTO;
+import br.edu.ufersa.hospital.model.service.ConsultaBO;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,8 +34,21 @@ public class CadastrarRelatorioController {
 
     //configuração inicial
     public void set(MedicoDTO medico){
+        String relatorio = new String();
+        ConsultaBO bo = new ConsultaBO();
+        List<ConsultaDTO> lista = bo.listar();
+
+        if (!lista.isEmpty()){
+            for(int i = 0; i < lista.size(); i++){
+                relatorio += "consulta ao dia";
+                relatorio += lista.get(i).getData().toString();
+                relatorio += "\n\n";
+            }
+        } else
+            relatorio = "nada por hoje chefia";
+
         nomeMedico.setText(medico.getNome());
-        this.relatorioFinal.setText("teste\nteste");
+        this.relatorioFinal.setText(relatorio);
     }
 
     //menu
