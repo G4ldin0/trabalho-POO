@@ -23,12 +23,12 @@ public class CadastrarMedicoController {
         dto.setCodigoDoConselho(Integer.parseInt(codigoDoConselho.getText()));	
         dto.setValorDaConsulta(Double.parseDouble(valorDaConsulta.getText()));
         bo.adicionar(dto);
-        Telas.listarMedicos();
+        Telas.listarMedicosAdmin();
         // adicionar Exception?
     }
     
     public void cancelar() {
-    	Telas.listarMedicos();
+    	Telas.listarMedicosAdmin();
     }
     
 }

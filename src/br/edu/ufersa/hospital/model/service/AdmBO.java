@@ -16,6 +16,10 @@ public Adm adicionar(AdmDTO admDTO) throws PasswordErrorException {
 	    
 	    Adm admin = Adm.converter(admDTO);
       
+	    if(admin.getUsername().equals("")) {
+	    	throw new PasswordErrorException();
+	    }
+	    
 		ResultSet rs = dao.encontrarPorUsername(admin);
 		try {
 			if(rs==null || !(rs.next())) {

@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.BiConsumer;
 
 import br.edu.ufersa.hospital.api.dto.MedicoDTO;
 import br.edu.ufersa.hospital.model.service.MedicoBO;
@@ -16,12 +15,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class RegistroMedicosAdminController implements Initializable {
@@ -39,6 +38,7 @@ public class RegistroMedicosAdminController implements Initializable {
     @FXML private TableColumn<MedicoDTO, MedicoDTO> columnRelatorio;
     @FXML private TableColumn <MedicoDTO, MedicoDTO> columnEdit;
     @FXML private TableColumn <MedicoDTO, MedicoDTO> columnDelete;
+    @FXML private Pane confirmarExclusao;
     private MedicoBO bo = new MedicoBO();
     private ObservableList<MedicoDTO> listaDeMedicos;
     private ObservableList<MedicoDTO> listaMedicosFiltrados;
@@ -108,15 +108,23 @@ public class RegistroMedicosAdminController implements Initializable {
         UtilsController.initButtons(columnEdit, 18, pathIconEditar, "icon-svg-editar", (MedicoDTO medDTO, ActionEvent event) -> {
         	Telas.telaRelatorios(new MedicoDTO());
         });
+        UtilsController.initButtons(columnEdit, 18, pathIconEditar, "icon-svg-editar", (MedicoDTO medDTO, ActionEvent event) -> {
+        	editar();
+        });
         UtilsController.initButtons(columnDelete, 18, pathIconExcluir, "icon-svg-excluir", (MedicoDTO medDTO, ActionEvent event) -> {
-        	Telas.telaConfirmarExclusao();
+        	confirmarExclusao.setVisible(true);
         });
     }
     
     public void buscar() {
     	MedicoDTO dto = new MedicoDTO();
+
     	dto.setCpf(busca.getText());
     	dto.setNome(busca.getText());
+    	dto.setCodigoDoConselho(1);
+    	dto.setValorDaConsulta(1);
+    	dto.setEndereco("0");
+    	
     	if(dto.getCpf().equals("") || dto.getCpf().equals(" ")) {
     		List<MedicoDTO> todos = bo.listar();
         	listaMedicosFiltrados = FXCollections.observableArrayList(todos);
@@ -138,7 +146,7 @@ public class RegistroMedicosAdminController implements Initializable {
         columnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
         columnCodConselho.setCellValueFactory(new PropertyValueFactory<>("codigoDoConselho"));
         columnValorConsulta.setCellValueFactory(new PropertyValueFactory<>("valorDaConsulta"));
-        columnRelatorio.setCellValueFactory(new PropertyValueFactory<>("emitirRelatorio"));
+        //columnRelatorio.setCellValueFactory(new PropertyValueFactory<>("emitirRelatorio"));
         tabelaMedicos.setItems(listaMedicosFiltrados);
 
     }
@@ -157,10 +165,34 @@ public class RegistroMedicosAdminController implements Initializable {
     	Telas.telaCadastroMedico();
     }
     public void editar() {
-    	Telas.telaEdicaoMedico();
+    	
+    	MedicoDTO dto = new MedicoDTO();
+    	
+    	dto.setNome(tabelaMedicos.getSelectionModel().getSelectedItem().getNome());
+    	dto.setCpf(tabelaMedicos.getSelectionModel().getSelectedItem().getCpf());
+    	dto.setEndereco(tabelaMedicos.getSelectionModel().getSelectedItem().getEndereco());
+    	dto.setCodigoDoConselho(tabelaMedicos.getSelectionModel().getSelectedItem().getCodigoDoConselho());
+    	dto.setValorDaConsulta(tabelaMedicos.getSelectionModel().getSelectedItem().getValorDaConsulta());
+
+    	EditarMedicoController.telaEditar(dto);
+    	
     }
     public void excluir() {
-    	Telas.telaConfirmarExclusao();
+    	MedicoDTO dto = new MedicoDTO();
+    	
+    	dto.setNome(tabelaMedicos.getSelectionModel().getSelectedItem().getNome());
+    	dto.setCpf(tabelaMedicos.getSelectionModel().getSelectedItem().getCpf());
+    	dto.setEndereco(tabelaMedicos.getSelectionModel().getSelectedItem().getEndereco());
+    	dto.setCodigoDoConselho(tabelaMedicos.getSelectionModel().getSelectedItem().getCodigoDoConselho());
+    	dto.setValorDaConsulta(tabelaMedicos.getSelectionModel().getSelectedItem().getValorDaConsulta());
+    	
+    	bo.apagar(dto);
+    	
+    	confirmarExclusao.setVisible(false);
+    	listarMedicos();
+    }
+    public void cancelar() {
+    	confirmarExclusao.setVisible(false);
     }
     public void relatorio() {
     	Telas.telaRelatorios(new MedicoDTO());

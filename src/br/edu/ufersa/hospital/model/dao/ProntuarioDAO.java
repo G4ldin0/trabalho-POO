@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 
+import br.edu.ufersa.hospital.model.entity.Consulta;
 import br.edu.ufersa.hospital.model.entity.Medico;
 import br.edu.ufersa.hospital.model.entity.Paciente;
 import br.edu.ufersa.hospital.model.entity.Prontuario;
@@ -36,7 +37,7 @@ public class ProntuarioDAO extends BaseDAO implements BaseInterDAO<Prontuario> {
   	}
 
 	@Override
-	public boolean editar(Prontuario vo) {
+	public boolean editar(Prontuario vo, String valor) {
 	  String sql = "UPDATE Prontuario SET momento = ?, obs = ?, idPaciente = ? WHERE idProntuario=? ";
 
 		try {
@@ -140,6 +141,18 @@ public ResultSet encontrarPorNome(Prontuario e) {
 
 @Override
 public boolean excluirPorCPF(Prontuario e) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public ResultSet BuscarPorId(Prontuario e) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public boolean editar(Consulta vo, int idPaciente) {
 	// TODO Auto-generated method stub
 	return false;
 }

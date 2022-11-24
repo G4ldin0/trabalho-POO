@@ -33,14 +33,15 @@ public class PacienteBO {
         }   
     }
     
-    public boolean atualizar(PacienteDTO pacDTO) {
+    public boolean atualizar(PacienteDTO pacDTO, String cpf) {
         
         Paciente pac = Paciente.converter(pacDTO);
         
         ResultSet rs = dao.encontrar(pac);
+        dao.editar(pac, cpf);
         try {
             if(rs!=null || (rs.next())) {
-                if(dao.editar(pac) == true)
+                if(dao.editar(pac, cpf) == true)
                     return true;
                     else return false;
             }

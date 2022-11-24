@@ -1,3 +1,7 @@
+.button-hand {
+    -fx-cursor: hand;
+}
+
 .button-hand:hover {
     -fx-cursor: hand;
 }

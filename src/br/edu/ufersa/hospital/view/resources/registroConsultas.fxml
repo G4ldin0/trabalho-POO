@@ -92,7 +92,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Button layoutX="383.0" layoutY="8.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #BCD6E9;" styleClass="button-hand" text="Novo" textFill="#152734">
+            <Button layoutX="383.0" layoutY="5.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #BCD6E9; -fx-border-color: #909090; -fx-border-width: 2px; -fx-border-radius: 2px;" styleClass="button-hand" text="Novo" textFill="#152734">
                <font>
                   <Font size="18.0" />
                </font>

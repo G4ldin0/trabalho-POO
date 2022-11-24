@@ -67,7 +67,9 @@ public int getId(){
    }
 
    public void setPaciente(Paciente paciente) {
-       this.paciente = paciente;    // melhorar a segurança disso aqui
+	   if(paciente != null){
+           this.paciente = paciente;
+       }
    }
 
    public static Prontuario converter(ProntuarioDTO dto) {

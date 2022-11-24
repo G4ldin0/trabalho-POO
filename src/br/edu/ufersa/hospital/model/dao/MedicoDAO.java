@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.edu.ufersa.hospital.model.entity.Consulta;
 import br.edu.ufersa.hospital.model.entity.Medico;
 
 public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
@@ -32,8 +33,8 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 	}
 
 	@Override
-	public boolean editar(Medico vo) { // funfando
-		String sql = "UPDATE Medico SET nome=?,endereco=?,cpf=?,codigoDoConselho=?,ValorDaConsulta=? WHERE idMedico=? ";
+	public boolean editar(Medico vo, String cpf) { // funfando
+		String sql = "UPDATE Medico SET nome=?,endereco=?,cpf=?,codigoDoConselho=?,ValorDaConsulta=? WHERE cpf=? ";
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -42,7 +43,7 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 			ps.setString(3, vo.getCpf());
 			ps.setInt(4, vo.getCodigoDoConselho());
 			ps.setDouble(5, vo.getValorDaConsulta());
-			ps.setInt(6, vo.getId());
+			ps.setString(6, cpf);
 			ps.executeUpdate();
 
 			return true;		
@@ -218,5 +219,17 @@ public class MedicoDAO extends BaseDAO implements BaseInterDAO<Medico> {
 	public ResultSet encontrarPorCampoEspecifico(Medico e, String field) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ResultSet BuscarPorId(Medico e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean editar(Consulta vo, int idPaciente) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

@@ -102,13 +102,13 @@ public class CadastrarProntuarioController extends Object implements Initializab
         Telas.logout();
     }
     public void listarPacientes() {
-        Telas.listarPacientes();
+        Telas.listarPacientesAdmin();
     }
     public void listarMedicos() { 
-        Telas.listarMedicos();
+        Telas.listarMedicosAdmin();
     }
     public void listarConsultas() {
-    	Telas.listarConsultas();
+    	Telas.listarConsultasAdmin();
     }
 
     

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="356.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #000000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.hospital.api.controller.CadastrarConsultaController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="356.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #000000; -fx-border-width: 2;" stylesheets="@style-registros.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.hospital.api.controller.CadastrarConsultaController">
    <children>
       <ImageView fitHeight="363.0" fitWidth="365.0" layoutX="-7.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -23,7 +23,7 @@
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="195.0" layoutY="321.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000;" text="Cadastrar">
+      <Button layoutX="195.0" layoutY="321.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2px;" styleClass="button-hand" text="Cadastrar">
          <font>
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
@@ -33,7 +33,7 @@
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="64.0" layoutY="321.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000;" text="Cancelar">
+      <Button layoutX="64.0" layoutY="321.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="91.0" style="-fx-background-color: #CBD0D1; -fx-border-color: #000000; -fx-border-radius: 2px;" styleClass="button-hand" text="Cancelar">
          <font>
             <Font name="Yu Gothic Bold" size="14.0" />
          </font>

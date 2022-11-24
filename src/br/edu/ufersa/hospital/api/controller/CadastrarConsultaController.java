@@ -18,29 +18,29 @@ public class CadastrarConsultaController {
     @FXML private TextField cpfMedico;
     @FXML private TextField data;
     @FXML private TextField horario;
-    @FXML private CheckBox addPront;
+    @FXML private CheckBox addPront; 
+    private ConsultaBO bo = new ConsultaBO();
+    private PacienteDAO dao = new PacienteDAO();
+    private MedicoDAO dao1 = new MedicoDAO();
     
-    	private ConsultaBO bo = new ConsultaBO();
-    	private PacienteDAO dao = new PacienteDAO();
-    	private MedicoDAO dao1 = new MedicoDAO();
     public void cadastrar() {
-    	Paciente p = new Paciente();
+    	/*Paciente p = new Paciente();
     	Medico m = new Medico();
     	m.setCpf(cpfMedico.getText());
     	m = dao1.encontrarPorCpf(m);
     	p.setCpf(cpfPaciente.getText());
-    	p = dao.encontrarPorCPF(p);
+    	p = dao.encontrarPorCPF(p);*/
     	ConsultaDTO dto = new ConsultaDTO();
-    	dto.setPaciente(p);
-    	dto.setMedico(m);
-		dto.setData(LocalDate.parse(data.getText()));
-		dto.setHorario(LocalTime.parse(horario.getText()));
+    	dto.setIdPaciente(Integer.parseInt(cpfPaciente.getText()));
+    	dto.setIdMedico(Integer.parseInt(cpfMedico.getText()));
+		//dto.setData(LocalDate.parse(data.getText()));
+		//dto.setHorario(LocalTime.parse(horario.getText()));
 		bo.adicionar(dto);
-		Telas.listarConsultas();
+		Telas.listarConsultasAdmin();
     }
     
     public void cancelar() {
-    	Telas.listarConsultas();
+    	Telas.listarConsultasAdmin();
     }
     
     public void adicionarPront() {

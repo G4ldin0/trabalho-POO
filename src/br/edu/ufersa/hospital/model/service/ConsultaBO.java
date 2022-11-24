@@ -19,7 +19,8 @@ public class ConsultaBO {
         
         Consulta cons = Consulta.converter(consDTO);
       
-        ResultSet rs = dao.encontrar(cons);
+        ResultSet rs = dao.BuscarPorId(cons);
+
         try {
             if(rs==null || !(rs.next())) {
                 if(dao.cadastrar(cons) == true)
@@ -34,14 +35,14 @@ public class ConsultaBO {
         }   
     } 
     
-    public boolean atualizar(ConsultaDTO consDTO) {
+    public boolean atualizar(ConsultaDTO consDTO, int idPaciente) {
         
         Consulta cons = Consulta.converter(consDTO);
         
         ResultSet rs = dao.encontrar(cons);
         try {
-            if(rs==null || !(rs.next())) {
-                if(dao.editar(cons) == true)
+            if(rs!=null || (rs.next())) {
+                if(dao.editar(cons, idPaciente) == true)
                     return true;
                     else return false;
             }
@@ -59,7 +60,7 @@ public class ConsultaBO {
         
         ResultSet rs = dao.encontrar(cons);
         try {
-            if(rs==null || !(rs.next())) {
+            if(rs!=null || (rs.next())) {
                 if(dao.excluirPorId(cons) == true)
                     return true;
                     else return false;
@@ -81,12 +82,12 @@ public class ConsultaBO {
 
             while(rs.next()) {
                 ConsultaDTO cons = new ConsultaDTO();
-                cons.getPaciente().setId(rs.getInt("idPaciente"));
-                cons.getMedico().setId(rs.getInt("idMedico"));
+                cons.setIdPaciente(rs.getInt("idPaciente")); // vem string mesmo?
+                cons.setIdMedico(rs.getInt("idMedico"));	// vem string mesmo?
                 //cons.getProntuario().setId(rs.getInt("idProntuario"));
-                cons.setId(rs.getInt("idConsulta"));
-                cons.setData(LocalDate.parse(rs.getDate("dia").toString()));
-                cons.setHorario(LocalTime.parse(rs.getTime("horario").toString()));
+                //cons.setId(rs.getInt("idConsulta"));
+                //cons.setData(LocalDate.parse(rs.getDate("dia").toString()));
+                //cons.setHorario(LocalTime.parse(rs.getTime("horario").toString()));
                 listaConsultas.add(cons);
             }
             return listaConsultas;
@@ -107,9 +108,9 @@ public class ConsultaBO {
 
             while(rs.next()) {
                 ConsultaDTO cons = new ConsultaDTO();
-                cons.getPaciente().setId(rs.getInt("idPaciente"));
-                cons.getMedico().setId(rs.getInt("idMedico"));
-                cons.getProntuario().setId(rs.getInt("idProntuario"));
+                cons.setIdPaciente(rs.getInt("idPaciente")); // vem string mesmo?
+                cons.setIdMedico(rs.getInt("idMedico"));	// vem string mesmo?
+                //cons.getProntuario().setId(rs.getInt("idProntuario"));
                 cons.setId(rs.getInt("idConsulta"));
                 cons.setData(LocalDate.parse(rs.getDate("dia").toString()));
                 cons.setHorario(LocalTime.parse(rs.getTime("horario").toString()));
